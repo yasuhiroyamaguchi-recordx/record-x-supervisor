@@ -1,0 +1,23 @@
+{
+  "_comment": "Y1-Y6 Yasu email notification config. NO SECRETS HERE. Credentials in .smtp.cred (DPAPI, gitignored).",
+  "smtp": {
+    "host": "smtp.gmail.com",
+    "port": 587,
+    "use_starttls": true
+  },
+  "from_address": "recordx-noreply@mam-s.info",
+  "to_address": "yasuhiro.yamaguchi@mam-s.info",
+  "credential_file": ".smtp.cred",
+  "subject_prefix": "[Record X]",
+  "triggers": {
+    "immediate": ["Y1", "Y3", "Y5"],
+    "daily_digest": ["Y2", "Y4", "Y6"]
+  },
+  "rate_limits": {
+    "same_trigger_cooldown_minutes": 30,
+    "daily_max_emails": 20
+  },
+  "format": "plain_text",
+  "version": "0.1",
+  "drafted": "2026-04-28"
+}

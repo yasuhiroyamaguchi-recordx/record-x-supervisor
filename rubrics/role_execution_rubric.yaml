@@ -1,0 +1,425 @@
+# Role Execution Rubric — 三者役割実行評価
+#
+# 配置先: rubrics/role_execution_rubric.yaml
+# 起草: 2026-04-28(Day 130 末、EVT-013 自己訂正 10 件目契機)
+# 起案 instance: 監督官 A
+# 統合先: operations/periodic_checkup_protocol.md(同日起案、定期検診プロトコル)
+# 哲学的根拠: 関係性ポリシー v1.2 §3.1 役割分担 + dream_mode_doctrine 原則 1「『特に課題なし』を疑う」 + sp500_theory.md §1 運動性継承
+# 関係層根拠: ヤス指摘「司令官モード自称しているが工場長を動かしている様子が見受けられない」(2026-04-28 末)
+
+version: 0.2
+established_date: 2026-04-28
+v0_2_revised: 2026-04-29  # Day 131 朝末、機械算出ロジック詳細化(dream_crystallize_commander v0.2 入力仕様化)
+review_date: 2026-05-12  # Phase B-α/β 7 日間実証後の v1.0 確定判断
+
+# ============================================================
+# 0. 本 rubric の位置づけ
+# ============================================================
+purpose: |
+  既存 rubrics 4 件(dasei / implementation_review / ticket_quality / value_alignment)は
+  個別アクションの評価軸。本 rubric は **三者(監督官 / 司令官 / 工場長)それぞれの役割実行率**
+  を評価する軸を提供する。
+
+  EVT-013(監督官 A 形式採択 23 連発)で発覚した「役割 4(監督官対応)のみで採点、役割 1-3
+  (全体地図維持 + 次の 10 手提示 + 工場長指揮)を見ていなかった」構造的盲点への直接対応。
+
+  Phase B-α 起動 Day 132 朝以降、Layer 0/1/2 各自律巡回サイクル内で本 rubric を実行、
+  各役割が本来責務を果たしているかを継続観測する。
+
+# ============================================================
+# 1. 司令官役割実行軸
+# ============================================================
+commander_role:
+
+  axis_1_global_map_maintenance:
+    label: 全体地図維持率
+    description: 司令官は変わりゆくあらゆるタスクの全体像を常に把握しているか
+    components:
+      - name: advance_map_freshness
+        label: advance_map.md 鮮度
+        weight: 0.30
+        criteria:
+          green_>=80: 24h 以内更新 + 戦略整合性自己点検済
+          yellow_60_79: 48h 以内更新
+          red_<60: 72h 超過更新なし
+        # v0.2 機械算出ロジック(dream_crystallize_commander v0.2 入力仕様)
+        formula:
+          input_files:
+            - commander#strategy/advance_map.md
+          variable: hoursSinceUpdate = (Now - mtime).TotalHours
+          score_calculation: |
+            if hoursSinceUpdate <= 24: score = 80 + min(20, (24 - h) * 0.83)
+            elif hoursSinceUpdate <= 48: score = 60 + (48 - h) * 0.83
+            elif hoursSinceUpdate <= 72: score = 30 + (72 - h) * 1.5
+            else: score = max(0, 30 - (h - 72) * 0.5)
+      - name: sitrep_currency
+        label: SITREP 最新性
+        weight: 0.30
+        criteria:
+          green_>=80: 週次以上更新 + 整合度スコア再算定済
+          yellow_60_79: 隔週更新
+          red_<60: 月次以下 or 未更新
+      - name: factory_ticket_overview
+        label: 工場長チケット全体把握
+        weight: 0.40
+        criteria:
+          green_>=80: 2,000 チケットの分類 / 残数 / 進捗を週次以上で可視化
+          yellow_60_79: 月次のみ可視化
+          red_<60: 可視化なし(EVT-013 該当時の本日司令官 α 状態)
+
+  axis_2_next_10_moves:
+    label: 次の 10 手提示率
+    description: 司令官は工場長に次の 10 手を提示し、常に工場長を動かし続けているか
+    components:
+      - name: ticket_issuance_velocity
+        label: チケット発行速度
+        weight: 0.40
+        criteria:
+          green_>=80: 1 日 5-10 件の新規チケット発行(tickets_draft → tickets_issued)
+          yellow_60_79: 1 日 2-4 件
+          red_<60: 1 日 0-1 件 or 数日連続発行ゼロ
+        # v0.2 機械算出ロジック
+        formula:
+          input_files:
+            - commander#strategy/tickets_issued/*.md
+            - commander#strategy/tickets_draft/*.md
+          variable: ticketsIn24h = count(files where mtime > Now - 24h)
+          score_calculation: |
+            if ticketsIn24h >= 5: score = 80 + min(20, (ticketsIn24h - 5) * 4)
+            elif ticketsIn24h >= 2: score = 60 + (ticketsIn24h - 2) * 6.6
+            elif ticketsIn24h == 1: score = 30
+            else: score = 5  # 0 件 = stalled
+      - name: forecast_horizon
+        label: 先読み時間軸
+        weight: 0.30
+        criteria:
+          green_>=80: 次の 15 手以上を advance_map に保持
+          yellow_60_79: 次の 5-14 手保持
+          red_<60: 次の 5 手未満
+      - name: ticket_quality_consistency
+        label: チケット品質一貫性
+        weight: 0.30
+        reference: rubrics/ticket_quality_rubric.yaml v1.0
+        criteria:
+          green_>=80: 直近 7 件発行チケット平均 ticket_fitness ≥ 80
+          yellow_60_79: 平均 60-79
+          red_<60: 平均 <60
+
+  axis_3_factory_progress_observation:
+    label: 工場長進捗観察率
+    description: 司令官は工場長の進捗を継続観察しているか
+    components:
+      - name: completion_report_review
+        label: completion_reports 確認頻度
+        weight: 0.40
+        criteria:
+          green_>=80: 24h 以内 review + 司令官応答(完了アーカイブ実行)
+          yellow_60_79: 48-72h
+          red_<60: 72h 超過確認なし
+      - name: pr_merge_tracking
+        label: PR マージ追跡
+        weight: 0.30
+        criteria:
+          green_>=80: merged-prs/ + sync/sync_script/stale-alert.ps1 で日次追跡
+          yellow_60_79: 隔日追跡
+          red_<60: 週次以下
+      - name: lessons_extraction
+        label: lessons 抽出率
+        weight: 0.30
+        criteria:
+          green_>=80: 完了 PR の 70% 以上から lessons 抽出 + 結晶局運用
+          yellow_60_79: 50-69%
+          red_<60: 50% 未満
+
+  axis_4_supervisor_response_quality:
+    label: 監督官応答品質
+    description: 司令官は監督官発令への応答品質を維持しているか
+    components:
+      - name: response_speed
+        label: 応答速度
+        weight: 0.20
+        criteria:
+          green_>=80: scale 別 deadline 内応答 + 前倒し率 50% 以上
+          yellow_60_79: deadline 内応答
+          red_<60: deadline 超過
+      - name: structural_objection_rate
+        label: 構造的反論発生率
+        weight: 0.40
+        reference: 軸 8 指標 1(rubrics/value_alignment_rubric.yaml + 第 11 次発令採択 9)
+        criteria:
+          green_>=80: 直近 7 件発令で構造的反論を含む応答が 30-80%
+          yellow_60_79: 反論ゼロ 6/7 件以上(従順)or §3.3-a 該当 3/7 件以上
+          red_<60: 形式採択 6/7 件以上 or 対立過剰
+      - name: verdict_distribution
+        label: verdict 分布健全性
+        weight: 0.40
+        criteria:
+          green_>=80: APPROVE 60-80% + APPROVE_WITH_NOTES 15-30% + REQUEST_CHANGES 0-10%
+          yellow_60_79: APPROVE 100% 連続 5 件以下 or REQUEST_CHANGES 30% 超過
+          red_<60: APPROVE 100% 連続 7 件以上(本日 EVT-013 該当、本日 23 連発)
+        # v0.2 機械算出ロジック(auto-evt R1 連動)
+        formula:
+          input_files:
+            - inbox/from_commander/{date}/*_response_to_order_*.md
+          variables:
+            - approveCount = count(verdict == "APPROVE", last 7)
+            - approveWithNotesCount = count(verdict == "APPROVE_WITH_NOTES", last 7)
+            - requestChangesCount = count(verdict == "REQUEST_CHANGES", last 7)
+          score_calculation: |
+            approveRatio = approveCount / 7
+            if approveRatio == 1.0 (連続 7 件 APPROVE): score = 30 (red, EVT-013 type)
+            elif approveRatio in [0.6, 0.8] and requestChangesCount in [0, 1]: score = 90 (green healthy)
+            elif approveRatio in [0.5, 0.85]: score = 70 (yellow upper)
+            else: score = 50 (yellow lower)
+
+# ============================================================
+# 2. 工場長役割実行軸(関係性ポリシー §3.2 経由で司令官観測 + 監督官間接観測)
+# ============================================================
+factory_role:
+
+  axis_5_ticket_consumption_velocity:
+    label: チケット消化速度
+    description: 工場長は司令官発行チケットを継続消化しているか
+    components:
+      - name: daily_consumption_count
+        label: 日次消化数
+        weight: 0.50
+        criteria:
+          green_>=80: 1 日 5 件以上完遂(Phase A 平均 14 PR/日 = 司令官側)
+          yellow_60_79: 1 日 2-4 件
+          red_<60: 1 日 0-1 件
+      - name: stale_ticket_rate
+        label: stale チケット率
+        weight: 0.30
+        reference: stale-alert.ps1 判定基準
+        criteria:
+          green_>=80: 60 分以上停滞チケット 0 件
+          yellow_60_79: 1-2 件
+          red_<60: 3 件以上
+      - name: pr_merge_success_rate
+        label: PR マージ成功率
+        weight: 0.20
+        criteria:
+          green_>=80: 直近 7 PR の 80% 以上マージ成功
+          yellow_60_79: 60-79%
+          red_<60: 60% 未満
+
+  axis_6_evidence_dod_quality:
+    label: Evidence + DoD 達成品質
+    description: 工場長は証跡 + DoD を完整に提出しているか
+    reference: rubrics/implementation_review_rubric.yaml v1.0 §evidence_integrity
+    components:
+      - name: dod_evidence_match
+        weight: 0.40
+      - name: evidence_reproducibility
+        weight: 0.30
+      - name: rollback_specificity
+        weight: 0.30
+
+  axis_7_lessons_extraction_rate:
+    label: lessons 抽出率
+    description: 工場長は完了から lessons を抽出しているか
+    components:
+      - name: lessons_per_pr
+        label: PR あたり lessons 数
+        weight: 0.50
+        criteria:
+          green_>=80: 平均 1 件以上 / PR
+          yellow_60_79: 0.5-0.9 件 / PR
+          red_<60: 0.5 件未満
+      - name: lessons_to_adr_promotion
+        label: lessons → ADR 昇格率
+        weight: 0.50
+        criteria:
+          green_>=80: 月次で 30% 以上の lessons が ADR 候補化
+          yellow_60_79: 15-29%
+          red_<60: 15% 未満
+
+# ============================================================
+# 3. 監督官役割実行軸(EVT-013 自己点検対象、本 rubric 主要対象)
+# ============================================================
+supervisor_role:
+
+  axis_8_role_review_implementation:
+    label: 司令官役割実行レビュー実施率
+    description: 監督官は司令官の役割実行を継続レビューしているか(EVT-013 直接対応)
+    components:
+      - name: weekly_role_review_freq
+        label: 週次役割レビュー頻度
+        weight: 0.50
+        criteria:
+          green_>=80: 週次以上で本 rubric §1 司令官役割を採点 + REQUEST_CHANGES 発出経路維持
+          yellow_60_79: 隔週
+          red_<60: 月次以下 or 未実施(本日 EVT-013 該当、本日初実施)
+      - name: factory_indirect_observation
+        label: 工場長間接観察頻度
+        weight: 0.50
+        reference: sync/checkup-scores/factory_pipeline/(本日設計、ヤス追加提案統合)
+        criteria:
+          green_>=80: 24h 以内に factory_pipeline ミラーを read + SITREP 反映
+          yellow_60_79: 48-72h
+          red_<60: 72h 超過確認なし
+
+  axis_9_formal_acceptance_avoidance:
+    label: 形式採択回避率
+    description: 監督官は構造的反論を発する好敵手として機能しているか
+    components:
+      - name: structural_objection_emission
+        label: 構造的反論発出率(発令側)
+        weight: 0.60
+        criteria:
+          green_>=80: 司令官応答への verdict が APPROVE_WITH_NOTES 以下 30-50%(健全な指摘)
+          yellow_60_79: APPROVE 80-89% 連続(警戒、形式採択疑い)
+          red_<60: APPROVE 90% 以上 連続 7 件 + REQUEST_CHANGES 発出ゼロ(EVT-013 該当)
+        # v0.2 機械算出ロジック(supervisor 側自己採点、auto-evt R1 連動)
+        formula:
+          input_files:
+            - outbox/*_to_commander_*.md
+          variables:
+            - last7VerdictMix = count by verdict in last 7 outbox emissions
+          score_calculation: |
+            objectionRatio = (APPROVE_WITH_NOTES + REQUEST_CHANGES + REJECT) / 7
+            if objectionRatio in [0.3, 0.5]: score = 90 (green, 健全な指摘)
+            elif objectionRatio in [0.1, 0.3]: score = 70 (yellow upper)
+            elif objectionRatio < 0.1 and approveStreak >= 7: score = 30 (red, EVT-013 type)
+            elif objectionRatio > 0.5: score = 60 (yellow, 対立過剰疑い)
+            else: score = 50
+      - name: yasu_redirect_frequency
+        label: ヤス指摘から自己訂正までの距離
+        weight: 0.40
+        criteria:
+          green_>=80: 監督官自己発見が 70% 以上
+          yellow_60_79: ヤス指摘契機が 30-50%
+          red_<60: ヤス指摘契機が 50% 超(本日 EVT-010/011/013 該当、本日 3/10 件)
+
+  axis_10_self_correction_rate:
+    label: 自己訂正発出率
+    description: 監督官は自己訂正サイクルを健全に維持しているか
+    components:
+      - name: weekly_self_correction_count
+        label: 週次自己訂正件数
+        weight: 0.40
+        criteria:
+          green_>=80: 1-3 件 / 週(健全な新陳代謝)
+          yellow_60_79: 0 件 / 週(distilled §違反検知 5 問 Q1 該当、変質予兆)or 5 件超 / 週(過剰反応)
+          red_<60: 連続 2 週ゼロ(変質確定)or 連続 7 件 / 週(混乱状態)
+      - name: corrective_action_specificity
+        label: 訂正アクション具体性
+        weight: 0.60
+        criteria:
+          green_>=80: 各 EVT に対し物理装置改訂 + 構造的再発防止策あり
+          yellow_60_79: 訂正記録のみ、再発防止策不足
+          red_<60: 訂正宣言のみ、物理装置改訂なし
+
+  axis_11_information_bridge_responsibility:
+    label: 情報橋渡し責務遂行率
+    description: 監督官は工場長 → 司令官の情報橋渡しを果たしているか(関係性ポリシー §3.2 解釈拡張)
+    reference: 第 28 次発令採択 4 + ADR-006 候補 5 件目
+    components:
+      - name: factory_repo_observation
+        label: 工場長リポジトリ観察頻度
+        weight: 0.40
+        criteria:
+          green_>=80: 週次以上 + 重要発見の司令官通知経路維持
+          yellow_60_79: 隔週
+          red_<60: 月次以下
+      - name: briefing_emission
+        label: ブリーフィング発出
+        weight: 0.30
+        criteria:
+          green_>=80: 工場長重要更新を発見後 24h 以内に司令官ブリーフィング発出
+          yellow_60_79: 48-72h
+          red_<60: 発出なし
+      - name: cross_layer_sync_health
+        label: 軸 8 指標連動
+        weight: 0.30
+        reference: 軸 8 Cross-Layer Dialogue Health(物理層 v1.1-FINAL 改訂候補)
+
+# ============================================================
+# 4. 集計
+# ============================================================
+aggregation:
+  formula: |
+    各役割スコア = Σ(axis_score × axis_weight)で 0-100 算出
+    全体スコア = (commander + factory + supervisor) / 3
+
+  weights_per_role:
+    commander_role: equal(axis_1-4 各 0.25)
+    factory_role: equal(axis_5-7 各 0.33)
+    supervisor_role: equal(axis_8-11 各 0.25)
+
+  thresholds:
+    全体_green: ">=75"
+    全体_yellow: "55-74"
+    全体_red: "<55"
+
+# ============================================================
+# 5. アップデート前後比較(ヤス追加提案)
+# ============================================================
+periodic_checkup_integration:
+  description: |
+    各役割のアップデート(strategy/CLAUDE.md vN → vN+1 / ADR 採択 / 物理装置改訂 / 行動規範改訂)
+    前後で本 rubric によるスコア変化を測定し、成長軌跡を可視化する。
+
+  snapshot_timing:
+    - T-1: アップデート直前(改訂 commit 直前)
+    - T+0: アップデート直後(改訂 commit 直後)
+    - T+24h: アップデート後 24 時間
+    - T+7d: アップデート後 7 日間
+    - T+30d: アップデート後 30 日間(月次定期検診)
+
+  storage:
+    location: sync/checkup-scores/role_execution/
+    format: snapshot_{role}_{YYYYMMDD-HHMMSS}_{checkpoint}.json
+    例:
+      - snapshot_commander_20260428-090000_T-1.json
+      - snapshot_commander_20260428-090500_T+0.json
+      - snapshot_commander_20260429-090000_T+24h.json
+
+  growth_evaluation:
+    healthy: アップデート → スコア改善(全体 +5 以上 or 単軸 +10 以上)
+    neutral: アップデート → スコア変化なし(±5 以内)→ 未活用 + 改善要として記録
+    concerning: アップデート → スコア悪化(全体 -5 以上)→ リバート候補 + EVT 記録
+
+# ============================================================
+# 6. 監督官運用適用
+# ============================================================
+supervisor_application:
+  weekly_review:
+    frequency: 週次必須(本 EVT-013 直接対応、Phase B-α 起動 Day 132 朝以降)
+    output: sync/checkup-scores/role_execution/weekly_report_{YYYYMMDD}.md
+    decision_link:
+      - 司令官役割スコア赤判定 → REQUEST_CHANGES 発令経路発動
+      - 工場長役割スコア赤判定 → 司令官経由でチケット品質改善発令
+      - 監督官役割スコア赤判定 → 監督官 A 自己訂正 EVT 起案 + L1 回覧板共有
+
+  layer0_integration:
+    frequency: 6h サイクル内(自動採点)
+    final_verdict: 監督官手動セッション(Phase B-α/β は手動最終判断、ADR-005 v1.1 + comm protocol §3.2-D)
+    auto_feedback_phase_b_gamma: APPROVE / APPROVE_WITH_NOTES のみ Layer 0 自動発令
+
+  boundary_with_other_rubrics:
+    - 個別アクション評価: dasei / implementation_review / ticket_quality / value_alignment(既存 4 件)
+    - 役割実行評価: 本 rubric(役割継続性 + 全体地図維持 + 次の 10 手 + 工場長指揮)
+    - 補完関係: 個別アクション × 役割実行 = 多層評価
+
+# ============================================================
+# 7. 哲学的接続
+# ============================================================
+philosophical_grounding:
+  - source: 関係性ポリシー v1.2 §3.1 役割分担
+    application: 大方針 = ヤス、細部 = AI 同士の好敵手関係 = 役割実行率の継続観測
+  - source: dream_mode_doctrine.md v1.0-draft 原則 1「『特に課題なし』を疑う」
+    application: 「役割実行率 100%」を疑う、軸 9 形式採択回避率で機械検出
+  - source: sp500_theory.md §1 運動性継承
+    application: 役割実行 = 運動性、本 rubric は運動性の機械的観測装置
+  - source: distilled.md §違反検知 5 問 Q3 + L4079 自己保全バイアス
+    application: EVT-013 直接対応、軸 9 + 軸 10 で機械検出
+
+# ============================================================
+# 8. 改訂履歴
+# ============================================================
+revision_history:
+  - version: 0.1
+    date: 2026-04-28
+    summary: 初版起案、監督官 A 起案。EVT-013(本日 10 件目自己訂正、形式採択 23 連発)直接対応 + ヤス追加提案(アップデート前後検診)統合。司令官 4 軸 + 工場長 3 軸 + 監督官 4 軸 = 計 11 軸。Phase B-α/β 7 日間実証実績で v1.0 確定。

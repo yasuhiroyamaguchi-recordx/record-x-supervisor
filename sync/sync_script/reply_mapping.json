@@ -1,0 +1,146 @@
+﻿{
+    "20260428_from_commander_023.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/023_response_to_order_028.md",
+                                           "commander_commit":  "7dbd747",
+                                           "order_number":  "28",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "023",
+                                           "responds_to":  "20260428_to_commander_020.md"
+                                       },
+    "20260428_from_commander_002.md":  {
+                                           "responds_to":  null,
+                                           "supervisor_path":  "inbox/from_commander/20260428/002_response_unknown_order.md",
+                                           "order_number":  null,
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "85a2873",
+                                           "response_number":  "002"
+                                       },
+    "20260428_from_commander_019.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/019_response_to_order_024.md",
+                                           "commander_commit":  "7dbd747",
+                                           "order_number":  "24",
+                                           "pulled_at":  "2026-04-28T21:44:54+09:00",
+                                           "response_number":  "019",
+                                           "responds_to":  "20260428_to_commander_016.md"
+                                       },
+    "20260428_from_commander_014.md":  {
+                                           "responds_to":  "20260428_to_commander_011.md",
+                                           "supervisor_path":  "inbox/from_commander/20260428/014_response_to_order_019.md",
+                                           "order_number":  "19",
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "f374662",
+                                           "response_number":  "014"
+                                       },
+    "20260428_from_commander_027.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/027_response_to_order_032.md",
+                                           "commander_commit":  "fcca416",
+                                           "order_number":  "32",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "027",
+                                           "responds_to":  "20260428_to_commander_024.md"
+                                       },
+    "20260428_from_commander_029.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/029_response_unknown_order.md",
+                                           "commander_commit":  "f725204",
+                                           "order_number":  null,
+                                           "pulled_at":  "2026-04-28T23:36:35+09:00",
+                                           "response_number":  "029",
+                                           "responds_to":  "pipeline_audit_v1.2_P3"
+                                       },
+    "20260428_from_commander_021.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/021_response_to_order_026.md",
+                                           "commander_commit":  "7dbd747",
+                                           "order_number":  "26",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "021",
+                                           "responds_to":  "20260428_to_commander_018.md"
+                                       },
+    "20260428_from_commander_013.md":  {
+                                           "responds_to":  "20260428_to_commander_011.md",
+                                           "supervisor_path":  "inbox/from_commander/20260428/013_response_to_order_019.md",
+                                           "order_number":  "19",
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "f3e044a",
+                                           "response_number":  "013"
+                                       },
+    "20260428_from_commander_028.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/028_response_to_order_033.md",
+                                           "commander_commit":  "adbb5ba",
+                                           "order_number":  "33",
+                                           "pulled_at":  "2026-04-28T22:39:41+09:00",
+                                           "response_number":  "028",
+                                           "responds_to":  "20260428_to_commander_025.md"
+                                       },
+    "20260428_from_commander_011.md":  {
+                                           "responds_to":  "20260428_to_commander_008.md",
+                                           "supervisor_path":  "inbox/from_commander/20260428/011_response_to_order_016.md",
+                                           "order_number":  "16",
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "81d4013",
+                                           "response_number":  "011"
+                                       },
+    "20260428_from_commander_024.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/024_response_to_order_029.md",
+                                           "commander_commit":  "fcca416",
+                                           "order_number":  "29",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "024",
+                                           "responds_to":  "20260428_to_commander_021.md"
+                                       },
+    "20260428_from_commander_022.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/022_response_to_order_027.md",
+                                           "commander_commit":  "7dbd747",
+                                           "order_number":  "27",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "022",
+                                           "responds_to":  "20260428_to_commander_019.md"
+                                       },
+    "20260428_from_commander_003.md":  {
+                                           "responds_to":  null,
+                                           "supervisor_path":  "inbox/from_commander/20260428/003_response_unknown_order.md",
+                                           "order_number":  null,
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "4a41d9d",
+                                           "response_number":  "003"
+                                       },
+    "20260428_from_commander_026.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/026_response_to_order_031.md",
+                                           "commander_commit":  "fcca416",
+                                           "order_number":  "31",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "026",
+                                           "responds_to":  "20260428_to_commander_023.md"
+                                       },
+    "20260428_from_commander_001.md":  {
+                                           "responds_to":  null,
+                                           "supervisor_path":  "inbox/from_commander/20260428/001_response_unknown_order.md",
+                                           "order_number":  null,
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "e147c72",
+                                           "response_number":  "001"
+                                       },
+    "20260428_from_commander_020.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/020_response_to_order_025.md",
+                                           "commander_commit":  "7dbd747",
+                                           "order_number":  "25",
+                                           "pulled_at":  "2026-04-28T21:44:54+09:00",
+                                           "response_number":  "020",
+                                           "responds_to":  "20260428_to_commander_017.md"
+                                       },
+    "20260428_from_commander_005.md":  {
+                                           "responds_to":  "20260428_to_commander_003.md",
+                                           "supervisor_path":  "inbox/from_commander/20260428/005_response_to_order_011.md",
+                                           "order_number":  "11",
+                                           "pulled_at":  "2026-04-28T13:27:54+09:00",
+                                           "commander_commit":  "e147c72",
+                                           "response_number":  "005"
+                                       },
+    "20260428_from_commander_025.md":  {
+                                           "supervisor_path":  "inbox/from_commander/20260428/025_response_to_order_030.md",
+                                           "commander_commit":  "fcca416",
+                                           "order_number":  "30",
+                                           "pulled_at":  "2026-04-28T21:44:55+09:00",
+                                           "response_number":  "025",
+                                           "responds_to":  "20260428_to_commander_022.md"
+                                       }
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Layer 0 Supervisor Autonomous Patrol Task Scheduler Template
+
+  Drafted: 2026-04-28 (Day 130 evening, supervisor instance A)
+  Reference: commander#scripts/scheduler_templates/layer2_strategy_template.xml v2
+
+  Activation timing: Phase B-alpha/beta simultaneous start (Day 132 morning)
+  Cycle: 6 hours (sync with commander Layer 2)
+
+  Pre-import test:
+    powershell -NoProfile -ExecutionPolicy Bypass -File "C:\RX_Dev\record-x-supervisor\scripts\scheduler_templates\layer0_entry_point.ps1" -DryRun
+
+  Import (after Yasu approval):
+    schtasks /create /xml "C:\RX_Dev\record-x-supervisor\scripts\scheduler_templates\layer0_supervisor_template.xml" /tn "Record-X-Layer0-Supervisor" /F
+
+  Manual run test:
+    schtasks /run /tn "Record-X-Layer0-Supervisor"
+
+  Note:
+  - Enabled="false" by default for safety. Change to "true" after Yasu approval and DryRun success.
+  - Multiple instance support: Set SUPERVISOR_INSTANCE_ID environment variable per scheduler entry (A/B/C/...).
+  - For instance B, copy this XML, change UserId/InstanceId, and import as separate task.
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Description>Layer 0 Supervisor autonomous patrol (instance A default, sync with commander Layer 2 at 6h intervals)</Description>
+    <Author>Record-X Supervisor</Author>
+    <Date>2026-04-28T18:00:00</Date>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-04-30T03:00:00</StartBoundary>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+      <Repetition>
+        <Interval>PT6H</Interval>
+        <Duration>P1D</Duration>
+        <StopAtDurationEnd>false</StopAtDurationEnd>
+      </Repetition>
+      <Enabled>false</Enabled>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <UserId>S-1-5-21-PLACEHOLDER</UserId>
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>false</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT4H</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-NoProfile -ExecutionPolicy Bypass -File "C:\RX_Dev\record-x-supervisor\scripts\scheduler_templates\layer0_entry_point.ps1"</Arguments>
+      <WorkingDirectory>C:\RX_Dev\record-x-supervisor</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

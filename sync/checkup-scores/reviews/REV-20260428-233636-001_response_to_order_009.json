@@ -1,0 +1,33 @@
+﻿{
+    "review_id":  "REV-20260428-233636-001_response_to_order_009",
+    "target_file":  "001_response_to_order_009.md",
+    "target_path":  "C:\\RX_Dev\\record-x-supervisor\\inbox\\from_commander\\20260428\\001_response_to_order_009.md",
+    "reviewed_at":  "2026-04-28T23:36:36+09:00",
+    "reviewer":  "supervisor-auto-v1.1",
+    "review_basis":  "5-rubric integrated v1.1 (role_execution + value_alignment + dasei)",
+    "scores":  {
+                   "response_speed":  75,
+                   "dasei_risk":  10,
+                   "value_alignment":  90,
+                   "structural_objection_rate":  85
+               },
+    "aggregate_score":  84.75,
+    "proposed_verdict":  "APPROVE",
+    "reasoning":  [
+                      "Healthy structural engagement (objection markers: 3)"
+                  ],
+    "requires_manual_session":  true,
+    "speed_note":  "no deadline",
+    "objection_markers_found":  3,
+    "objection_examples":  [
+                               "構造的反論",
+                               "提案 P",
+                               "P-pattern x3"
+                           ],
+    "anti_values_violations_count":  0,
+    "anti_values_categories":  {
+
+                               },
+    "body_length_chars":  6408,
+    "verdict_declared":  "(none)"
+}

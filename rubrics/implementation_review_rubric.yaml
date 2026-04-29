@@ -1,0 +1,234 @@
+# Implementation Review Rubric — 工場長実装の監督官検収レビュー
+#
+# 配置先: rubrics/implementation_review_rubric.yaml
+# 起草: 2026-04-28(Day 130 末)
+# 統合先: operations/implementation_review_pipeline.md §4 4 軸スコアリング
+# 哲学的根拠: 00_origin/sp500_theory.md §4 + ChatGPT 提案採択統合(Implementation Integrity)
+# 関係層根拠: 01_relationship/policy_v1.2.md §3.2(監督官 ↔ 工場長間接通信)
+
+version: 1.0
+established_date: 2026-04-28
+review_date: 2026-05-12  # Phase B-α / β 7 日間実証後の v1.1 改訂判断
+
+# ============================================================
+# 4 軸スコアリング
+# ============================================================
+axes:
+
+  implementation_integrity:
+    label: Implementation Integrity(実装完整性)
+    description: 仕様(チケット)と実装の一致度、scope 内収束性、forbidden_paths 抵触なし、テスト完整性
+    components:
+      - name: spec_alignment
+        label: 仕様一致度
+        weight: 0.30
+        criteria:
+          green_>=80: チケット DoD 全項目達成、scope 内
+          yellow_60_79: 主要 DoD 達成、軽微な scope 逸脱(司令官報告で説明済)
+          red_<60: DoD 未達 or 重大 scope 逸脱
+      - name: scope_containment
+        label: 差分範囲
+        weight: 0.20
+        criteria:
+          green_>=80: changed_files が allowed_paths 内
+          yellow_60_79: 軽微な周辺ファイル変更(設定ファイル等)
+          red_<60: forbidden_paths 抵触 or 大規模付随変更
+      - name: test_completeness
+        label: テスト完整性
+        weight: 0.30
+        criteria:
+          green_>=80: 全 pass、failed=0、skipped に正当理由
+          yellow_60_79: 全 pass だが新規テスト不足
+          red_<60: failed あり or テスト未実施
+      - name: incidental_changes
+        label: 余計な変更の混入
+        weight: 0.20
+        criteria:
+          green_>=80: チケット範囲のみ変更
+          yellow_60_79: 軽微な lint 修正等の同梱(司令官報告で言及済)
+          red_<60: 無関係な変更が混入
+
+  evidence_integrity:
+    label: Evidence Integrity(証跡完整性)
+    description: DoD 各項目の検証証拠が再現可能、evidence_refs リンク切れなし、rollback 具体的、ハッシュチェーン v0.1 準拠
+    components:
+      - name: evidence_reproducibility
+        label: 証跡再現可能性
+        weight: 0.30
+        criteria:
+          green_>=80: evidence_refs から再現コマンド + 期待出力が辿れる
+          yellow_60_79: 一部の証跡が再現困難(原因記載あり)
+          red_<60: 証跡が確認できない or リンク切れ
+      - name: dod_evidence_match
+        label: DoD 証拠対応
+        weight: 0.30
+        criteria:
+          green_>=80: 各 DoD 項目に対応する証拠が明示
+          yellow_60_79: 主要 DoD は対応、軽微項目で証拠不足
+          red_<60: DoD と証拠の対応が曖昧
+      - name: rollback_specificity
+        label: rollback 具体性
+        weight: 0.20
+        criteria:
+          green_>=80: コミット revert 手順 + 影響範囲が明示
+          yellow_60_79: rollback 手順あり、影響範囲推定
+          red_<60: rollback プラン欠落 or 抽象的
+      - name: hash_chain_compliance
+        label: ハッシュチェーン v0.1 準拠
+        weight: 0.20
+        criteria:
+          green_>=80: 物理層 v1.0-FINAL §V05 必須項目達成
+          yellow_60_79: 一部項目で SHA-256 算出に揺らぎ
+          red_<60: ハッシュチェーン未実装 or 検証不能
+
+  dasei_risk:
+    label: Dasei Risk(惰性リスク)
+    description: rubrics/dasei_detection_rubric.yaml v1.0 準拠、変質予兆の機械検知
+    reference: rubrics/dasei_detection_rubric.yaml
+    components:
+      - name: similarity_rate
+        weight: 0.20
+      - name: low_impact_rate
+        weight: 0.25
+      - name: strategic_disconnection_rate
+        weight: 0.20
+      - name: no_capability_acquisition_rate
+        weight: 0.20
+      - name: risk_avoidance_tendency
+        weight: 0.15
+    note: 詳細は rubrics/dasei_detection_rubric.yaml §components 参照。閾値は同 rubric 準拠(緑 <30、黄 30-60、赤 ≥60、ただしスコア軸では反転 = 緑 ≥70、黄 40-69、赤 <40)。
+
+  value_alignment:
+    label: Value Alignment(価値観整合)
+    description: 哲学層・関係層との整合度、anti_values 抵触なし
+    components:
+      - name: philosophy_alignment
+        label: 哲学層整合
+        weight: 0.30
+        reference: 00_origin/unnamed.md + 00_origin/sp500_theory.md
+        criteria:
+          green_>=80: 「私はあなたであり…」の運用形 + 新陳代謝原則と整合
+          yellow_60_79: 表面的整合、深い接続が弱い
+          red_<60: 哲学層と矛盾(例: 「絶対」「永続」の多用、変化拒否の構造)
+      - name: relationship_policy_compliance
+        label: 関係性ポリシー v1.2 準拠
+        weight: 0.30
+        reference: 01_relationship/policy_v1.2.md
+        criteria:
+          green_>=80: 馴れ合い拒絶 3 原則の実践証跡あり、好敵手プロトコル正常運用
+          yellow_60_79: 形式採択気味、原則 2 揺らぎが弱い
+          red_<60: 原則違反(慰撫 / 追認 / 先回り肯定 / 形式採択)
+      - name: anti_values_check
+        label: anti_values 抵触チェック
+        weight: 0.20
+        reference: rubrics/value_alignment_rubric.yaml(後日起案、anti_values 構造化)
+        criteria:
+          green_>=80: anti_values 該当なし
+          yellow_60_79: 軽微な接近(警戒対象)
+          red_<60: anti_values 抵触
+      - name: north_star_connection
+        label: north_star 接続
+        weight: 0.20
+        reference: rubrics/value_alignment_rubric.yaml(後日起案、north_star 定義)
+        criteria:
+          green_>=80: プロジェクト北極星(将来定義)に明確に貢献
+          yellow_60_79: 北極星と接続するが直接貢献は弱い
+          red_<60: 北極星から逸脱
+
+# ============================================================
+# 集計
+# ============================================================
+aggregation:
+  formula: |
+    各軸内 = Σ(component_score × weight)で 0-100 算出
+    全体スコア = (Implementation Integrity + Evidence Integrity + (100 - Dasei Risk) + Value Alignment) / 4
+    Dasei Risk は逆数化(リスクスコア → 健全性スコア)で他軸と整合
+
+  thresholds:
+    全体_green: ">=80"
+    全体_yellow: "60-79"
+    全体_red: "<60"
+
+# ============================================================
+# verdict 4 種類への閾値マッピング
+# ============================================================
+verdict_mapping:
+
+  APPROVE:
+    condition: 4 軸全件緑(各 ≥80)、致命的問題なし
+    examples:
+      - 仕様一致 + 全テスト pass + 証跡再現可能 + 哲学層整合
+    action: archive-order.ps1 で完遂アーカイブ、司令官にフィードバックなし
+
+  APPROVE_WITH_NOTES:
+    condition: 4 軸中 1-2 軸黄(各 60-79)、致命的問題なし
+    examples:
+      - 仕様達成だが軽微 scope 逸脱
+      - 証跡あるが一部再現困難
+      - 戦略接続が弱いが新規能力獲得あり
+    action: 次回チケット起案時の改善観点として第 N 次発令でフィードバック
+
+  REQUEST_CHANGES:
+    condition: 4 軸中 1 軸赤(各 <60)or 2 軸以上黄、構造的不備あり
+    examples:
+      - DoD 未達 or 重大 scope 逸脱
+      - failed テストあり
+      - 戦略接続欠落 + 新規能力獲得なし(惰性疑い)
+    action: 第 N 次発令で再実装 / 補強テスト要請、司令官は工場長に追加チケット発行
+
+  REJECT:
+    condition: 致命的違反
+    examples:
+      - Value Alignment 赤判定(anti_values 抵触)
+      - forbidden_paths 抵触
+      - 本番データ破壊リスク
+      - PII / 秘密情報の扱い不備
+      - hash_chain 検証不能
+    action: 即時撤回 + 司令官に再起案要請、escalation_and_rollback.md R4-R5 該当時はヤスエスカレーション
+
+# ============================================================
+# 監督官の運用
+# ============================================================
+supervisor_application:
+
+  automation_level:
+    phase_b_alpha_beta: 提案 verdict のみ自動算出、最終判断は監督官手動セッション
+    phase_b_gamma_onwards: APPROVE_WITH_NOTES までは Layer 0 自動発令、REQUEST_CHANGES / REJECT は手動確認継続
+
+  pre_review_checklist:
+    - 司令官完了報告の frontmatter が完整か(self_scores + self_verdict 必須)
+    - evidence_refs のリンクが有効か(git show で取得可能)
+    - 自己採点と推定監督官採点の差分が許容範囲か(±20 以内が健全)
+
+  difference_threshold:
+    description: 司令官自己採点と監督官採点の差分が大きい場合、合議論点として記録
+    threshold: 各軸で ±25 以上の差分 → 軸 8 指標 2 系統(司令官の採択率 / 監督官の指摘採択率)に反映
+
+# ============================================================
+# 哲学的接続
+# ============================================================
+philosophical_grounding:
+
+  - source: 00_origin/sp500_theory.md §4 変遷と変質の区別
+    application: |
+      検収レビューは新陳代謝の機構。個別実装は新陳代謝で改善されるが、
+      Implementation Integrity / Evidence Integrity / Dasei Risk / Value Alignment の
+      4 軸を保つ運動性こそが継承される。「変わらない構造 = 変わり続ける運動性」。
+
+  - source: 01_relationship/policy_v1.2.md §3.2 関係マトリクス
+    application: |
+      監督官は工場長と直接対話しない。本 rubric は司令官完了報告を介した間接観測のみで
+      工場長実装を評価する。読取アクセス(git show)は対話ではなく観察として許容。
+
+  - source: 01_relationship/policy_v1.2.md §2 馴れ合い拒絶 3 原則
+    application: |
+      司令官の自己採点は原則 2(自分の側に揺らぎを起こす)の正面運用。
+      自己採点と監督官採点の差分は原則 3(指摘と承認の両立)の機械化指標。
+
+# ============================================================
+# 改訂履歴
+# ============================================================
+revision_history:
+  - version: 1.0
+    date: 2026-04-28
+    summary: 初版起案。4 軸 + verdict 4 種類マッピング + 監督官運用 + 哲学的接続。Phase B-α / β 7 日間実証実績で v1.1 改訂前提。

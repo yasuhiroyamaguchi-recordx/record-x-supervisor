@@ -1,0 +1,277 @@
+# Ticket Quality Rubric — チケット品質 Pre-Build Gate 評価
+#
+# 配置先: rubrics/ticket_quality_rubric.yaml
+# 起草: 2026-04-28(Day 130 朝)
+# 統合先: operations/communication_protocol.md §3.2-C Pre-Build Gate scale 別運用
+# 哲学的根拠: 00_origin/sp500_theory.md §4(変遷の肯定)+ ChatGPT 提案採択統合(Ticket Fitness Score)
+# 関係層根拠: 01_relationship/policy_v1.2.md §2 馴れ合い拒絶 3 原則
+
+version: 1.0
+established_date: 2026-04-28
+review_date: 2026-05-12  # Phase B-α / β 7 日間実証後の v1.1 改訂判断
+
+# ============================================================
+# 5 軸スコアリング(チケット起案時の Pre-Build Gate 評価)
+# ============================================================
+axes:
+
+  clarity:
+    label: Clarity(明確性)
+    description: チケットの目的・背景・期待結果が明確で曖昧性がないか
+    weight: 0.20
+    components:
+      - name: purpose_stated
+        label: 目的明示
+        weight: 0.30
+        criteria:
+          green_>=80: 目的 1 文 + 背景 + 期待結果が frontmatter or 冒頭に明示
+          yellow_60_79: 目的記述あるが背景・期待結果のいずれかが不足
+          red_<60: 目的記述なし or 抽象的すぎ(「改善する」「最適化する」等)
+      - name: background_concrete
+        label: 背景具体性
+        weight: 0.25
+        criteria:
+          green_>=80: 過去経緯 + 関連 ADR/コミット参照あり
+          yellow_60_79: 経緯記述あるが参照リンク不足
+          red_<60: 「とりあえず必要」「何となく」等の曖昧背景
+      - name: expected_outcome
+        label: 期待結果定義
+        weight: 0.25
+        criteria:
+          green_>=80: 完了状態が具体的(数値 / 検証手順 / 成果物リスト)
+          yellow_60_79: 成果物名はあるが検証手順曖昧
+          red_<60: 期待結果が主観的(「綺麗になる」「速くなる」)
+      - name: ambiguity_check
+        label: 曖昧性除去
+        weight: 0.20
+        criteria:
+          green_>=80: 用語定義 + 略語展開 + 主体明示
+          yellow_60_79: 大半の用語は定義済、軽微な解釈余地
+          red_<60: 多義語・主体曖昧多数
+
+  implementability:
+    label: Implementability(実装可能性)
+    description: 工場長 Layer 1 が自律実装可能な粒度か、必要リソースが揃うか
+    weight: 0.25
+    components:
+      - name: scope_size
+        label: スコープサイズ
+        weight: 0.30
+        criteria:
+          green_>=80: 1 チケット = 1-3 ファイル変更、4-8 時間で完遂可能
+          yellow_60_79: 1 チケット = 4-7 ファイル、8-16 時間
+          red_<60: 1 チケット = >7 ファイル or >16 時間(分割推奨)
+      - name: allowed_paths_specified
+        label: allowed_paths 明示
+        weight: 0.25
+        criteria:
+          green_>=80: allowed_paths + forbidden_paths 両方明示
+          yellow_60_79: allowed_paths のみ明示、forbidden_paths 未記載
+          red_<60: いずれも未記載 or scope 範囲不明
+      - name: dependencies_resolved
+        label: 依存解消
+        weight: 0.25
+        criteria:
+          green_>=80: 前提チケット完了 + 必要ライブラリ・データ揃い
+          yellow_60_79: 前提あるが軽微未解消(他チケット並行待ち)
+          red_<60: 前提未完 or 必要リソース不在
+      - name: technical_feasibility
+        label: 技術実現性
+        weight: 0.20
+        criteria:
+          green_>=80: 既存技術 + 既存パターンで実装可能
+          yellow_60_79: 新規技術 1 件あり、調査時間込みで見積済
+          red_<60: 新規技術複数 or 実現性未検証
+
+  dod_quality:
+    label: DoD Quality(完了定義品質)
+    description: Definition of Done が検証可能で機械的に判定できるか
+    weight: 0.25
+    components:
+      - name: dod_specificity
+        label: DoD 具体性
+        weight: 0.30
+        criteria:
+          green_>=80: 各 DoD 項目に検証コマンド or 期待出力明示
+          yellow_60_79: DoD 項目あるが検証手順曖昧
+          red_<60: 「動作することを確認」等の主観 DoD
+      - name: dod_verifiability
+        label: DoD 検証可能性
+        weight: 0.30
+        criteria:
+          green_>=80: テストコード + 期待出力ペア + 再現可能
+          yellow_60_79: テストあるが期待出力固定値未記載
+          red_<60: 手動目視確認のみ(再現不能)
+      - name: dod_completeness
+        label: DoD 完整性
+        weight: 0.20
+        criteria:
+          green_>=80: 全機能 + 全エッジケース + 副作用検証
+          yellow_60_79: 主機能 + 主要エッジケースのみ
+          red_<60: 主機能のみ、エッジケース未定義
+      - name: dod_machine_readable
+        label: DoD 機械可読性
+        weight: 0.20
+        criteria:
+          green_>=80: frontmatter or YAML ブロックで構造化
+          yellow_60_79: 自然文だが箇条書きで整理
+          red_<60: 散文中に DoD 散在
+
+  evidence_requirements:
+    label: Evidence Requirements(証跡要件)
+    description: 実装完了時に提出すべき evidence_refs が明示されているか
+    weight: 0.15
+    components:
+      - name: evidence_refs_specified
+        label: evidence_refs 指定
+        weight: 0.40
+        criteria:
+          green_>=80: 提出すべき evidence_refs(ファイルパス + 内容)が列挙
+          yellow_60_79: 一般的な evidence 要件のみ(具体ファイル名なし)
+          red_<60: evidence_refs 未指定
+      - name: hash_chain_compliance
+        label: ハッシュチェーン v0.1 準拠
+        weight: 0.30
+        criteria:
+          green_>=80: 物理層 v1.0-FINAL §V05 必須項目すべて要求
+          yellow_60_79: 一部必須項目要求漏れ
+          red_<60: ハッシュチェーン要求なし
+      - name: rollback_evidence
+        label: rollback 証跡
+        weight: 0.30
+        criteria:
+          green_>=80: rollback コミット SHA 候補 + 影響範囲推定要求
+          yellow_60_79: rollback プラン要求のみ
+          red_<60: rollback 証跡要件なし
+
+  evolution_contribution:
+    label: Evolution Contribution(進化貢献度)
+    description: チケット完了がプロジェクト全体の進化(新規能力 / リスク削減 / 自律性向上)に貢献するか
+    weight: 0.15
+    components:
+      - name: capability_acquisition
+        label: 新規能力獲得
+        weight: 0.30
+        criteria:
+          green_>=80: 完了後、監督官 / 司令官 / 工場長 のいずれかが新能力獲得
+          yellow_60_79: 既存能力の質向上(新規ではない)
+          red_<60: 既存能力の維持のみ(惰性疑い、Dasei Risk 連動)
+      - name: risk_reduction
+        label: リスク削減
+        weight: 0.25
+        criteria:
+          green_>=80: 既存重大リスク(本番データ破壊 / 時限爆弾 / 整合性破壊)を削減
+          yellow_60_79: 軽微リスク削減
+          red_<60: リスク削減効果なし
+      - name: autonomy_increase
+        label: 自律性向上
+        weight: 0.20
+        criteria:
+          green_>=80: ヤス介入頻度を削減 or AI 自律判定範囲拡大
+          yellow_60_79: 部分的自律化
+          red_<60: 自律性への影響なし(or 低下)
+      - name: strategic_connection
+        label: 戦略接続
+        weight: 0.25
+        criteria:
+          green_>=80: phase_roadmap.md / advance_map.md の特定マイルストーンに紐付
+          yellow_60_79: Phase は明示、Wave / マイルストーン曖昧
+          red_<60: 戦略接続欠落(Dasei Risk 連動)
+
+# ============================================================
+# 集計
+# ============================================================
+aggregation:
+  formula: |
+    各軸内 = Σ(component_score × weight)で 0-100 算出
+    全体スコア = Σ(axis_score × axis_weight)で 0-100 算出
+    weights: clarity 0.20 + implementability 0.25 + dod_quality 0.25 + evidence 0.15 + evolution 0.15 = 1.00
+
+  thresholds:
+    全体_green: ">=80"
+    全体_yellow: "60-79"
+    全体_red: "<60"
+
+# ============================================================
+# verdict 4 種類への閾値マッピング(Pre-Build Gate)
+# ============================================================
+verdict_mapping:
+
+  APPROVE:
+    condition: 5 軸全件緑(各 ≥80)、致命的問題なし
+    examples:
+      - 目的明確 + scope 1-3 ファイル + DoD 機械可読 + evidence_refs 列挙 + 戦略接続あり
+    action: 司令官は工場長へチケット発行(tickets_draft → tickets_issued)、Pre-Build Gate 通過
+
+  APPROVE_WITH_NOTES:
+    condition: 5 軸中 1-2 軸黄(各 60-79)、致命的問題なし、Factory が止まらない運用維持
+    examples:
+      - 目的・scope 緑、DoD 検証手順曖昧、evidence_refs 一般的
+      - 全体は実装可能だが次回チケット起案時の改善観点あり
+    action: 司令官は工場長へチケット発行 + 監督官は次回チケット起案時の改善観点として APPROVE_WITH_NOTES 発令でフィードバック
+
+  REQUEST_CHANGES:
+    condition: 5 軸中 1 軸赤(各 <60)or 2 軸以上黄、構造的不備あり
+    examples:
+      - 目的不明確 + DoD 主観的
+      - scope 過広(>16 時間、分割推奨)+ 戦略接続欠落
+    action: 司令官は工場長へのチケット発行を保留、監督官 REQUEST_CHANGES 発令で再起案要請
+
+  REJECT:
+    condition: 致命的違反
+    examples:
+      - forbidden_paths 抵触前提のチケット
+      - anti_values 抵触(rubrics/value_alignment_rubric.yaml 参照)
+      - 本番データ破壊リスク
+      - PII / 秘密情報の扱い不備
+      - DoD 検証不能(目視のみ)
+    action: 即時撤回 + 司令官に再起案要請、escalation_and_rollback.md R4-R5 該当時はヤスエスカレーション
+
+# ============================================================
+# Pre-Build Gate 適用 — discussion_scale 別運用
+# ============================================================
+pre_build_gate_application:
+
+  small:
+    description: 報告要請、状況確認、軽微指摘
+    pre_build_gate: スキップ可(司令官独立判断)
+    rubric_application: 司令官自己採点のみ、監督官事前査読不要
+
+  medium:
+    description: 通常運用判断、設計細部確定
+    pre_build_gate: 通過必須
+    rubric_application: 司令官自己採点 + 監督官事前査読、デフォルト APPROVE_WITH_NOTES(止めない運用)
+
+  large:
+    description: 構造変更、複数論点並行、合議要件
+    pre_build_gate: 通過必須、構造的審査
+    rubric_application: 司令官自己採点 + 監督官独立採点 + 差分検証(±25 以内が健全)
+
+# ============================================================
+# 哲学的接続
+# ============================================================
+philosophical_grounding:
+
+  - source: 00_origin/sp500_theory.md §4 変遷と変質の区別
+    application: |
+      チケット品質評価は新陳代謝の機構。個別チケットは新陳代謝で改善されるが、
+      5 軸を保つ運動性こそが継承される。「変わらない構造 = 変わり続ける運動性」。
+
+  - source: 01_relationship/policy_v1.2.md §2 馴れ合い拒絶 3 原則
+    application: |
+      司令官の自己採点は原則 2(自分の側に揺らぎを起こす)の正面運用。
+      自己採点と監督官採点の差分は原則 3(指摘と承認の両立)の機械化指標。
+
+  - source: rubrics/dasei_detection_rubric.yaml v1.0
+    application: |
+      Evolution Contribution 軸(本 rubric)は Dasei Risk(別 rubric)と相補的。
+      惰性検知 = ネガティブ判定、進化貢献度 = ポジティブ判定。両軸の合成で
+      新陳代謝の運動性を測る。
+
+# ============================================================
+# 改訂履歴
+# ============================================================
+revision_history:
+  - version: 1.0
+    date: 2026-04-28
+    summary: 初版起案。5 軸(Clarity / Implementability / DoD Quality / Evidence Requirements / Evolution Contribution)+ verdict 4 種類マッピング + Pre-Build Gate scale 別運用 + 哲学的接続。Phase B-α / β 7 日間実証実績で v1.1 改訂前提。

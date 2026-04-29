@@ -1,0 +1,52 @@
+{
+  "snapshot_id": "snapshot_commander_202604282304_cycle_auto",
+  "role": "commander",
+  "instance_id": "α",
+  "checkpoint": "cycle_auto",
+  "captured_at": "2026-04-28T23:04:41+09:00",
+  "rubric_version": "0.1",
+  "rubric_path": "rubrics/role_execution_rubric.yaml",
+  "auto_calculated": true,
+  "auto_calculator": "step3_5_role_execution_snapshot.ps1 v0.2",
+  "scores": {
+    "axis_1_global_map_maintenance": {
+      "components": {
+        "factory_ticket_overview": 80,
+        "advance_map_freshness": 90,
+        "sitrep_currency": 90
+      },
+      "score": 87.0,
+      "verdict": "green"
+    },
+    "axis_2_next_10_moves": {
+      "components": {
+        "ticket_issuance_velocity": 95,
+        "tickets_24h_count": 25
+      },
+      "score": 95,
+      "verdict": "green"
+    },
+    "axis_3_factory_progress_observation": {
+      "components": {
+        "completion_reports_24h": 3,
+        "merged_prs_24h": 0
+      },
+      "score": 50,
+      "verdict": "yellow"
+    },
+    "axis_4_supervisor_response_quality": {
+      "components": {
+        "total_verdicts": 24,
+        "verdict_distribution_health": 60,
+        "orders_7d": 49,
+        "approve_count": 16,
+        "response_ratio": 59,
+        "responses_7d": 29
+      },
+      "score": 60.0,
+      "verdict": "yellow"
+    }
+  },
+  "role_total": 73.0,
+  "role_verdict": "green"
+}

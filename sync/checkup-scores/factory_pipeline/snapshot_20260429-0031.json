@@ -1,0 +1,45 @@
+﻿{
+    "snapshot_id":  "factory_pipeline_20260429-0031",
+    "captured_at":  "2026-04-29T00:31:10+09:00",
+    "commander_repo_path":  "C:\\RX_Dev\\record-x-commander",
+    "cutoff_24h":  "2026-04-28T00:31:10+09:00",
+    "tickets_issued":  {
+                           "updated_24h":  21,
+                           "files_24h":  [
+                                             "DO-CP-001_ticket_ledger_jsonl.md",
+                                             "DO-CP-002_state_kanban_ui.md",
+                                             "DO-CP-003_evidence_done_rate.md",
+                                             "DO-CP-004_handoff_success_rate.md",
+                                             "DO-CP-005_stale_ticket_detection.md",
+                                             "DO-CP-006_orphan_report_detection.md",
+                                             "DO-CP-007_commander_acceptance_rate.md",
+                                             "DO-CP-008_mirror_comment_y2_switch.md",
+                                             "DO-CP-009_lessons_extraction.md",
+                                             "DO-CP-010_daily_report_60s.md",
+                                             "DO-CTEST-001_events_jsonl_sample.md",
+                                             "DO-CTEST-002_hash_prev_calc_function.md",
+                                             "DO-CTEST-003_genesis_hash_test.md",
+                                             "DO-CTEST-004_tickets_ledger_sample.md",
+                                             "DO-CTEST-005_state_kanban_test_md.md",
+                                             "DO-CTEST-006_daily_report_template.md",
+                                             "DO-CTEST-007_24h_window_filter.md",
+                                             "DO-CTEST-008_stale_ticket_detector.md",
+                                             "DO-CTEST-009_orphan_report_detector.md",
+                                             "DO-CTEST-010_three_layer_lock_test.md"
+                                         ],
+                           "total_count":  21
+                       },
+    "tickets_completed":  {
+                              "added_24h":  1,
+                              "total_count":  20
+                          },
+    "completion_reports":  {
+                               "added_24h":  27,
+                               "total_count":  49
+                           },
+    "merged_prs":  {
+                       "added_24h":  0,
+                       "total_count":  1
+                   },
+    "role_execution_snapshots_mirrored":  0
+}

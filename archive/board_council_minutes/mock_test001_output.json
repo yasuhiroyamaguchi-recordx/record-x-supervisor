@@ -1,0 +1,132 @@
+投 AI繝励Ο繝舌う繝繝ｼMock蛻､螳・
+  gemini: 噺 Mock (FORCE_MOCK=true)
+  openai: 噺 Mock (FORCE_MOCK=true)
+  claude: 噺 Mock (FORCE_MOCK=true)
+笞・・繝ｭ繝ｼ繝峨い繧ｦ繝・factory.md 縺ｯ gemini-2.5-flash 縺ｧ譛ｪ讀懆ｨｼ縺ｧ縺・[flight-lessons] getUnapplied failed: connect ECONNREFUSED 127.0.0.1:5433
+笞・・Mock: FORCE_MOCK=true
+罰 笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊・罰  逾槭・隲・ｾｩ 窶・蠖ｹ蜩｡莨夊ｭｰ繧帝幕蟋九＠縺ｾ縺・罰  隴ｰ鬘・ 蜀・酷莨夊ｭｰ讖滓ｧ・v0.2 繝｡繧ｿ繝ｬ繝薙Η繝ｼ隧ｦ驕玖ｻ｢
+罰  繝峨Γ繧､繝ｳ: factory
+罰 笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊絶武笊・
+笏笏 Round 1/3 笏笏
+
+笞｡ ZEI-RO 縺檎匱險荳ｭ...
+笞・・Mock: FORCE_MOCK=true
+笞｡ ZEI-RO: [Mock: gemini] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)
+   繧ｳ繧ｹ繝・ $0.0000 (1319in / 16out)
+
+[HIVE] Round 1: 1 blocks (OPTIONS)
+
+笏笏 Round 2/3 笏笏
+
+自 繝√Ε繝・ヴ繝ｼ 縺檎匱險荳ｭ...
+笞・・Mock: FORCE_MOCK=true
+自 繝√Ε繝・ヴ繝ｼ: [Mock: openai] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)
+   繧ｳ繧ｹ繝・ $0.0000 (1360in / 16out)
+
+[HIVE] Round 2: 1 blocks (RISKS)
+
+笏笏 Round 3/3 笏笏
+
+荘 蟋泌藤髟ｷ 縺檎匱險荳ｭ...
+笞・・Mock: FORCE_MOCK=true
+荘 蟋泌藤髟ｷ: [Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)
+   繧ｳ繧ｹ繝・ $0.0000 (1592in / 16out)
+
+[HIVE] Round 3: 1 blocks (RISKS)
+
+[CHAIRMAN] Plain-text fallback: 1 decision(s)
+  笞・・ZEI-RO: Mock繝輔か繝ｼ繝ｫ繝舌ャ繧ｯ逋ｺ逕・  笞・・繝√Ε繝・ヴ繝ｼ: Mock繝輔か繝ｼ繝ｫ繝舌ャ繧ｯ逋ｺ逕・  笞・・蟋泌藤髟ｷ: Mock繝輔か繝ｼ繝ｫ繝舌ャ繧ｯ逋ｺ逕・[factory_archive] meeting_minutes: connect ECONNREFUSED 127.0.0.1:5433
+統 隴ｰ莠矩鹸繧剃ｿ晏ｭ倥＠縺ｾ縺励◆
+
+搭 1莉ｶ縺ｮ豎ｺ螳壻ｺ矩・ｒPlan蛹悶＠縺ｾ縺・..
+{
+  "date": "2026-04-29T04:40:22.876Z",
+  "agenda": "蜀・酷莨夊ｭｰ讖滓ｧ・v0.2 繝｡繧ｿ繝ｬ繝薙Η繝ｼ隧ｦ驕玖ｻ｢\n\n---\n[KAIROS temporal] as_of=2026-04-29・域ｰｴ譖懈律 JST・・/ dev=active branch=feat/fast-gate-paths-extension c30=0 c24=5 last=2026-04-29T11:40:55+09:00\n",
+  "domain": "factory",
+  "rounds": [
+    {
+      "round": 1,
+      "speaker": "ZEI-RO",
+      "icon": "笞｡",
+      "response": "[Mock: gemini] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "summary": "[Mock: gemini] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "cost": 0,
+      "zeiroResponse": "[Mock: gemini] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "blocks": [
+        {
+          "block_id": "BLK-1777437622879-0",
+          "block_type": "OPTIONS",
+          "round": 1,
+          "actor": "zei-ro",
+          "content": "[Mock: gemini] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+          "evidence_refs": [],
+          "status": "draft"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "speaker": "繝√Ε繝・ヴ繝ｼ",
+      "icon": "自",
+      "response": "[Mock: openai] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "summary": "[Mock: openai] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "cost": 0,
+      "chappyResponse": "[Mock: openai] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "blocks": [
+        {
+          "block_id": "BLK-1777437622881-0",
+          "block_type": "RISKS",
+          "round": 2,
+          "actor": "chappy",
+          "content": "[Mock: openai] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+          "evidence_refs": [],
+          "status": "draft"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "speaker": "蟋泌藤髟ｷ",
+      "icon": "荘",
+      "response": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "summary": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "cost": 0,
+      "chairmanResponse": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "blocks": [
+        {
+          "block_id": "BLK-1777437622882-0",
+          "block_type": "RISKS",
+          "round": 3,
+          "actor": "chappy",
+          "content": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+          "evidence_refs": [],
+          "status": "draft"
+        }
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "title": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・,
+      "domain": "factory",
+      "priority": "P2",
+      "effort": "M",
+      "description": "[Mock: claude] 縺薙・AI縺ｯ迴ｾ蝨ｨ蛻ｩ逕ｨ縺ｧ縺阪∪縺帙ｓ縲・ock繝ｬ繧ｹ繝昴Φ繧ｹ縺ｧ縺吶・n隴ｰ鬘後↓蟇ｾ縺吶ｋ蝗樒ｭ・ (Mock逕滓・)",
+      "dod": [
+        "TBD: refine in backlog"
+      ],
+      "guardrails": [],
+      "status": "approved",
+      "status_log": [
+        {
+          "timestamp": "2026-04-29T04:40:22.883Z",
+          "from": null,
+          "to": "approved",
+          "by": "system",
+          "reason": "Created from board meeting"
+        }
+      ]
+    }
+  ],
+  "totalCost": 0
+}

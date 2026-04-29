@@ -1,0 +1,2 @@
+﻿{"timestamp":"2026-04-29T00:31:10+09:00","rule":"R4","evt_candidate":"sync_log_warnings","severity":"yellow","details":"Last 100 sync log lines contain 18 warn/error indicators (EVT-012/15 type, automation health degraded)"}
+{"timestamp":"2026-04-29T00:31:10+09:00","rule":"R5","evt_candidate":"escalation_file_emerged","severity":"red","details":"5 escalation file(s) created in 24h: ESC-Yresp-20260428_to_commander_002.md, ESC-Yresp-20260428_to_commander_010.md, gazette_initial_entry_draft.md, setup_email_notify_yasu_action.md, yasu_day131_morning_approval_checklist.md"}

@@ -1,0 +1,33 @@
+{
+  "_comment": "P-number registry (EVT-021 prevention). Source of truth: operations/communication_protocol.md §3.2-A-0.",
+  "version": "0.1",
+  "established": "2026-04-29",
+  "established_by": "supervisor instance A (Day 131 朝)",
+  "registered": {
+    "P1": "発令ファイル命名規則統一 + frontmatter responds_to 必須(司令官 α 応答 第 1 号、第 10 次発令 採択 1)",
+    "P2": "record-x-commander/CLAUDE.md §2-C 補注追加(監督官 index/ 書込例外許容、司令官 α 応答 第 2 号、第 11 次発令で採択処理)",
+    "P3": "司令官 α 応答 第 2 号での提案項目(詳細未確認、第 11 次発令採択経路、Day 131 朝補完 TODO)",
+    "P4": "ディレクトリ構造判断(司令官 α 応答 第 3 号 補足、第 11 次発令で採択)",
+    "P5": "discussion_scale 動的閾値定義",
+    "P6": "Layer 0 自動レビュー境界基準",
+    "P7": "ヤス判断 3 件統合パッケージ",
+    "P8": "ブランチ運用ルール(司令官 α 応答 第 11 号、第 17 次発令で採択方針通知 = 将来起案候補、Day 132 起動後実績で判断)",
+    "P9": "司令官 α 応答内提案(詳細未確認、Day 131 朝補完 TODO、L3 官報草案関連の可能性)",
+    "P10": "originator_instance frontmatter 必須",
+    "P11": "L2 区報動的配置運用ガイドライン",
+    "P12": "dream_mode_activation_principle v0.1 補完文書併存採択",
+    "P13": "dream_crystallize_commander.ps1 v0.1 司令官側応用",
+    "P14": "inbox 重複削除依頼",
+    "P15": "司令官 role_total 連動 発令保留条件",
+    "P16": "検診タイミング相対時刻運用",
+    "P17": "responds_to 正規化規定"
+  },
+  "next_available": "P18",
+  "rules": {
+    "naming": "P + integer (no leading zeros)",
+    "uniqueness": "each P-number assigned to exactly one proposal",
+    "naming_check_required_at_drafting": true,
+    "rename_on_collision": true
+  },
+  "proposal_context_keywords_jp": ["採択", "提案", "即時採択", "即時撤回", "採用", "起案", "統合"]
+}

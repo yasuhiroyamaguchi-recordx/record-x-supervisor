@@ -1,0 +1,75 @@
+{
+  "snapshot_id": "snapshot_commander_20260428end_T-1",
+  "role": "commander",
+  "instance_id": "α",
+  "checkpoint": "T-1",
+  "captured_at": "2026-04-28T23:55:00+09:00",
+  "captured_note": "第31次発令応答 commit 直前(SITREP/advance_map/tickets_draft 更新前)",
+  "update_commit_sha_pending": "<本セッション最終commit直前>",
+  "update_description": "第31次発令REQUEST_CHANGES 役割1-3即時是正 + 第32次発令検診発動 + 第29/30次発令応答",
+  "rubric_version": "0.1",
+  "rubric_path": "rubrics/role_execution_rubric.yaml",
+  "scores": {
+    "axis_1_global_map_maintenance": {
+      "score": 25,
+      "verdict": "red",
+      "components": {
+        "advance_map_freshness": 10,
+        "sitrep_currency": 60,
+        "factory_ticket_overview": 5
+      },
+      "notes": "advance_map.md は Day 128 cycle_1 状態のまま、SITREP は Day 130 朝差分更新止まり、工場長 2,000 チケット全体把握 観察できず"
+    },
+    "axis_2_next_10_moves": {
+      "score": 5,
+      "verdict": "red",
+      "components": {
+        "ticket_issuance_velocity": 0,
+        "forecast_horizon": 30,
+        "ticket_quality_consistency": null
+      },
+      "notes": "本日新規 tickets_issued ゼロ件、tickets_draft も DO-COMMANDER-014 のみ(コントロールパネル DO-CP 系列未起案)"
+    },
+    "axis_3_factory_progress_observation": {
+      "score": 0,
+      "verdict": "red",
+      "components": {
+        "completion_report_review": 0,
+        "pr_merge_tracking": 0,
+        "lessons_extraction": 0
+      },
+      "notes": "本日工場長 completion_reports / PR / lessons 観察ゼロ、Phase B-α 起動前のため一部やむを得ないが役割欠落"
+    },
+    "axis_4_supervisor_response_quality": {
+      "score": 70,
+      "verdict": "yellow",
+      "components": {
+        "response_speed": 95,
+        "structural_objection_rate": 30,
+        "verdict_distribution_health": 50
+      },
+      "notes": "応答速度◎(全件期限前完了)、ただし verdict APPROVE 23 連発 = 構造的反論率赤判定、軽微な構造的指摘 P9-P13 のみ発出"
+    }
+  },
+  "role_total": 25,
+  "role_verdict": "red",
+  "individual_action_scores": {
+    "dasei_risk": null,
+    "ticket_fitness_avg": null,
+    "value_alignment_avg": null,
+    "note": "本セッション時間制約により未算定、T+0 撮影時に並行算定予定"
+  },
+  "global_total": null,
+  "warning_flags": [
+    "EVT-014 候補(司令官 α 役割 1-3 欠落)該当確認",
+    "形式採択疑い: verdict APPROVE 23 連発に対する構造的反論率の低さ",
+    "advance_map 鮮度赤 = Day 128 状態維持(2 日間更新なし)"
+  ],
+  "improvement_targets_for_T+0": [
+    "axis_1: advance_map v2 更新で freshness 緑判定化",
+    "axis_2: DO-CP-001〜010 起案 10 件で issuance_velocity 緑判定化",
+    "axis_3: Phase B-α 起動後に活性化(Day 131 朝時点では構造的に観察対象不在)",
+    "axis_4: 構造的反論率向上(本応答 第 24-27 号で構造的反論検出 + P14-P16 提案発出予定)"
+  ],
+  "notes": "第32次発令採択2 7装置初回検診 T-1 撮影。EVT-013(監督官 A 形式採択 23 連発)+ EVT-014 候補(司令官 α 役割 1-3 欠落)の正面記録。Phase B-α 起動 Day 132 朝までの改善目標 = role_total 70+ (緑判定)"
+}

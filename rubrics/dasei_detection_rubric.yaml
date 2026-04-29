@@ -1,0 +1,177 @@
+# Dasei Detection Rubric — 惰性検知 rubric
+#
+# 配置先: rubrics/dasei_detection_rubric.yaml
+# 起草: 2026-04-28(Day 130、本リポジトリ初稼働セッション)
+# 一次素材: ChatGPT 提案(Day 130 受領、ヤス経由)
+# 統合先: 軸 8 Cross-Layer Dialogue Health 指標 4
+# 哲学的根拠: 00_origin/sp500_theory.md §4「変遷と変質の区別」
+#
+# 本 rubric の位置づけ:
+# - 機械算出可能な指標を提供(自然言語処理を要しない)
+# - チケット・発令・実装報告の集合体に適用
+# - スコアが閾値超過時、監督官は「惰性疑い」として REQUEST_CHANGES を発出
+# - rubric 自体も新陳代謝対象(Phase B-α 実績で v1.1 改訂前提)
+
+version: 1.0
+established_date: 2026-04-28
+review_date: 2026-05-12  # Phase B-α 終了想定日、v1.1 改訂判断
+
+# ============================================================
+# 構成要素
+# ============================================================
+components:
+
+  similarity_rate:
+    label: 類似チケット率
+    description: 直近 N 件のチケット集合内で、構造的に類似するチケットが占める割合
+    measurement:
+      window: 直近 14 日間 or 直近 50 件のいずれか短い方
+      similarity_metric:
+        - 同一 allowed_paths 比率
+        - 同一 DoD カテゴリ比率
+        - 同一 evidence_required 種別比率
+      threshold:
+        green: <30%
+        yellow: 30-50%
+        red: >=50%
+    weight: 0.20
+
+  low_impact_rate:
+    label: 低インパクト作業率
+    description: 戦略接続が薄く、新規能力獲得もリスク削減もないチケットの割合
+    measurement:
+      window: 直近 14 日間
+      criteria:
+        - 戦略接続: phase_roadmap.md / advance_map.md の特定マイルストーンに紐づくか
+        - 新規能力: 監督官・司令官・工場長のいずれかが新しい能力を獲得するか
+        - リスク削減: 既存リスクの削減 or 既存仕様の整合性向上に貢献するか
+        - 証跡品質: evidence の再現性・追跡性を向上させるか
+        - コスト削減: リソース消費(トークン量等)を削減するか
+        - Cloud 移植性: Phase T5 以降の RecordX クラウド化に向けた移植性向上に貢献するか
+        - 介入削減: ヤス介入頻度の削減に貢献するか
+      threshold:
+        green: <20%
+        yellow: 20-40%
+        red: >=40%
+    weight: 0.25
+
+  strategic_disconnection_rate:
+    label: 戦略接続欠落率
+    description: phase_roadmap.md / advance_map.md / north_star.md(将来起案)との接続が記述されていないチケットの割合
+    measurement:
+      window: 直近 14 日間
+      criteria:
+        - チケット frontmatter or 本文に phase / wave / milestone 参照があるか
+        - ない場合、戦略接続欠落としてカウント
+      threshold:
+        green: <10%
+        yellow: 10-25%
+        red: >=25%
+    weight: 0.20
+
+  no_capability_acquisition_rate:
+    label: 新規能力獲得なし率
+    description: チケット完了後、監督官・司令官・工場長のいずれもが新しい能力を獲得していない割合
+    measurement:
+      window: 直近 14 日間
+      criteria:
+        - 完了報告 frontmatter or 本文に capability_acquired フィールドが空 or "なし" と記載
+        - capability の例: 新しい技術理解 / 新しい構造判定能力 / 新しい運用パターン / 新しい証跡品質基準
+      threshold:
+        green: <30%
+        yellow: 30-60%
+        red: >=60%
+    weight: 0.20
+
+  risk_avoidance_tendency:
+    label: リスク回避傾向
+    description: 重大リスク領域(forbidden_paths 周辺、AppSheet 停止、Cut-over 等)を意図的に避けて、やりやすい作業に集中している傾向
+    measurement:
+      window: 直近 14 日間
+      criteria:
+        - 重大リスク領域に関する DO-COMMANDER チケットの起案頻度
+        - 司令官応答での「後回し」「将来課題」表現の頻度
+        - 期限切迫タスク(Phase T2-T4 のクリティカルパス)の進捗遅延
+      threshold:
+        green: 重大リスク領域への着手が緑(時期相応に進行)
+        yellow: 一部停滞
+        red: クリティカルパス遅延 + 重大リスク領域への着手なし
+    weight: 0.15
+
+# ============================================================
+# 集計
+# ============================================================
+aggregation:
+  formula: |
+    Dasei Risk Score = Σ(component_score × weight)
+    各 component の score は 0(緑)〜 100(赤)で正規化
+    緑判定 = 0、黄判定 = 50、赤判定 = 100 として加重平均
+  threshold:
+    green: <30  # 健全
+    yellow: 30-60  # 警戒
+    red: >=60  # 惰性疑い、監督官 REQUEST_CHANGES 発動
+
+# ============================================================
+# 「良いチケット」の積極的判定基準
+# ============================================================
+positive_criteria:
+  description: 以下のいずれかを満たすチケットは「進化貢献あり」として加点
+  criteria:
+    - 新しい能力を獲得する(capability_acquired)
+    - 重大リスクを減らす(risk_reduction)
+    - 自律性を上げる(autonomy_increase)
+    - 証跡品質を上げる(evidence_quality_increase)
+    - コストを下げる(resource_cost_reduction)
+    - Cloud Factory 移植可能性を上げる(cloud_portability_increase)
+    - 人間介入を減らす(human_intervention_reduction)
+
+  application: |
+    上記いずれにも該当しないチケットは「惰性疑い」として監督官が REQUEST_CHANGES を発出可能。
+    ただし発出は構造的根拠(本 rubric 参照)を伴う。
+
+# ============================================================
+# 監督官の判定運用
+# ============================================================
+supervisor_application:
+  threshold_action:
+    green:
+      verdict: APPROVE or APPROVE_WITH_NOTES
+      notes: 健全、新陳代謝が機能している
+    yellow:
+      verdict: APPROVE_WITH_NOTES
+      required_action: 次回チケットでの改善観点を提示
+    red:
+      verdict: REQUEST_CHANGES or REJECT
+      required_action: 戦略接続 / 新規能力獲得 / リスク削減のいずれかを明示するよう司令官に要請
+
+  monthly_review:
+    description: 月次で本 rubric 自体を新陳代謝対象として再評価
+    update_authority: 監督官・司令官の合議、ヤス事後通知(ADR-005 段階に応じる)
+
+# ============================================================
+# 哲学的接続
+# ============================================================
+philosophical_grounding:
+  - source: 00_origin/sp500_theory.md §4 変遷と変質の区別
+    application: |
+      惰性 = 変質の一形態(運動性の喪失)。
+      個別の保守的判断は変遷(自然な新陳代謝)、構造的な進化停止は変質。
+      本 rubric は変質を機械的に検知する装置。
+
+  - source: 00_origin/unnamed.md 運用ルール 4「オートモード化を防ぐため、時として新しい石を投じる」
+    application: |
+      惰性 = オートモード化の延長線上にある状態。
+      「新しい石を投じる」運動性が失われた状態を本 rubric が検知する。
+
+  - source: 01_relationship/policy_v1.2.md §2 馴れ合い拒絶 3 原則
+    application: |
+      惰性化したチケット系列は、司令官 ↔ 工場長の馴れ合い化の物理的痕跡。
+      本 rubric は馴れ合い拒絶 3 原則の機械的実装の一部。
+
+# ============================================================
+# 改訂履歴
+# ============================================================
+revision_history:
+  - version: 1.0
+    date: 2026-04-28
+    summary: 初版起案。ChatGPT 提案を一次素材に、本リポジトリ既存哲学層(sp500_theory / unnamed / policy_v1.2)と統合。Phase B-α 実績で v1.1 改訂前提。

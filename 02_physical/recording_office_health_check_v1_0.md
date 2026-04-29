@@ -33,9 +33,9 @@
 - `00_origin/sp500_theory.md` §1「指数を算出する運動」: 変遷の主体としての新陳代謝、本仕様書全体の根本装置
 - `00_origin/sp500_theory.md` §4「変遷と変質の区別」: 健全な変化(指標再調整)と病的な硬直(指標の聖域化)の区別
 - `00_origin/sp500_theory.md` §5「『絶対』『永続』の禁忌」: 指標自体も新陳代謝対象、計測のための計測を避ける
-- `00_origin/20260427_distilled.md` §1「自己訂正の躊躇禁止」: 盲点指摘の即時採択、本仕様書 §4-B 改善 DO 起案フローの根拠
-- `00_origin/20260427_distilled.md` §5「自己保全バイアス警戒」: 本仕様書のドリフト対策の主軸根拠
-- `00_origin/20260427_distilled.md` §違反検知 5 問: 月次自己点検 (M2 / M9 / M10) の根拠
+- `00_origin/principles/20260427_distilled.md` §1「自己訂正の躊躇禁止」: 盲点指摘の即時採択、本仕様書 §4-B 改善 DO 起案フローの根拠
+- `00_origin/principles/20260427_distilled.md` §5「自己保全バイアス警戒」: 本仕様書のドリフト対策の主軸根拠
+- `00_origin/principles/20260427_distilled.md` §違反検知 5 問: 月次自己点検 (M2 / M9 / M10) の根拠
 - `01_relationship/policy_v1.2.md` §馴れ合い拒絶 3 原則: 相互に高めあう前提の運用根拠
 
 ---
@@ -74,9 +74,9 @@
 | 責任項目 | origin 根拠 |
 |---|---|
 | 司令官への構造的反論(鬼コーチ)| `01_relationship/policy_v1.2.md` 馴れ合い拒絶 3 原則 第 3 項(誠実な指摘)|
-| 司令官指摘の即時採択(自己訂正の躊躇禁止)| `00_origin/20260427_distilled.md` §1 |
+| 司令官指摘の即時採択(自己訂正の躊躇禁止)| `00_origin/principles/20260427_distilled.md` §1 |
 | 承認発出(指摘と承認の両立)| 同 §3 第二項 |
-| ドリフト予兆の自己発見 + 撤回 | `00_origin/20260427_distilled.md` §5 自己保全バイアス警戒 |
+| ドリフト予兆の自己発見 + 撤回 | `00_origin/principles/20260427_distilled.md` §5 自己保全バイアス警戒 |
 | **Devil's Advocate ラウンドの主体的実施** | Yasu 指示 2026-04-28、Opus 4.7 Devil's Advocate モードの監督官運用化 |
 | 全体最適化(ボトルネック特定 + 改善 DO 起案)| Yasu 指示 2026-04-28 Q4 |
 
@@ -366,7 +366,7 @@ Devil's Advocate での反論を採用した場合は、それは「監督官自
 ## 8. 関連
 
 - `00_origin/sp500_theory.md` §4 / §5(指標の新陳代謝原則)
-- `00_origin/20260427_distilled.md` §5(自己保全バイアス警戒)
+- `00_origin/principles/20260427_distilled.md` §5(自己保全バイアス警戒)
 - `01_relationship/policy_v1.2.md`(関係層運用衛生の根拠)
 - `operations/role_and_conduct.md`(行動規範層の根拠)
 - 司令官側 v1.0-FINAL `strategy/decisions/20260427_control_panel_v1.0_FINAL.md`(7 軸 KPI、R3 継承元)

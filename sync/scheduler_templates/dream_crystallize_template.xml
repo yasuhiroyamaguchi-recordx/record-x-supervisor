@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<!--
+  Dream Crystallize Daily Scheduler Template (Supervisor)
+
+  Drafted: 2026-04-29 (Day 131 evening, supervisor instance A)
+  Basis:
+  - EVT-035 stage 3 (dream-crystallize CLI --domain supervisor extension)
+  - EVT-036 system K context bloat countermeasure
+  - ADR-009 section 6-A automation integration (dream-crystallize daily)
+  - dream_mode_doctrine.md v1.0-draft section 2-C supervisor-side application
+  - Yasu instruction 2026-04-29 evening "auto-integrate like periodic checkup"
+
+  Schedule: Daily 03:00 JST (commander auto-patrol off-time)
+  Action:   sync/sync_script/dream-crystallize-supervisor.ps1 (manual stub v0.1)
+  Output:   archive/dream_crystallize_history/{YYYYMMDD}_supervisor_dream.md
+  Yasu marker: LOW (green, per role_and_conduct section 1.1-E)
+
+  Manual installation:
+    schtasks /Create /TN "RecordX_DreamCrystallize_Supervisor" `
+      /XML "C:\RX_Dev\record-x-supervisor\sync\scheduler_templates\dream_crystallize_template.xml"
+
+  This template is a STUB. Once DO-SUPERVISOR-002 (factory CLI extension) is
+  implemented, the script becomes a thin wrapper around factory orchestrator.
+-->
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+  <RegistrationInfo>
+    <Description>Daily dream-crystallize for supervisor domain (manual stub v0.1, awaits DO-SUPERVISOR-002 factory CLI extension). Aggregates last 24h updates from archive/, outbox/, internal/circular/. Yasu review priority: LOW (green marker).</Description>
+    <Author>RecordX Supervisor (instance A, 2026-04-29 Day 131)</Author>
+    <URI>\RecordX\DreamCrystallize_Supervisor</URI>
+  </RegistrationInfo>
+  <Triggers>
+    <CalendarTrigger>
+      <StartBoundary>2026-04-30T03:00:00+09:00</StartBoundary>
+      <Enabled>true</Enabled>
+      <ScheduleByDay>
+        <DaysInterval>1</DaysInterval>
+      </ScheduleByDay>
+    </CalendarTrigger>
+  </Triggers>
+  <Principals>
+    <Principal id="Author">
+      <LogonType>InteractiveToken</LogonType>
+      <RunLevel>LeastPrivilege</RunLevel>
+    </Principal>
+  </Principals>
+  <Settings>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+    <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+    <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+    <AllowHardTerminate>true</AllowHardTerminate>
+    <StartWhenAvailable>true</StartWhenAvailable>
+    <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+    <IdleSettings>
+      <StopOnIdleEnd>false</StopOnIdleEnd>
+      <RestartOnIdle>false</RestartOnIdle>
+    </IdleSettings>
+    <AllowStartOnDemand>true</AllowStartOnDemand>
+    <Enabled>false</Enabled>
+    <Hidden>false</Hidden>
+    <RunOnlyIfIdle>false</RunOnlyIfIdle>
+    <WakeToRun>false</WakeToRun>
+    <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
+    <Priority>7</Priority>
+  </Settings>
+  <Actions Context="Author">
+    <Exec>
+      <Command>powershell.exe</Command>
+      <Arguments>-NoProfile -ExecutionPolicy Bypass -File "C:\RX_Dev\record-x-supervisor\sync\sync_script\dream-crystallize-supervisor.ps1"</Arguments>
+      <WorkingDirectory>C:\RX_Dev\record-x-supervisor</WorkingDirectory>
+    </Exec>
+  </Actions>
+</Task>

@@ -1,0 +1,62 @@
+﻿{
+    "aggregate_id":  "failure_aggregate_20260429_112018",
+    "captured_at":  "2026-04-29T11:20:18+09:00",
+    "supervisor":  {
+                       "evt_list_sample":  [
+                                               "EVT-20260428-001",
+                                               "EVT-20260428-002",
+                                               "EVT-20260428-007",
+                                               "EVT-20260428-008",
+                                               "EVT-20260428-009",
+                                               "EVT-20260428-010",
+                                               "EVT-20260428-011",
+                                               "EVT-20260428-012",
+                                               "EVT-20260428-013",
+                                               "EVT-20260428-014"
+                                           ],
+                       "recent_7day_telemetry_lines":  11,
+                       "evt_count":  19
+                   },
+    "commander":  {
+                      "completion_reports_7day":  71,
+                      "tickets_issued_direct_count":  5,
+                      "archive_exists":  true,
+                      "non_standard_tickets":  [
+                                                   "DO-COMMON-D-001_common_directory_skeleton.md",
+                                                   "DO-COMMON-S-001_pii_extraction_targets_survey.md",
+                                                   "DO-COMMON-S-002_http_csrf_extraction_targets_survey.md",
+                                                   "DO-COMMON-S-003_audit_correlation_id_extraction_targets_survey.md",
+                                                   "DO-COMMON-S-004_types_distribution_survey.md"
+                                               ],
+                      "evt_count":  0
+                  },
+    "factory":  {
+                    "completion_reports_24h":  27,
+                    "latest_snapshot":  "snapshot_20260429-0031.json",
+                    "tickets_issued_24h":  21,
+                    "note":  "factory archive/factory_failures.md absent (EVT-025 type log gap)",
+                    "tickets_completed_24h":  1
+                },
+    "cross_role_drift":  [
+                             {
+                                 "count":  5,
+                                 "sample":  [
+                                                "DO-COMMON-D-001_common_directory_skeleton.md",
+                                                "DO-COMMON-S-001_pii_extraction_targets_survey.md",
+                                                "DO-COMMON-S-002_http_csrf_extraction_targets_survey.md",
+                                                "DO-COMMON-S-003_audit_correlation_id_extraction_targets_survey.md",
+                                                "DO-COMMON-S-004_types_distribution_survey.md"
+                                            ],
+                                 "details":  "EVT-025 type: tickets_issued/ root contains non-frontmatter tickets (active/ subdir bypassed)",
+                                 "type":  "non_standard_tickets_in_tickets_issued_root",
+                                 "severity":  "red"
+                             }
+                         ],
+    "symmetry_status":  "asymmetric_failure_log",
+    "recommendations":  [
+                            "supervisor aggregator running (this script)",
+                            "commander archive/error_patterns.md drafting requested via L2 regional archive_failure_log_symmetry",
+                            "factory archive/factory_failures.md drafting requested via commander relay",
+                            "tickets_issued root: 0 non-standard tickets target (active/ subdir mandatory, auto-evt R9 candidate)"
+                        ]
+}

@@ -1,0 +1,652 @@
+﻿{
+    "check_id":  "link_check_20260429",
+    "timestamp":  "2026-04-29T00:26:35+09:00",
+    "total_references":  497,
+    "target_files_count":  114,
+    "broken_links_count":  0,
+    "warnings_count":  104,
+    "broken_links":  [
+
+                     ],
+    "warnings":  [
+                     {
+                         "link_target":  "ProjectRX_HQ/wt_common/record-x/factory/docs/CLI_REFERENCE.md",
+                         "source_file":  "00_origin\\dream_mode_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/dream_mode_doctrine.md",
+                         "source_file":  "00_origin\\dream_mode_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/dream_mode_doctrine.md",
+                         "source_file":  "00_origin\\dream_mode_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "distilled.md",
+                         "source_file":  "00_origin\\no_stasis_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/no_stasis_doctrine.md",
+                         "source_file":  "00_origin\\no_stasis_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/no_stasis_doctrine.md",
+                         "source_file":  "00_origin\\no_stasis_doctrine.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/proposals/20260427_control_panel_v1_spec_draft.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "record-x-commander/strategy/proposals/20260427_control_panel_v1_spec_draft_v1.1.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "record-x-commander/strategy/proposals/20260427_control_panel_v1_spec_draft_v1.1.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "20260427_executor_response_to_relationship_policy_v1.1.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "record-x-commander/strategy/proposals/20260427_control_panel_v1_spec_draft_v1.2.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "record-x-commander/strategy/proposals/20260427_control_panel_v1_spec_draft_v1.3.md",
+                         "source_file":  "00_origin\\dialogues\\20260427_session_01_full.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/measure-drift.ps1",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/update-sitrep.ps1",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/lint-frontmatter.ps1",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/aggregate-verdicts.ps1",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/aggregate-bidirectional.ps1",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_v1_0_draft.md",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_v1_0.md",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/decisions/20260427_control_panel_v1.0_FINAL.md",
+                         "source_file":  "02_physical\\recording_office_health_check_v1_0.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync-orders.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "pull-replies.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "order-stale-alert.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "archive-order.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "review-implementation.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync-tickets.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "complete-ticket.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "stale-alert.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "pull-completion-reports.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "check-three-party-halt.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "notify-yasu.ps1",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "naming_dual_track.md",
+                         "source_file":  "02_physical\\v1_1_FINAL_revision_candidates.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/decisions/20260427_control_panel_v1.0_FINAL.md",
+                         "source_file":  "02_physical\\_reference.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/decisions/20260427_control_panel_v1.0_FINAL.md",
+                         "source_file":  "adrs\\ADR-001_control_panel_v1.0_FINAL.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "unnamed.md",
+                         "source_file":  "adrs\\ADR-003_philosophical_foundation_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sp500_theory.md",
+                         "source_file":  "adrs\\ADR-005_phased_autonomy_release.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sp500_theory.md",
+                         "source_file":  "adrs\\ADR-005_phased_autonomy_release.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "check-internal-links.ps1",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "unnamed.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_002.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_010.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "20260428_to_commander_002_RETRACTED.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/advance_map.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync-orders.ps1",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "no_stasis_doctrine.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "dream_mode_doctrine.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_011.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_012.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_012.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_011.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_011.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "_012.md",
+                         "source_file":  "archive\\error_patterns.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "naming_dual_track.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "layer0_supervisor_template.xml",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/no_stasis_doctrine.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "role_and_conduct.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "dream_mode_doctrine.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "role_and_conduct.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync-orders.ps1",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "pull-replies.ps1",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/decisions/20260427_control_panel_v1.0_FINAL.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/CLAUDE.md",
+                         "source_file":  "archive\\orders_history.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/canon/sp500_theory.md",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "dasei_detection_rubric.yaml",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "implementation_review_rubric.yaml",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ticket_quality_rubric.yaml",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "value_alignment_rubric.yaml",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "escalation_and_rollback.md",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "shared/official_gazette/gazette_20260428_001.md",
+                         "source_file":  "inbox\\escalations\\gazette_initial_entry_draft.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "order-stale-alert.ps1",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "notify-yasu.ps1",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ESC-20260428-093015-Y3-20260428_to_commander_006.md",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ESC-20260428-094500-Yresp-20260428_to_commander_007.md",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ESC-20260428-100000-Ystag.md",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ESC-20260428-103000-R1-axis_8_red.md",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "escalation_and_rollback.md",
+                         "source_file":  "inbox\\escalations\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync/sync_script/email_notify_state.json",
+                         "source_file":  "inbox\\escalations\\setup_email_notify_yasu_action.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "email_config.json",
+                         "source_file":  "inbox\\escalations\\setup_email_notify_yasu_action.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "email_notify_state.json",
+                         "source_file":  "inbox\\escalations\\setup_email_notify_yasu_action.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "gazette_20260428_001.md",
+                         "source_file":  "inbox\\escalations\\yasu_day131_morning_approval_checklist.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "layer0_entry_point.ps1",
+                         "source_file":  "inbox\\escalations\\yasu_day131_morning_approval_checklist.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "outbox/YYYYMMDD_to_commander.md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "inbox/YYYYMMDD_from_supervisor.md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "20260427_to_commander_001.md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "20260427_to_commander_002.md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "inbox/YYYYMMDD_from_commander.md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "pattern":  "responds_to_normalization",
+                         "link_target":  "\u003c応答対象ファイル名\u003e(応答時のみ、発令時は省略可)",
+                         "suggested":  "\u003c応答対象ファイル名\u003e(応答時のみ、発令時は省略可).md",
+                         "source_file":  "operations\\communication_protocol.md",
+                         "severity":  "evt_017",
+                         "issues":  [
+                                        "missing .md extension",
+                                        "natural language form (should be filename)"
+                                    ]
+                     },
+                     {
+                         "link_target":  "00_origin/distilled.md",
+                         "source_file":  "operations\\escalation_and_rollback.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sp500_theory.md",
+                         "source_file":  "operations\\implementation_review_pipeline.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "archive-order.ps1",
+                         "source_file":  "operations\\implementation_review_pipeline.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "review-implementation.ps1",
+                         "source_file":  "operations\\implementation_review_pipeline.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "pattern":  "responds_to_normalization",
+                         "link_target":  "\u003c発令ファイル名\u003e(あれば)",
+                         "suggested":  "\u003c発令ファイル名\u003e(あれば).md",
+                         "source_file":  "operations\\implementation_review_pipeline.md",
+                         "severity":  "evt_017",
+                         "issues":  [
+                                        "missing .md extension",
+                                        "natural language form (should be filename)"
+                                    ]
+                     },
+                     {
+                         "pattern":  "responds_to_normalization",
+                         "link_target":  "\u003c司令官完了報告ファイル名\u003e",
+                         "suggested":  "\u003c司令官完了報告ファイル名\u003e.md",
+                         "source_file":  "operations\\implementation_review_pipeline.md",
+                         "severity":  "evt_017",
+                         "issues":  [
+                                        "missing .md extension",
+                                        "natural language form (should be filename)"
+                                    ]
+                     },
+                     {
+                         "link_target":  "strategy/CLAUDE.md",
+                         "source_file":  "operations\\periodic_checkup_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "role_execution_rubric.yaml",
+                         "source_file":  "operations\\periodic_checkup_protocol.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "no_stasis_doctrine.md",
+                         "source_file":  "operations\\role_and_conduct.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "no_stasis_doctrine.md",
+                         "source_file":  "operations\\role_and_conduct.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "strategy/decisions/20260427_control_panel_v1.0_FINAL.md",
+                         "source_file":  "outbox\\20260427_to_commander.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "layer2_entry_point.ps1",
+                         "source_file":  "outbox\\_resources\\dream_function_brief_for_commander.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "scripts/dream_crystallize_commander.ps1",
+                         "source_file":  "outbox\\_resources\\dream_function_brief_for_commander.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "ProjectRX_HQ/wt_common/record-x/factory/docs/CLI_REFERENCE.md",
+                         "source_file":  "outbox\\_resources\\dream_function_brief_for_commander.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "layer2_entry_point.ps1",
+                         "source_file":  "scripts\\scheduler_templates\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "sync-factory-pipeline.ps1",
+                         "source_file":  "sync\\checkup-scores\\factory_pipeline\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     },
+                     {
+                         "link_target":  "layer0_entry_point.ps1",
+                         "source_file":  "sync\\checkup-scores\\factory_pipeline\\README.md",
+                         "pattern":  "backtick_path",
+                         "severity":  "soft"
+                     }
+                 ]
+}

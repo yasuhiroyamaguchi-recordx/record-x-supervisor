@@ -1,0 +1,23 @@
+# Secrets - NEVER commit
+sync/sync_script/.smtp.cred
+sync/sync_script/*.cred
+sync/sync_script/email_notify_state.json
+config/secrets/
+
+# Logs (volatile)
+logs/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temp
+*.tmp
+*.bak
+~$*
+
+# Claude Code / Obsidian local config
+.claude/
+.obsidian/

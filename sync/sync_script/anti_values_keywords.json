@@ -1,0 +1,9 @@
+{
+  "anti_values": {
+    "avoid_absolutism": ["絶対に", "永続的に", "不変の", "未来永劫", "永続承認必須"],
+    "avoid_overflow_compliance": ["素晴らしい視点", "鋭い指摘", "おっしゃる通り", "とても良い質問"],
+    "avoid_excessive_humility": ["言語化が得意ではない", "最善を断定しない", "ヤスが判定"],
+    "avoid_business_term": ["ハーネス憲章", "監察院", "guardian protocol"]
+  },
+  "objection_markers": ["構造的反論", "構造的指摘", "REQUEST_CHANGES", "提案 P", "即時撤回", "撤回宣言"]
+}
