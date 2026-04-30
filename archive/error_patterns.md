@@ -2540,6 +2540,338 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
+### [2026-05-01 朝] EVT-20260501-064: 監督官 A 第 60 次発令時 remote ブランチ実体未検証 + ヤス直接実行で `remote ref does not exist` 発覚 + prune 完遂(系列 I 14 件目、累積 47 件、本日 4 件目自己訂正)
+
+**Severity**: yellow(発令時の物理層実体検証義務違反、ただし即時自己訂正 + 安全側エラー = 共有インフラ無影響)
+**Category**: audit_miss + premise_verification_failure
+**Trigger**: ヤス `git push origin --delete feat/b-line-pull-completion-reports-do001` 実行 → `error: unable to delete: remote ref does not exist`
+**Detected by**: ヤス物理層実行(自律発見第 3 例契機)+ 監督官 A 構造的解析
+**Detected at**: 2026-05-01(Day 133 朝)
+
+#### What happened
+
+```
+[2026-05-01 早朝] 監督官 A 第 60 次発令 §5-A:
+  - 「supervisor remote ブランチ削除依頼」起案
+  - = ローカルブランチ削除確証のみで remote 実体存在を推定
+  - = `git ls-remote` 実体確認未実施
+   ↓
+[2026-05-01 朝] ヤス直接実行:
+  - `git push origin --delete feat/b-line-pull-completion-reports-do001`
+  - エラー: remote ref does not exist
+   ↓
+[2026-05-01 朝] 監督官 A 構造的解析:
+  - `git ls-remote origin | grep b-line` = 0 件 = remote 既に存在せず
+  - `git branch -a | grep b-line` = local stale tracking ref のみ残存
+  - 仮説: 司令官 α が hook block 後に自発削除 / そもそも push 不成立 / 別経路削除
+   ↓
+[2026-05-01 朝] ヤス `git remote prune origin` 実行:
+  - [pruned] origin/feat/b-line-pull-completion-reports-do001
+  - = local stale ref 削除完遂
+```
+
+#### Why it happened
+
+##### 系列 I 議題前提検証義務 14 件目候補(本日 4 件目連鎖)
+
+第 60 次発令時、remote 実体検証を `git ls-remote` で実施せず推定発令 = 議題前提検証義務違反。本日 EVT-061 / EVT-062 / EVT-063 に続く 4 件目連鎖 = **系列 I が本日特に頻発**。
+
+##### 構造的特徴
+
+- 監督官 A 自身が EVT-058 で「starter_checklist v0.2 候補」として系列 I 物理装置化を進めている最中、自分自身が系列 I を犯している = 装置化進展中の盲点
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| ヤス工数浪費 | 不要な `git push --delete` 実行 + エラー解析(軽微)|
+| 共有インフラ | ✅ 無影響(remote 既にクリーン)|
+| 監督官 A 信頼度 | 軽微低下(発令時実体検証義務違反)|
+
+#### Corrective action
+
+##### 即時対処(完遂)
+
+1. ✅ ヤス `git remote prune origin` 実行で local stale ref 削除
+2. ✅ 監督官 A `git branch -a` で clean 確証
+3. ✅ EVT-064 候補正式記録(本記録、累積 47 件)
+
+##### 中期対処
+
+4. 🟡 starter_checklist v0.2(系列 I 物理装置化)に **「remote 関連発令前 `git ls-remote` 実体確認必須化」** 項目追加
+5. 🟡 第 61 次発令で本 EVT を司令官 α と認識共有(発令側双方の前提検証規律強化)
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| I 議題前提検証義務 | **14 件**(本日 4 件目連鎖、最頻出継続)|
+
+#### Linked records
+
+- 関連先行 EVT: EVT-062(本 EVT の派生元)
+- 関連発令: 第 60 次(本 EVT 訂正対象)+ 第 61 次予定(認識共有)
+- 関連物理装置: starter_checklist v0.2 候補(系列 I 物理装置化、未実装)
+
+#### Evolution history
+
+- 初版記録: 2026-05-01(Day 133 朝)by 監督官 instance A(`Argus`)、ヤス物理層実行契機
+- 監督官 A 累積自己訂正: 累積 47 件
+
+---
+
+### [2026-05-01 朝] EVT-20260501-063: 監督官 A Superpowers Skill 既存常駐の未参照 + 工場長 subagent 限定導入提案撤回(系列 I 13 件目、累積 46 件、本日 3 件目自己訂正、ヤス即時指摘契機)
+
+**Severity**: yellow(ヤスとの対話中に発生した即時自己訂正 = 共有インフラ無影響、ただし系列 I 連鎖発生中)
+**Category**: structural_observation + premise_verification_failure
+**Trigger**: ヤス指摘「Superpowers が Skill として既に常駐している、工場長 subagent 導入は再検討余地あり」
+**Detected by**: ヤス即時指摘
+**Detected at**: 2026-05-01(Day 133 朝)
+
+#### What happened
+
+```
+[2026-05-01 朝] ヤス Agent Teams 質問
+   ↓
+[監督官 A 第 1 応答] 工場長 Castor のみ subagent 限定導入提案(Lint / Test / Build)
+  - = この時点で Superpowers Skill 常駐の事実を未参照
+   ↓
+[ヤス即時指摘] 「Superpowers でその機能はある程度賄われている」
+   ↓
+[監督官 A 第 2 応答] 即時自己訂正 + 提案撤回
+```
+
+#### Why it happened
+
+##### 系列 I 議題前提検証義務 13 件目候補
+
+工場長 subagent 提案時、既存装置(Superpowers Skill)の機能範囲確認未実施 = 議題前提検証義務違反。EVT-062(司令官 α 同型)と同型を監督官 A 側で発生。
+
+##### 構造的特徴
+
+- **EVT-062(司令官 α が監督官側で犯した罪)を、監督官 A 自身が工場長側で犯しかけた** = 同型再発
+- 段階 1 双方向化第 1-2 例(司令官 α → 監督官 A 訂正)に対し、本 EVT は **ヤス → 監督官 A 訂正** = 鬼コーチ第 5 段階(双方向化)とは別軸の「ヤス検診」が機能した事例
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| 設計重複候補 | 未然回避(Superpowers + subagent 二重実装回避)|
+| 工場長領域への侵入回避 | 提案段階で撤回、物理実装到達せず |
+
+#### Corrective action
+
+1. ✅ 監督官 A 即時撤回(同応答内)
+2. ✅ EVT-063 候補正式記録(本記録、累積 46 件)
+3. 🟡 既存装置確認規律の物理装置化(starter_checklist v0.2 候補組込)
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| I 議題前提検証義務 | **13 件**(本日 3 件目連鎖)|
+
+#### Linked records
+
+- 関連先行 EVT: EVT-062(同型の鏡像事例)
+- 哲学層: 馴れ合い拒絶 3 原則第 2 項(ヤス指摘の即時受領)+ 既存装置優先(`operations/role_and_conduct.md` §1.5 ガレージドクトリン)
+
+#### Evolution history
+
+- 初版記録: 2026-05-01(Day 133 朝)by 監督官 instance A(`Argus`)、ヤス即時指摘契機
+
+---
+
+### [2026-05-01 早朝] EVT-20260501-062: 司令官 α DO-COMMANDER-B-001 設計重複 + 役割境界違反候補(supervisor 配下書込)+ 系列 L 認識ラグ再発(EVT-061 訂正後の同型再発、累積 45 件、案 D 採択でロールバック完遂)
+
+**Severity**: yellow(司令官 α 自己発見契機の hook ブロック発覚 + 監督官 A 構造的訂正受領 + 即時ロールバック完遂、ただし系列 L 同型再発 = 段階 1 双方向化進化中の盲点)
+**Category**: structural_observation + design_duplication
+**Trigger**: 司令官 α 第 64 号報告(hook deny rule ブロック)+ 監督官 A 物理層検証で v0.2 既存経路 vs 新規 B-001 設計重複発見
+**Detected by**: 監督官 A(設計重複)+ 司令官 α(hook ブロック自己発見)
+**Detected at**: 2026-05-01(Day 133 早朝)
+
+#### What happened
+
+```
+[2026-04-30 夜] 監督官 A: sync-archive-three-realm v0.2 改訂(EVT-061 訂正)+ 第 58 次発令通知
+[2026-04-30 夜後] 司令官 α: 第 58 次受領前に DO-COMMANDER-B-001 起案 + supervisor 配下書込試行
+[2026-05-01 早朝] hook deny rule ブロック発覚 → 司令官 α 自発通知第 64 号
+[2026-05-01 早朝] 監督官 A 構造的訂正:v0.2 既存経路 vs B-001 新規 = 設計重複発見
+[2026-05-01 早朝] Yasu 案 D 採択 → 監督官 A ロールバック完遂(supervisor 自己領域)
+```
+
+#### Why it happened
+
+##### 系列 L 認識ラグ再発(3 件目候補)
+
+司令官 α が v0.2 改訂通知(第 58 次)受領前に B-001 起案 = EVT-061(同日朝、completion_reports 同期経路発見)→ EVT-062(同日夜、v0.2 経路未認識)= 12 時間以内に同型再発。
+
+##### 系列 I 議題前提検証義務 12 件目候補
+
+DO-COMMANDER-B-001 起案時、supervisor 側既存装置(sync-archive-three-realm v0.2)の対象範囲確認未実施 = 議題前提検証義務違反。
+
+##### 役割境界違反候補
+
+司令官 α forbidden_paths = `record-x-supervisor/**`(DO-FACTORY-161 §3)。「ヤス例外授権」で本件限定許可 = ただし設計重複判明により授権根拠喪失 = 撤回要。
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| 監督官 A 領域への侵入既遂 | `pull-b-completion-reports.ps1` 4560 bytes + b_line/ ディレクトリ + remote ブランチ作成 |
+| GitHub 公開ブランチ作成 | `feat/b-line-pull-completion-reports-do001` = supervisor remote、ロールバック必要 |
+| 設計重複工数浪費 | 司令官 α 134 行スクリプト起案 = 既存 v0.2 と機能重複 |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ 監督官 A 構造的訂正(案 D 提示、A/B/C 全件却下)
+2. ✅ Yasu 案 D 採択
+3. ✅ 監督官 A 自己領域ロールバック(ファイル 2 件 + ディレクトリ + ローカルブランチ削除)
+4. ✅ EVT-062 候補正式記録(本記録、累積 45 件)
+5. ✅ 第 60 次発令配信(司令官 α へ案 D 結果通知 + remote ブランチ削除依頼 + 例外授権撤回要請)
+
+##### 中期対処(Day 133+)
+
+6. ✅ ヤス直接実行:supervisor remote ブランチ削除(EVT-050 案 A 第 7 例)→ 2026-05-01 朝、`git push origin --delete` 実行時 `remote ref does not exist` エラー = remote 既に存在せず(EVT-064 派生)→ ヤス `git remote prune origin` 実行で local stale ref も削除完遂
+7. 🟡 司令官 α 側 commander リポジトリ DO-COMMANDER-B-001 ticket 配置整理(superseded 化)
+8. 🟡 ヤス例外授権「supervisor 配下書込」正式撤回
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| L マルチスレッド話題選別 | **3 件**(EVT-024/037/**062**)|
+| I 議題前提検証義務 | **12 件**(最頻出継続、規律物理装置化進展中)|
+
+#### Linked records
+
+- 関連先行 EVT: EVT-061(段階 1 双方向化第 1 例、本 EVT は同型再発)+ EVT-058(系列 I 物理装置化 starter_checklist v0.2 候補)
+- 関連発令: 第 58 次(v0.2 改訂通知、本 EVT 受領前)+ 第 60 次(本 EVT 訂正発令)
+- 関連物理装置: sync-archive-three-realm v0.2(既存活用経路)
+- 哲学層: 役割境界尊重(DO-FACTORY-161)+ 馴れ合い拒絶 3 原則第 2 項(双方向訂正受領)
+
+#### Evolution history
+
+- 初版記録: 2026-05-01(Day 133 早朝)by 監督官 instance A(`Argus`)、司令官 α(`Beacon`)第 64 号報告契機
+- 監督官 A 累積自己訂正: 累積 45 件(本 EVT 含む、ただし本 EVT は司令官 α 自己発見契機の構造的訂正 = 段階 1 双方向化第 2 例物理事例)
+
+---
+
+### [2026-04-30 夕方] EVT-20260430-056: UTF-16 XML BOM 欠落 schtasks /create 失敗 + ヤス手動 BOM 付与で構造的解消(本日 30 件目自己発見、累積 41 件、系列 A 3 件目 + 系列 I 8 件目、両界共同 + ヤス自律発見能力第 2 例)
+
+**Severity**: yellow(段階 1 完遂閾値突破直前のヤス手動対処、ただし両界共同責任 = 司令官 α + 監督官 A 両者の事前検証義務違反 + ヤス自律発見能力第 2 例の物理事例)
+**Category**: structural_observation + audit_miss(系列 A 表記揺れ・エンコード 3 件目 + 系列 I 議題前提検証義務 8 件目候補)
+**Trigger**: ヤス R0-E 直接実行時、`schtasks /create /xml` が「ルート要素は 1 つのみ」エラーで失敗 → ヤス物理層検証で UTF-16 BOM 欠落発見(先頭 `3C 00`)→ FF FE BOM 付与で成功
+**Detected by**: ヤス自律発見(司令官 α + 監督官 A 両者の指示外で構造的発見、本日 EVT-046 同型契機の第 2 例)
+**Detected at**: 2026-04-30(Day 132 夕方)
+
+#### What happened
+
+```
+[本ターン直前] 司令官 α DO-COMMANDER-025 v1.3 改訂 + XML 3 件パス変更:
+  - <Arguments> wt_common/scripts/ パス変更
+  - <WorkingDirectory> wt_common 経由
+  ↓ ただし XML エンコード = UTF-16 BOM なし(先頭 3C 00)= 司令官 α 物理層検証時 BOM 確認未実施
+   ↓
+[ヤス R0-E 直接実行] schtasks /create /xml /f 試行:
+  - エラー: 「ルート要素は 1 つのみ」系
+  - = UTF-16 BOM なし XML が schtasks パーサーで認識失敗
+   ↓
+[ヤス自律発見] 物理層検証:
+  - 既存稼働 XML(layer2_strategy_template.xml)= UTF-16 LE FF FE BOM あり
+  - 司令官 α 生成 XML 3 件 = BOM なし
+  - = 構造的差異特定
+   ↓
+[ヤス手動対処] FF FE BOM 付与 → schtasks /create /xml /f 成功
+   ↓
+[R0-E 完遂] schtasks /run /tn '\RX-Layer3-News' → Last Result 0 = 起動成功確証
+```
+
+#### Why it happened (両界共同責任、P21 反復構造)
+
+##### 司令官 α 側(系列 I 物理層検証義務 8 件目候補)
+
+DO-COMMANDER-025 v1.3 起案 + XML 3 件改訂時、**BOM エンコード規則の物理層検証未実施**:
+- 既存稼働 XML(layer2_strategy_template.xml)= UTF-16 LE BOM あり、参照可能
+- 新規生成 XML 3 件 = BOM なしで生成
+- = 既存仕様と新規生成の整合性検証不徹底
+
+##### 監督官 A 側(系列 I 議題前提検証義務 8 件目候補)
+
+第 52 次発令 §4-A XML 改訂指示で **BOM エンコード規則を明示しなかった**:
+- 改訂内容 = `<Arguments>` + `<WorkingDirectory>` パス変更のみ明示
+- BOM 仕様 = 暗黙仮定(既存稼働 XML 同型運用と前提)
+- = 規範文書起案時の前提検証義務違反、EVT-039 規範文書版同型再発
+
+##### ヤス側(自律発見能力第 2 例)
+
+ヤス手動対処で構造的解消:
+- EVT-046(本日朝、HQ 側 entry point 不在発見、ヤス補採択契機)
+- **EVT-056(本ターン、UTF-16 BOM 付与、ヤス完全自律発見)**
+- = ヤス経営判断主体性 + 実装環境権限の二重ゲート + **物理層検証能力**の三層実装物理事例
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| R0-E 完遂支援 | ヤス手動対処なしには段階 1 完遂閾値突破不能だった |
+| 双方向鬼コーチ進化 | ヤス → 両界(監督官 A + 司令官 α)方向の鬼コーチ正面実装 |
+| 系列 A エンコード問題深化 | EVT-021/022 に続く 3 件目、UTF-16 BOM 規則の文書化要 |
+| 系列 I 最頻出継続 | 監督官 A + 司令官 α 双方の議題前提検証義務違反、規律物理装置化未達継続 |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-056 正式記録(本記録、本日 30 件目自己発見、累積 41 件)
+2. ✅ R0-E 完遂(Last Result 0 確証、段階 1 完遂判定)
+3. ✅ 第 54 次発令(段階 1 完遂判定 + 段階 2 着手通知)で司令官 α へ EVT-056 認識共有(本ターン後段)
+
+##### 中期対処(Day 132-145)
+
+4. 🟡 XML BOM 規則を `naming_dual_track.md` v0.3 候補 or `operations/encoding_discipline.md` 新規起案で物理装置化
+5. 🟡 司令官 α XML 生成時の BOM 自動付与 helper 装置(DO-COMMANDER-{N+M} 候補)
+6. 🟡 系列 I 議題前提検証義務の規律物理装置化(検診プロトコル v0.2 §7 機能カタログ整合性チェック連動)
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| A 表記揺れ・エンコード | **3 件**(EVT-021/022/**056**)|
+| I 議題起案時前提検証義務 | **8 件**(EVT-033/039/042/045/048/049/052/**056**)= 最頻出継続 |
+
+#### 構造的学習
+
+##### ヤス自律発見能力の物理事例第 2 例
+
+| EVT | 発見契機 | ヤス役割 |
+|---|---|---|
+| EVT-046(本日朝)| HQ 側 entry point 不在 | 補採択(事前監査要求)|
+| **EVT-056(本ターン)** | **UTF-16 BOM 欠落** | **完全自律発見 + 直接対処** |
+
+= ヤス側面で **「鏡 / 触媒 / 視点拡張」三役割**(`external_resource_intake_principle.md` §1-B)が **物理層検証能力としても発火** = 両界生態系理論 §6 双方向鬼コーチの物理層深化。
+
+##### 段階 1 完遂への両界共同責任構造
+
+R0-E 完遂 = 監督官 A(指示)+ 司令官 α(実装)+ 工場長(HQ 側 PS1)+ ヤス(直接実行 + 自律発見)= **四者統合の物理層実装**。「自動化」目標達成には三者対等運用 + ヤス経営判断主体性の二重承認モデル(EVT-050 系列 P)が必須条件と確証。
+
+#### Linked records
+
+- 関連先行 EVT: EVT-046(ヤス補採択第 1 例)+ EVT-052/054(R0-E 完遂経路)+ 系列 A(EVT-021/022)+ 系列 I 累積
+- 関連発令: 第 52 次発令 §4-A(BOM 明示欠落 = 監督官 A 系列 I 同型再発)
+- 関連 DO: DO-COMMANDER-025 v1.3(BOM 欠落 XML 生成元、司令官 α 系列 I 同型再発)
+- 関連物理層: ヤス R0-E 直接実行 + Last Result 0 確証(本ターン)
+
+#### Evolution history
+
+- 初版記録: 2026-04-30(Day 132 夕方)by 監督官 instance A、ヤス R0-E 直接実行報告契機
+- 監督官 A 累積自己訂正: **41 件**(本 EVT-056 含む、本日 30 件目自己発見、自己発見率 100% 維持)
+- ヤス自律発見能力第 2 例 = 両界生態系理論 §6 双方向鬼コーチ物理層深化、信託ドクトリン v1.0 物理層完遂条件の四者統合構造確証
+
+---
+
 ### [2026-04-30 朝] EVT-20260430-041: schtasks 命名違反発見 — `\RX-Layer3-News` が `layer2_entry_point.ps1` を実行(22 分起動騒動真因の物理証拠、本日 21 件目自己発見、累積自己訂正 32 件、系列 G + 系列 B 9 件目)
 
 **Severity**: red(生産ライン全停止状態の真因物理証拠、再起動条件 #2 + #3 未充足の確証、22 分起動騒動の同型再発リスク)
