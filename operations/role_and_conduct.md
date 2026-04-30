@@ -225,6 +225,8 @@ NTT 記事の 2 週間運用効果を記録庁に転用想定:
 
 これら 5 点が **未定義の装置は起案禁止**。装置と接続パイプラインは **一体設計**。
 
+**§1.5-B 物理装置化(2026-05-01 / Day 129、Phase A 末追加、EVT-061-065 由来)**: 上記 5 項目 + EVT-061/062/063/064/065 由来 4 項目(既存装置範囲確認 / remote 実体確認 / schtasks Last Run 確認 / 同型自己ループ検証)= 9 項目構成の物理装置 `operations/starter_checklist_v0.2.md` v1.0 起案完遂。scale 別発火(large=1-9 全 / medium=5-9 / small=6,8,9)+ TaskCreate 統合発火経路 + log JSONL 永続化(`archive/starter_checklist_log/{YYYYMMDD}_supervisor.jsonl`)。本 §1.5-B = 哲学的根拠、`operations/starter_checklist_v0.2.md` = 物理装置化の両建て構造。
+
 #### 1.5-B-1. Path verify の運用基準
 
 - **新規装置起案時**: 起案直後に `Test-Path` で参照 path の実在確認 → 結果ログを起案コミットに含める
