@@ -1,0 +1,76 @@
+{
+  "snapshot_id": "bottleneck_probe_20260501-034309",
+  "captured_at": "2026-05-01T03:43:09+09:00",
+  "generator": "pipeline-bottleneck-probe.ps1 v0.1",
+  "overall": {
+    "symbol": "🔴",
+    "alert": "red"
+  },
+  "stage1": {
+    "alert": "green",
+    "gap_hours": 0,
+    "dst_latest_mtime": "2026-05-01T03:26:48+09:00",
+    "description": "factory staging -> commander processed",
+    "src_count": 102,
+    "dst_count": 104,
+    "src_latest_mtime": "2026-05-01T02:58:42+09:00"
+  },
+  "stage2": {
+    "alert": "green",
+    "gap_hours": 5,
+    "dst_latest_mtime": "2026-04-30T22:03:42+09:00",
+    "description": "commander processed -> supervisor b_line",
+    "src_count": 104,
+    "dst_count": 15,
+    "src_latest_mtime": "2026-05-01T03:26:48+09:00"
+  },
+  "queue": {
+    "description": "commander tickets_issued depth",
+    "alert": "red",
+    "depth": 30
+  },
+  "schtasks_health": [
+    {
+      "TaskName": "RecordX_ArchiveSync_ThreeRealm",
+      "LastRunTime": "2026-05-01T02:55:00+09:00",
+      "HoursSinceLast": 1,
+      "LastResult": 0,
+      "Alert": "green"
+    },
+    {
+      "TaskName": "RecordX_DreamCrystallize_Supervisor",
+      "LastRunTime": "2026-05-01T03:00:01+09:00",
+      "HoursSinceLast": 1,
+      "LastResult": 0,
+      "Alert": "green"
+    },
+    {
+      "TaskName": "RX-Layer1-Implementation",
+      "LastRunTime": "2026-04-29T15:10:01+09:00",
+      "HoursSinceLast": 37,
+      "LastResult": 267014,
+      "Alert": "yellow"
+    },
+    {
+      "TaskName": "RX-Layer2-Strategy",
+      "LastRunTime": "2026-04-29T12:50:01+09:00",
+      "HoursSinceLast": 39,
+      "LastResult": 0,
+      "Alert": "yellow"
+    },
+    {
+      "TaskName": "RX-Layer3-News",
+      "LastRunTime": "2026-04-30T16:14:54+09:00",
+      "HoursSinceLast": 11,
+      "LastResult": 0,
+      "Alert": "green"
+    },
+    {
+      "TaskName": "RX-Layer4-Checkup",
+      "LastRunTime": "2026-04-29T12:50:01+09:00",
+      "HoursSinceLast": 39,
+      "LastResult": 0,
+      "Alert": "yellow"
+    }
+  ]
+}
