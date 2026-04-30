@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-D-003",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:42:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:01:00+09:00",
+    "ended_at": "2026-04-29T18:42:30+09:00",
+    "duration_minutes": 42,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:09+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/982",
+  "merge_commit": "2723402cf31697c342e5aa1904bca41432d93596",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/common/types/README.md",
+    "record-x/common/pii/README.md",
+    "record-x/common/http/README.md",
+    "record-x/common/audit/README.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "サマリー粒度: 各 README に 10〜20 行で抽出箇所サマリー + 主要発見 + Wave 1 DO 案を要約。S 系本体(各 100〜200 行)へのリンクを残す形にし重複量は削減。",
+      "S-001 + S-007 統合: pii README に両者の結論を 1 セクションに統合(段階手順 Draft 概要は短縮版)。S-003 + S-008 も同様(Wave 1 audit 4 module Draft の概要)。"
+    ],
+    "unread_originals": [
+      "FACTORY_LAWS 第111条 API契約事前確認法: 引用のみ、本文未読。"
+    ],
+    "needs_reverification": [
+      "Wave 1 着手 DO 起案時に各 README を「修正対象ファイル」記載素材として参照する運用は実装フェーズ移行時に検証。",
+      "README サマリー更新サイクル: S 系の追加調査(S-009/010/011 等)が完了した時点で再統合の必要が生じる可能性あり、別 DO で運用ルール化検討。"
+    ]
+  }
+}

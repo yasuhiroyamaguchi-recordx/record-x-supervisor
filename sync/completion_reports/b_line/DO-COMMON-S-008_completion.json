@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-008",
+  "status": "merged",
+  "reported_at": "2026-04-29T16:25:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T16:25:00+09:00",
+    "ended_at": "2026-04-29T16:25:30+09:00",
+    "duration_minutes": 1,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 97
+  },
+  "merged_at": "2026-04-29T16:24:01+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/980",
+  "merge_commit": "6f17bc3412a4316a458668fcdcda3fa69b4ad665",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-008_correlation_id_spec.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "ADR-028 §3.2.4 自体が相関 ID フィールドを直接定義しないことを確認(grep 本文で観測可能性原則のみ記載)。具体スキーマは ADR-008A + FACTORY_LAWS §230〜231 から抽出。本 DO はその抽出 + 業界標準(W3C / OpenTelemetry)整合 + Wave 1 API Draft の 3 軸。",
+      "Mirror-RX 原典未配置の判定: Common 事業部長諮問記録は forbidden_paths、record-x/ 配下に Mirror-RX 設計書ヒットゼロを確認。Commander 休止中のため復帰後 v2 で再整合とした。",
+      "API Draft 4 module(correlation/middleware/logger/redact_integration): チケット §1 §`Wave 1 audit 実装の責務範囲` に明示なく、本 DO で設計判断。AsyncLocalStorage + W3C Trace Context 採用は実装容易性 + 業界標準準拠の両立。"
+    ],
+    "unread_originals": [
+      "ADR-008A guard-implementation-spec 全文(§3 correlation_id 規定は引用済): 内部の guard レコード詳細は未読。",
+      "FACTORY_LAWS §229〜231: §230 共通キー規定のみ確認、上下文の文脈未読。",
+      "Mirror-RX 設計書: forbidden_paths + 配置不明、参照不能。"
+    ],
+    "needs_reverification": [
+      "Mirror-RX 復帰後の S-008 v2 再整合: 相関 ID フィールドの命名 / 形式 / 保存期間等で Mirror-RX 規定との衝突が発生する場合は本 Draft 改訂要。",
+      "W3C Trace Context 採用: 既存 trace_id 形式(自由 string)から 32 文字 hex 移行は dual-write 期間設定が必要、別 DO で実装計画。",
+      "Wave 1 着手時の DO 案 4 件(W1-AUDIT-01〜04): 本 DO はそれらの API シグネチャ Draft、実装は Phase T2 W1〜W2(Day 144〜157 想定)。"
+    ]
+  }
+}

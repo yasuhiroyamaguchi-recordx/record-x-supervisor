@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-009",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:44:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:14:00+09:00",
+    "ended_at": "2026-04-29T18:44:30+09:00",
+    "duration_minutes": 30,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:18+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/986",
+  "merge_commit": "f64d3e526f15f2184fb6f5922fa42927ee9bc661",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-009_care_import_paths.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "Care/Factory/Tax 横展開予測: 本 DO §9 でフィールド別に予測したが、Tax-RX Phase 2 の具体仕様は確定していないため一般的な利用シナリオから推測。",
+      "共通化候補ランキング: pii_detector を 1 位に固定(S-007 §3 段階手順あり)、その他は移植難易度 + 件数で順序付け。"
+    ],
+    "unread_originals": [
+      "Tax-RX Phase 2 仕様: 未確定、本 DO §9 影響範囲予測は推測。"
+    ],
+    "needs_reverification": [
+      "Care 内部完結 vs Common 化候補の境界(§8): pii-purpose-bridge を Care 固有とする判断は実装時に再検証(将来 Tax 等で類似経路が必要になった場合 Common 化候補へ昇格)。",
+      "Wave 1 第 1 優先 = pii_detector の S-007 §3 段階手順との整合確認済、書換量見積 6 ファイル/6 行も整合。"
+    ]
+  }
+}

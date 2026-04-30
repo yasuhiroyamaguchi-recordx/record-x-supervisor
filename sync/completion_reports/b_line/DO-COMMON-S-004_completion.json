@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-004",
+  "status": "merged",
+  "reported_at": "2026-04-29T11:26:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T11:15:00+09:00",
+    "ended_at": "2026-04-29T11:26:00+09:00",
+    "duration_minutes": 11,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 92
+  },
+  "merged_at": "2026-04-29T11:21:50+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/976",
+  "merge_commit": "82303a1254bd364cfe8d1cf7b9acf66585350161",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "docs/common/wave1_survey/types_extraction_targets.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "branded types 未導入の判定: `__brand` / `Brand<` / `as Brand` を grep し record-x/ 配下に該当ゼロを確認、これに基づき未導入と判定。TypeScript の nominal pattern は実装では string 互換のままで型混同防止が効いていないという観察。",
+      "重複検出の網羅度: FacilityId / ChildId / TenantId / UserId / TaskId 等の 5 件を主要候補として記載したが、network of usage の詳細追跡は省略(各 ID の正本/再 export/再定義の関係性は Wave 1 着手時の精査対象)。",
+      "Result<T, E> の集約候補性: 6 ファイルで `Result<` 利用を確認したが、各 lib 独自定義の同型 / 互換性は本 survey では検証せず。Common 集約時の互換性確認は別 DO 必要。"
+    ],
+    "unread_originals": [
+      "ADR-030 §typescript types 規定: 引用なし、本 survey は grep + 命名観察のみ。",
+      "factory_event.schema.json: ファイル名のみ確認、内部 schema 詳細未読。"
+    ],
+    "needs_reverification": [
+      "branded types 段階導入: ChildId / FacilityId / TenantId 等の漸進的 branding は既存コード全件への影響が大、互換 alias + opt-in adoption が必要(Wave 1 着手時の設計戦略)。",
+      "Result<T, E> 統合: 各 lib 独自定義の互換性検証 + 統合移行計画が Wave 1 必須課題。",
+      "ISO8601 / UUID / SemVer の branded type 新設は本 survey で推奨。Wave 1 着手時の優先順位は戦略Commander 判断。"
+    ]
+  }
+}

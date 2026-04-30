@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-002",
+  "status": "merged",
+  "reported_at": "2026-04-29T11:25:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T11:05:00+09:00",
+    "ended_at": "2026-04-29T11:25:00+09:00",
+    "duration_minutes": 20,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 90
+  },
+  "merged_at": "2026-04-29T11:21:42+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/974",
+  "merge_commit": "20bc0a7c5c069bc2d1b5daec44d2e06850ab5ca1",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "docs/common/wave1_survey/http_extraction_targets.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "CSRF / Cookie 0 件判定: csrf / xsrf / X-CSRF-Token / cookie.set / sameSite / httpOnly を case-insensitive で grep し record-x/ 配下に該当ゼロを確認。本判定は grep ベース、JWT Bearer のみで Cookie 認証経路無しという現状観察。Wave 2 auth 着手時の Cookie 経路追加の余地は残る。",
+      "HTTP クライアント 15 件の集計: cockpit-front/ の fetch() 呼出を中心に集計、dist/ 派生 6 件は除外。axios.create / node-fetch / http.Agent で grep したが利用ゼロを確認。"
+    ],
+    "unread_originals": [
+      "FACTORY_LAWS.md 全文: §229〜231 のログ規定と CORS 規定を引用、全文未読。",
+      "DO-FACTORY-461 セキュリティ監査記録(audit_DO-FACTORY-461_*.md 3 ファイル): タイトルのみ確認、内部詳細未読。"
+    ],
+    "needs_reverification": [
+      "CSRF 未実装は運用 Lv.2 §`XSS / CSRF 対策が実装されている` ギャップとして本セッションで明示。Wave 1 着手時に common/http/csrf.ts 新設要(優先度高)。",
+      "DEFAULT_CARE_ALLOWED_ORIGINS の domain 一覧: care-rx-prod / care-rx-demo + record-x.app / app.record-x.jp + localhost が hardcoded。Common 抽出時は env + per-domain config 化要。"
+    ]
+  }
+}

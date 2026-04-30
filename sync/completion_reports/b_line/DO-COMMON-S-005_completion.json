@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-005",
+  "status": "merged",
+  "reported_at": "2026-04-29T16:24:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T16:23:30+09:00",
+    "ended_at": "2026-04-29T16:24:30+09:00",
+    "duration_minutes": 1,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 96
+  },
+  "merged_at": "2026-04-29T16:23:52+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/978",
+  "merge_commit": "1f38dedb5c8e3e1a0dfaaa03cde9e24f5b0e12e4",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-005_tsconfig_imports.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "tsconfig 22 ファイル全件で paths 未導入の判定: factory 21 + cockpit-front 1 を grep `\"paths\"` で確認、全件ヒットゼロ。care/ 配下は独立 tsconfig 無し(factory tsconfig.care_egress.json 経由)も確認。",
+      "選択肢 B(tsconfig.base.json + extends)を推奨: 影響範囲 22 → 22 ファイル全件 extends 行追加で済むという見積。実際は build/test/CI スクリプトの override パターンに依存、別 DO で精査要。"
+    ],
+    "unread_originals": [
+      "Common 事業部長サブエージェント諮問記録 minutes/ 全文: forbidden_paths(commander 側)で参照不可、引用のみ反映。",
+      "factory tsconfig.tools_emit_do{354,...,763}.json 個別 18 ファイル の 内部詳細: 全件 paths 無しを confirm したが、用途は per-DO emit 設定として推測のみ。"
+    ],
+    "needs_reverification": [
+      "選択肢 B(tsconfig.base.json + extends)の影響範囲: factory 21 ファイル中 tools_emit 系 18 ファイルが extends を採用しても tsc emit に影響しないか実装時に検証要。",
+      "DO-COMMON-D-002(別 DO 起案推奨)で paths alias 新設 + Wave 1 着手前提整備。"
+    ]
+  }
+}

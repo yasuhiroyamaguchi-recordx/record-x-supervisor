@@ -80,6 +80,15 @@ $syncMappings = @(
         IsDirectory = $true
         Filter = "*.md"
         OptionalSource = $true
+    },
+    @{
+        # v0.2 NEW: completion_reports B-line sync (司令官 α 第 63 号自発通知契機、EVT-061 候補解消)
+        Source = Join-Path $CommanderRoot "sync\completion_reports\processed"
+        Destination = "commander\sync\completion_reports\processed"
+        Origin = "commander"
+        IsDirectory = $true
+        Filter = "*.json"
+        OptionalSource = $true
     }
 )
 

@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-D-001",
+  "status": "blocked",
+  "reported_at": "2026-04-29T11:24:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T10:55:00+09:00",
+    "ended_at": "2026-04-29T11:24:00+09:00",
+    "duration_minutes": 29,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 90
+  },
+  "blocked_at": "2026-04-29T11:24:00+09:00",
+  "blocker_type": "needs_human_decision",
+  "blocker_detail": "実装は完了し PR #972(https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/972)を作成。全 14 件の checks が pass(ARCH-GATE / fast-gate 等価系 / Auto Merge Conditional / Cursor Bugbot / pre-deploy gate 等)。ただし `gh pr merge 972 --squash` 実行時に `mergeStateStatus=BLOCKED` でブランチ保護ポリシー違反 — 直接マージ拒否。`--auto` フラグも `Auto merge is not allowed for this repository` で利用不可。Yasu のレビュー / admin 権限による手動 squash merge が必要。",
+  "options_for_resolution": [
+    "Yasu が gh pr merge 972 --squash --delete-branch --admin で管理者権限マージ",
+    "Yasu が PR #972 を GitHub UI でレビュー承認 → squash merge → ブランチ削除",
+    "本DO のスコープを縮小して再起案(skeleton ファイル数を削減 → 別 DO で残り追加)"
+  ],
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "merge 失敗の根本原因: ブランチ保護ポリシーの詳細(required reviews / required status checks)は本セッションで API 照会を試みたが reconnaissance 警告で denied。Yasu のリポジトリ設定を確認できないまま blocker_type=needs_human_decision とした。",
+      "files_changed の実装記録: PR は実装完了済み(branch feat/common-directory-skeleton-d001、commit d9797ac0、14 ファイル新規 = README × 10 + index.ts × 4)。tsc --noEmit PASS 済み(Wave 1 4 カテゴリの index.ts)。"
+    ],
+    "unread_originals": [
+      "リポジトリのブランチ保護ルール(main 必須レビュー / required checks 等): API 照会未実施。Yasu の確認後に判明。"
+    ],
+    "needs_reverification": [
+      "PR #972 の手動マージ後、本 completion_report を v2 として merged ステータスで再発行(本 blocked 報告は経緯記録、上書き禁止)。",
+      "他 4 件(DO-COMMON-S-001/002/003/004)は同セッション内で gh pr merge 成功(squash + delete-branch)、本 D-001 のみ保護ポリシー違反で blocked となる差異の調査要。",
+      "実装そのものは完了 + 検証済(14 ファイル + tsc PASS + 5 PR Quality 系 checks 全 pass)。merge 手続きのみが残課題。"
+    ]
+  }
+}

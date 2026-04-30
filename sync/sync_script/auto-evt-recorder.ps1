@@ -465,10 +465,61 @@ function Detect-CircularInstanceParallel {
         -Details ("EVT-008/024 type: {0} date(s) with parallel instance usage. Sample: {1}. §5-D 起案前 Test-Path 義務化 適用確認推奨" -f $parallelDates.Count, $sample)
 }
 
+function Detect-CatalogPipelineDrift {
+    # R10: Catalog vs Physical Layer drift detection (M2.5、系列 I 11 件累積対策、EVT-038/057/058 同型再発防止)
+    Write-Log "R10: catalog vs physical layer drift detection"
+
+    $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..\..")).Path
+    $pipelineState = Join-Path $repoRoot "sync\cockpit_state\pipeline_state.json"
+    $threeRealmCatalog = Join-Path $repoRoot "02_physical\three_realm_capability_catalog.md"
+    $existingCatalog = Join-Path $repoRoot "02_physical\capability_catalog.md"
+
+    $drifts = @()
+
+    # Drift 1: pipeline_state.json 存在 + alerts.critical or naming_violations 検出
+    if (Test-Path $pipelineState) {
+        try {
+            $state = Get-Content $pipelineState -Raw | ConvertFrom-Json
+            if ($state.summary.naming_violations -gt 0) {
+                $drifts += "naming_violations=$($state.summary.naming_violations) (EVT-041/057 同型再発)"
+            }
+            $criticalAlerts = @($state.alerts | Where-Object { $_.Severity -eq 'critical' })
+            if ($criticalAlerts.Count -gt 0) {
+                $drifts += "pipeline critical alerts: $($criticalAlerts.Count) 件 (EVT-038 全停止状態同型)"
+            }
+        } catch {
+            Write-Log ("R10 pipeline_state parse error: {0}" -f $_.Exception.Message) "WARN"
+        }
+    } else {
+        $drifts += "pipeline_state.json 不在 (sync-schtasks-state.ps1 未稼働、M2.4 整合性検証不能)"
+    }
+
+    # Drift 2: 三者統合カタログ未起案 + 既存 catalog のみ存在 = 移行未完遂
+    if (-not (Test-Path $threeRealmCatalog) -and (Test-Path $existingCatalog)) {
+        $drifts += "three_realm_capability_catalog.md 不在 (M2.1 段階 1 未着手、既存 catalog 単独運用)"
+    }
+
+    # Drift 3: 三者統合カタログ存在 + capability_log.jsonl 不在 = 自動更新機構未稼働
+    if (Test-Path $threeRealmCatalog) {
+        $logPath = Join-Path $repoRoot "02_physical\capability_log.jsonl"
+        if (-not (Test-Path $logPath)) {
+            $drifts += "capability_log.jsonl 不在 (M2.1 段階 2 自動更新機構未稼働、各官 post-commit hook 未配置)"
+        }
+    }
+
+    if ($drifts.Count -eq 0) {
+        Write-Log "R10 healthy: no catalog vs physical layer drift detected"
+        return
+    }
+
+    Emit-Candidate -Rule "R10" -Type "catalog_pipeline_drift" -Severity "yellow" `
+        -Details ("EVT-057/058 系列 I 同型再発防止: {0} drift(s) detected. {1}" -f $drifts.Count, ($drifts -join " | "))
+}
+
 # =========================================================================
 # Main
 # =========================================================================
-Write-Log "=== auto-evt-recorder v0.8 start ==="
+Write-Log "=== auto-evt-recorder v0.9 start ==="
 Write-Log "DryRun: $DryRun"
 Write-Log "Output JSONL: $jsonlFile"
 
@@ -480,6 +531,7 @@ Detect-EscalationFile
 Detect-RespondsToMismatch  # v0.2/0.3 NEW (EVT-020 prevention)
 Detect-PNumberDuplicate    # v0.4 NEW (EVT-021 prevention)
 Detect-CircularInstanceParallel  # v0.8 NEW (EVT-024 prevention, system E series)
+Detect-CatalogPipelineDrift      # v0.9 NEW (M2.5、EVT-038/057/058 prevention, system I series)
 
 # =========================================================================
 # Emit JSONL (unless DryRun)

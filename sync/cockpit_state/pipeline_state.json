@@ -1,0 +1,101 @@
+{
+  "snapshot_id": "pipeline_state_20260430-172155",
+  "captured_at": "2026-04-30T17:21:55+09:00",
+  "generator": "sync-schtasks-state.ps1 v0.1 (M2.4)",
+  "summary": {
+    "total_rx_tasks": 8,
+    "active": 6,
+    "disabled": 2,
+    "naming_violations": 0
+  },
+  "tasks": [
+    {
+      "TaskName": "\\RecordX_ArchiveSync_ThreeRealm",
+      "Status": "Ready",
+      "TaskToRun": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\record-x-supervisor\\sync\\sync_script\\sync-archive-three-realm.ps1\"",
+      "LastResult": "267011",
+      "LastRunTime": "1999/11/30 0:00:00",
+      "NamingConsistent": true,
+      "TaskNameLayer": null,
+      "TaskRunLayer": null
+    },
+    {
+      "TaskName": "\\RecordX_DreamCrystallize_Supervisor",
+      "Status": "Ready",
+      "TaskToRun": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\record-x-supervisor\\sync\\sync_script\\dream-crystallize-supervisor.ps1\"",
+      "LastResult": "267011",
+      "LastRunTime": "1999/11/30 0:00:00",
+      "NamingConsistent": true,
+      "TaskNameLayer": null,
+      "TaskRunLayer": null
+    },
+    {
+      "TaskName": "\\RecordX_NightlyFlight",
+      "Status": "Disabled",
+      "TaskToRun": "C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\record-x\\factory\\scripts\\nightly_flight_win.bat ",
+      "LastResult": "0",
+      "LastRunTime": "2026/04/29 2:10:01",
+      "NamingConsistent": true,
+      "TaskNameLayer": null,
+      "TaskRunLayer": null
+    },
+    {
+      "TaskName": "\\RX-Layer1-Implementation",
+      "Status": "Ready",
+      "TaskToRun": "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer1_entry_point.ps1\"",
+      "LastResult": "267014",
+      "LastRunTime": "2026/04/29 15:10:01",
+      "NamingConsistent": true,
+      "TaskNameLayer": "1",
+      "TaskRunLayer": "1"
+    },
+    {
+      "TaskName": "\\RX-Layer2-Strategy",
+      "Status": "Disabled",
+      "TaskToRun": "pwsh.exe -NoProfile -File \"C:\\RX_Dev\\record-x-commander\\scripts\\scheduler_templates\\layer2_entry_point.ps1\"",
+      "LastResult": "0",
+      "LastRunTime": "2026/04/29 12:50:01",
+      "NamingConsistent": true,
+      "TaskNameLayer": "2",
+      "TaskRunLayer": "2"
+    },
+    {
+      "TaskName": "\\RX-Layer3-News",
+      "Status": "Ready",
+      "TaskToRun": "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer3_entry_point.ps1\" pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer3_entry_point.ps1\"",
+      "LastResult": "0",
+      "LastRunTime": "2026/04/30 16:14:54",
+      "NamingConsistent": true,
+      "TaskNameLayer": "3",
+      "TaskRunLayer": "3"
+    },
+    {
+      "TaskName": "\\RX-Layer3-News",
+      "Status": "Ready",
+      "TaskToRun": "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer3_entry_point.ps1\" pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer3_entry_point.ps1\"",
+      "LastResult": "0",
+      "LastRunTime": "2026/04/30 16:14:54",
+      "NamingConsistent": true,
+      "TaskNameLayer": "3",
+      "TaskRunLayer": "3"
+    },
+    {
+      "TaskName": "\\RX-Layer4-Checkup",
+      "Status": "Ready",
+      "TaskToRun": "pwsh.exe -NoProfile -ExecutionPolicy Bypass -File \"C:\\RX_Dev\\ProjectRX_HQ\\wt_common\\scripts\\layer4_entry_point.ps1\"",
+      "LastResult": "0",
+      "LastRunTime": "2026/04/29 12:50:01",
+      "NamingConsistent": true,
+      "TaskNameLayer": "4",
+      "TaskRunLayer": "4"
+    }
+  ],
+  "alerts": [
+    {
+      "Severity": "warning",
+      "Code": "LAUNCH_FAILED",
+      "Message": "\\RX-Layer1-Implementation Last Result = 267014(起動失敗の可能性)"
+    }
+  ],
+  "yasu_review_priority": "yellow"
+}

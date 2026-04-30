@@ -2540,6 +2540,97 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
+### [2026-05-01 深夜] EVT-20260501-065: schtasks 想定時刻 vs 実態時刻齟齬 + ArchiveSync/DreamCrystallize 自動稼働実績ゼロ + RX-Layer1 中断 = 段階 2 機能確証重大盲点(系列 I 15 件目、累積 48 件、本日 5 件目自己訂正、両界共同責任)
+
+**Severity**: 🔴 red(段階 2 機能確証の根拠喪失 = 自動化基盤未確証 + 文書群多数の事実誤認 + 三者全員が認識共有していた誤った前提)
+**Category**: structural_observation + audit_miss + premise_verification_failure
+**Trigger**: 監督官 A Step B「09:00 JST 三者統合検診結果検証」着手 → schtasks 実態調査で齟齬発覚
+**Detected by**: 監督官 A 物理層検証(Step B 着手契機)
+**Detected at**: 2026-05-01(Day 133 深夜 01:33 JST)
+
+#### What happened
+
+```
+[Day 130-Day 132] ADR-009 §6 三者統合自動化設計 = 「09:00 JST 三者統合検診」と記述
+  ↓ 第 38/54/57/59 次発令、検診プロトコル v0.2 で踏襲
+[Day 132 夕方] M2.6 三者統合スケジュール schtasks /enable 完遂と認識
+  ↓ ただし RX-Layer4-Checkup 実態 = 03:00 JST 設定(09:00 ではない)
+[Day 132 夕方] 段階 2 進捗 60% 認識
+  ↓ ただし ArchiveSync/DreamCrystallize Last Run = 1999/11/30(自動稼働実績ゼロ)
+[Day 133 深夜 01:33] 監督官 A Step B 着手:
+  - daily_cockpit_20260501.md 不在発見
+  - schtasks 実態調査:
+    * RX-Layer4-Checkup Next Run = 03:00 JST(想定 09:00 と齟齬)
+    * RecordX_ArchiveSync_ThreeRealm Last Run = 1999/11/30(未稼働)
+    * RecordX_DreamCrystallize_Supervisor Last Run = 1999/11/30(未稼働)
+    * RX-Layer1-Implementation Last Result = 267014(中断、未対処)
+   ↓
+[Day 133 深夜] EVT-065 候補発覚 = 段階 2 機能確証の重大盲点
+```
+
+#### Why it happened
+
+##### 系列 I 議題前提検証義務 15 件目候補(本日 5 件目連鎖)
+
+M2.6 schtasks /enable 完遂判定時、**「想定時刻と実態時刻の一致確認」+「Last Run 履歴で自動稼働実績確認」を未実施** = 議題前提検証義務違反。本日 EVT-061/062/063/064 に続く 5 件目連鎖 = **系列 I が本日特に頻発**(本日 1 日で系列 I 5 件、過去最頻出)。
+
+##### 構造的特徴
+
+- **監督官 A + 司令官 α + ヤス三者全員が「09:00 JST 三者統合検診」の前提を共有していた**(三者共同盲点)
+- ADR-009 §6 改訂時(検診プロトコル v0.2 接続反映)に **物理層 schtasks 実態確認を実施していない**
+- M2.6 完遂判定時に **「Ready 状態 = 動く」と推定**(実績確認せず)
+- = ガレージドクトリン(`operations/role_and_conduct.md` §1.5)違反候補:**装置設置 ≠ パイプライン接続**、Ready ≠ 自動稼働実績
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| 段階 2 進捗 60% 認識の根拠喪失 | 自動稼働実績ゼロ = 機能確証は手動実行のみ |
+| 「Day 133 朝 09:00 JST 三者統合検診」物理的非発生 | RX-Layer4-Checkup 実態 03:00 設定 |
+| 文書群多数の事実誤認 | 第 38/54/57/59 次発令、ADR-009 §6、検診プロトコル v0.2、daily_cockpit_20260430.md |
+| 三者共同盲点 | 監督官 A + 司令官 α + ヤス全員が前提誤認共有 |
+| 段階 1 双方向化第 5 例(候補)| ヤスが「09:00 JST」を疑問視せず承認した = ヤスドリフト系列 H 候補 |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-065 候補正式記録(本記録、累積 48 件)
+2. ✅ ハンドオフ文書 §6 で物理層実態スナップショット記載
+3. ✅ 第 61 次発令で司令官 α + 工場長への構造的訂正通知
+
+##### 中期対処(次セッション再起動後)
+
+4. 🟡 RX-Layer4-Checkup 03:00 → 09:00 修正(schtasks 再設定、ヤス採否対象)
+5. 🟡 ArchiveSync + DreamCrystallize 自動稼働失敗原因調査(なぜ Last Run 1999/11/30 か)
+6. 🟡 RX-Layer1-Implementation 267014 中断原因調査
+7. 🟡 ADR-009 §6 改訂(物理層実態と整合)
+8. 🟡 M2.6 完遂判定撤回 → 「設置完遂」と「自動稼働確証」の 2 段階分離
+9. 🟡 starter_checklist v0.2 に「schtasks 設置後、Last Run 確認による稼働実績確証義務」追加
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| I 議題前提検証義務 | **15 件**(本日 5 件目連鎖、最頻出継続、過去最頻発)|
+| H ヤスドリフト | 候補 1 件追加(09:00 JST 誤認の三者共有)|
+
+#### Linked records
+
+- 関連先行 EVT: EVT-061/062/063/064(本日 4 件連鎖)
+- 関連発令: 第 38/54/57/59 次(09:00 JST 想定発令、訂正対象)+ 第 61 次(本 EVT 訂正発令)
+- 関連 ADR: ADR-009 §6(改訂対象)
+- 関連物理装置: RX-Layer4-Checkup(03:00 → 09:00 修正対象)+ ArchiveSync + DreamCrystallize + RX-Layer1
+- 哲学層: ガレージドクトリン §1.5(装置設置 ≠ パイプライン接続、本 EVT で物理事例)
+
+#### Evolution history
+
+- 初版記録: 2026-05-01(Day 133 深夜 01:33 JST)by 監督官 instance A(`Argus`)、Step B 着手契機
+- 監督官 A 累積自己訂正: 累積 48 件(本日 5 件)
+- 三者同時 Clear 直前の最後の自己訂正記録 = 次セッションで構造的訂正実装
+
+---
+
 ### [2026-05-01 朝] EVT-20260501-064: 監督官 A 第 60 次発令時 remote ブランチ実体未検証 + ヤス直接実行で `remote ref does not exist` 発覚 + prune 完遂(系列 I 14 件目、累積 47 件、本日 4 件目自己訂正)
 
 **Severity**: yellow(発令時の物理層実体検証義務違反、ただし即時自己訂正 + 安全側エラー = 共有インフラ無影響)

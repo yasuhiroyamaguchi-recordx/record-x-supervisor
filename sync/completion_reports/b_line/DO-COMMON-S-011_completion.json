@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-011",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:45:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:20:00+09:00",
+    "ended_at": "2026-04-29T18:45:30+09:00",
+    "duration_minutes": 25,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:27+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/988",
+  "merge_commit": "56a6741177275993752ff9dba04f16616fd41aeb",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-011_city_ui_existing.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "Common+City 境界候補表(§6): City 専用 = UI + ゲーミフィケーション + オンボーディング、Common = tenant/abac/audit/types 等の基盤、という分割は本 DO で設計判断。議題 E 採択時に詳細精査要。",
+      "推奨次アクション 3 件(DO-CITY-D-001/S-001/W1-UI-01): City 着手時の DO 案、議題 E 採択判断後に正式起案。"
+    ],
+    "unread_originals": [
+      "ADR-021 Sovereign City 5層データ構造 全文: タイトル + メタ情報のみ確認、本文(World/Tenant/City/District/Building の各層詳細)未読。",
+      "factory/scripts/sovereign_city_ddl.sql 全 DDL: 冒頭 10 行のみ確認、内部詳細未読。",
+      "Common+City 対話アジェンダ v0.2 議題 E 全文: 引用のみ、本文未読。"
+    ],
+    "needs_reverification": [
+      "City UI 0 件確認は grep ベース、`record-x/city/` ディレクトリ未存在 + `cockpit-front/` に City 関連ファイル無しで確認。",
+      "Phase T3 Draft 開始時に本 DO 結果が議題 E の前提資料として参照される運用は実装フェーズ移行時に検証。",
+      "Sovereign City DB レイヤー(ADR-021 + DDL)実装済 vs UI 未着手のギャップは Phase T3 で UI 新設候補となる。"
+    ]
+  }
+}

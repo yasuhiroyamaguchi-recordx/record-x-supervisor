@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-001",
+  "status": "merged",
+  "reported_at": "2026-04-29T11:24:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T11:00:00+09:00",
+    "ended_at": "2026-04-29T11:24:30+09:00",
+    "duration_minutes": 25,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 90
+  },
+  "merged_at": "2026-04-29T11:21:38+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/973",
+  "merge_commit": "0cfe57922277facbd33387e10b34041825ce06fc",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "docs/common/wave1_survey/pii_extraction_targets.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "命名規則 snake_case の検出: チケット §2 で `mask_pii / redact_pii / sanitize_pii` を grep 観点に挙げたが record-x/ では camelCase(`maskPII / detectPII`)が主流で snake_case 該当ゼロ。本 survey は両命名で grep し、camelCase の 8 件を §3 に記載。",
+      "person_name detect 未実装の判定: pii_detector.ts の collect() 呼出には phone/email/address/birthday/my_number の 5 種のみ存在を確認。person_name ラベルは PII_LABELS 辞書には定義あるが detect 関数の collect 引数に regex なし、よって検出ロジック未実装と判定(コードを直接読んだ範囲のみ)。"
+    ],
+    "unread_originals": [
+      "ADR-030 COMMON_LAYER_ARCHITECTURE 本体: `record-x/docs/decisions/ADR-030_*.md` のうち §典型例 を grep ヒットで確認、全文未読。",
+      "DO-FACTORY-493(pii_detector 初期実装の DO)本体: コミットログのみ参照、DO チケット md 本体未読。"
+    ],
+    "needs_reverification": [
+      "person_name detect 未実装ギャップは Wave 1 着手時に正本実装で人名辞書 + 形態素解析 or LLM 経由検出が必要、戦略Commander 判断要。",
+      "再 export 経路 care/src/pii-detector.ts の薄いラッパ削除/維持判断は Wave 1 着手時の戦略Commander 判断。"
+    ]
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-W1-001",
+  "status": "merged",
+  "factory_id": "B",
+  "reported_at": "2026-04-30T21:57:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-30T21:30:00+09:00",
+    "ended_at": "2026-04-30T21:57:00+09:00",
+    "duration_minutes": 27,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 35
+  },
+  "merged_at": "2026-04-30T21:55:41+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/1009",
+  "merge_commit": "383f8ae3313e2e40cbf5bfa1a652e4dc8892fe59",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/common/types/README.md",
+    "record-x/common/types/survey_report.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "survey_report §4 想定影響行数(200-400 / 500-1500 等)は機械的 grep カウント(ID 系 58 occurrences/33 files、Result 系 288 occurrences/100+ files)からの概算。実際の差分行数は実装着手時の方針(branded 互換 alias 段階導入か一括置換か)で 2-3 倍変動の可能性あり、survey 主観として明示。"
+    ],
+    "unread_originals": [
+      "ADR-030 付録 A 本文を直接 view せず、record-x/common/README.md(DO-COMMON-D-001 配置)の Wave 計画表 + types/README.md 既存記述を経由参照。types カテゴリの責務記述(ID/Result/プリミティブ/API 契約)は付録 A 準拠を踏襲。FACTORY_LAWS 第111条 本文も未 view、types/README.md 既存記述を踏襲。"
+    ],
+    "needs_reverification": [
+      "§5 pii_detector.ts の types 依存箇所は本ファイル単体の自己完結確認(import なし、Record/RegExp のみ)。pii_detector.ts を import しているファイル群(consultation 系)経由で間接的に共通化候補が露出する可能性あり、W1-002 pii survey で再検証要。",
+      "§3 抽出候補の優先度 H/M/L 判定は影響規模(ファイル数 × occurrence 数)+ Care-RX 権限制御連携の有無で簡易判定。事業部長着任後に Tax/Buddy/IP ドメイン視点が加わると優先度入替の可能性あり。",
+      "§6 推奨 feat 起案 4 候補は survey 時点の主観。survey 結果共有後の事業部長判断で順序入替 / 候補削減 / 別候補追加の余地あり。"
+    ]
+  },
+  "next_queue_judgment_inputs": {
+    "wave1_extraction_scale": {
+      "id_branded": "33 files / ~200-400 lines",
+      "result_aggregation": "100+ files / ~500-1500 lines (gradual)",
+      "time_branded": "10-20 files / ~100-300 lines",
+      "uuid_branded": "5-10 files / ~30-80 lines",
+      "wave1_total_estimate": "150-200 files / 1000-2500 lines"
+    },
+    "w1_002_pii_linkage_points": [
+      "PIIDetection.position: [number, number] → common/types/range.ts 候補",
+      "PIIDetection.confidence: 'high'|'medium'|'low' → common/types/confidence.ts 候補(evidence/risk_check と共通化余地)",
+      "PIIDetection.type discriminated は common/pii/types.ts 側に保持が妥当(types ではなく pii カテゴリ)"
+    ],
+    "feat_priority_topics_for_director": [
+      "branded type 段階導入 vs 一括置換の方針(候補 1 の影響規模左右)",
+      "Result<T,E> 採用ポリシー(新規 API のみ opt-in vs 既存改修対象も置換)",
+      "TaskId を Common 昇格させるか factory 内留置か(現案は留置)"
+    ]
+  }
+}

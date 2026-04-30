@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-D-002",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:42:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:00:00+09:00",
+    "ended_at": "2026-04-29T18:42:00+09:00",
+    "duration_minutes": 42,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:04+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/981",
+  "merge_commit": "64c1058a262707628fcc8adcad5d2b4465f95928",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/factory/tsconfig.json"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "tsconfig 配置先選択: チケットは『record-x/tsconfig.json(または該当 tsconfig)』と曖昧、record-x ルート tsconfig は不在のため factory tsconfig.json を選択。cockpit-front/tsconfig.json への paths 追加は別 DO 想定。",
+      "選択肢 B(base.json + extends)は採用せず、最小スコープの factory 直接修正で済ませた。S-005 §7 推奨は B だったが、影響範囲精査が別 DO で必要なため最小実装を選択。"
+    ],
+    "unread_originals": [
+      "Common 事業部長サブエージェント諮問記録 即時採択候補 §1 全文: forbidden_paths(commander 側)で参照不可。"
+    ],
+    "needs_reverification": [
+      "cockpit-front/tsconfig.json への paths 追加は別 DO で実施(現状フロントから @common/* 参照は無いが、Wave 1 中盤以降に必要)。",
+      "tsconfig.base.json + extends 移行(S-005 §7 推奨 B)は別 DO 起案推奨、現状 factory 単独で済む。",
+      "tsc --noEmit PASS 確認済(本実装 commit 前)、Wave 1 着手 DO で実 import 文の解決確認は別途。"
+    ]
+  }
+}

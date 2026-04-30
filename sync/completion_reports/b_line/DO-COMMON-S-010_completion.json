@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-010",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:45:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:17:00+09:00",
+    "ended_at": "2026-04-29T18:45:00+09:00",
+    "duration_minutes": 28,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:22+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/987",
+  "merge_commit": "7cb7a617c1d1eb95fd7d89d0a019719e3de61db7",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-010_tax_5tier_tenant.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "5 階層構成: org > corp > group > facility > unit を本 DO の Wave 2 API Draft で具体化したが、Tax-RX 公式仕様の階層名称とは異なる可能性あり。Yasu 経由で原典共有後に Draft 改訂要。",
+      "ABAC エンジン Draft: subject + resource + environment の 3 属性モデルは XACML 標準に基づく一般的設計。Tax-RX 固有要件(申告書類タイプ別 policy 等)は別 DO で精緻化。",
+      "書面添付 API: AttachedDocument 型は Tax-RX 申告関連の一般的フィールドを推定、Cloud Storage 連携の詳細(GCS or Firebase Storage 等)は実装時確定。"
+    ],
+    "unread_originals": [
+      "Tax-RX Phase 1 設計受入境界仕様(議題 D 関連): forbidden_paths(commander 側 shared/originals/)で参照不可、本 DO §3 で言及済。",
+      "Common+City 対話アジェンダ v0.2 議題 D 全文: 引用のみ、本文未読。"
+    ],
+    "needs_reverification": [
+      "Wave 2 着手前に Yasu 経由で commander 側 shared/originals/ から 5 階層仕様共有が必須(本 DO §9 リスク 1 項目)。",
+      "ABAC エンジン Draft の汎用性 vs Tax-RX 特化: Wave 2 では基本評価エンジンのみ実装、Tax-RX 固有 policy は Tax 側で実装(本 DO §9 リスク 3 項目)。",
+      "既存 facility_id ベース 2 階層との互換: TenantId branded type を string と互換にし opt-in adoption の段階移行(本 DO §9 リスク 2 項目)。"
+    ]
+  }
+}

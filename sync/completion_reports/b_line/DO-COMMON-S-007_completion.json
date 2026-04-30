@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-007",
+  "status": "merged",
+  "reported_at": "2026-04-29T16:25:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T16:24:30+09:00",
+    "ended_at": "2026-04-29T16:25:00+09:00",
+    "duration_minutes": 1,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 96
+  },
+  "merged_at": "2026-04-29T16:23:57+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/979",
+  "merge_commit": "0ee3fd0ec070430f15ed0b8b4f8f51abf9e7a93e",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-007_pii_detector_relocation.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "S-001 撤回判定: チケットは「S-001 が pii_detector 参照経路調査を含むなら本 DO 撤回」と記載。S-001 §1 直接参照 7 件 + §3 マスキング 8 件 + §7 推奨修正方針(段階的移動)を含むが、3 段階手順 Draft + 書換量見積 は未記載のため本 DO 必須と判断、撤回せず実装。",
+      "書換量見積 6 ファイル/6 行: import 文 1 行/箇所として概算、実装時には test の依存変更等で増減可能。本見積は段階 1+2+3 の合計、半日想定の根拠。",
+      "Care/__tests__/pii-detector.test.ts は段階 3 まで書換不要と判定: ラッパ経由(Care 内の pii-detector.ts → Factory 正本)のため、段階 3 で Care ラッパ削除時に同時 rename + import 変更が必要。これは「段階 3 で書換」として §5 に記載。"
+    ],
+    "unread_originals": [
+      "Common 事業部長サブエージェント諮問記録 §注意点 1 + §反論 3 全文: forbidden_paths(commander 側)で参照不可、引用のみ反映。"
+    ],
+    "needs_reverification": [
+      "Wave 1 着手時に DO-COMMON-D-002(paths alias 新設)が完了している前提で段階 1 の `from '@common/pii'` 経路採用。D-002 未着手なら段階 1 は相対パス `from '../../../common/pii'` 等で代替。",
+      "段階 2 の git mv: GitHub 側で rename 表示が出るかの確認は実装時(類似度 ≥ 50% で rename 認識)。",
+      "リスク §コンフリクト: Wave 1 着手宣言時に他 PR のロック取得経路が必要、別 DO 候補。"
+    ]
+  }
+}

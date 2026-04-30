@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-006",
+  "status": "merged",
+  "reported_at": "2026-04-29T18:44:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T18:11:00+09:00",
+    "ended_at": "2026-04-29T18:44:00+09:00",
+    "duration_minutes": 33,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 98
+  },
+  "merged_at": "2026-04-29T18:36:14+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/985",
+  "merge_commit": "7ad1564fee04475b52d52565ab2a6dccd63b9efd",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/docs/common/investigation/S-006_arch_gate_candidates.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "推奨ランキング: dependency-cruiser > eslint-plugin-boundaries > sheriff は本 DO の比較レポートに基づく工場長判断。OSS 採用判定は戦略Commander + 事業部長合議で別途実施。",
+      "ADR-030 P3-bis 表現可否評価: 各 OSS 公式ドキュメントの一般的記載 + コミュニティ事例から推定。実 PoC 設定での確認は DO-COMMON-D-004 推奨次アクションで実施。",
+      "tools_emit 系 18 tsconfig 影響評価: 各候補の tsconfig 連携の一般的特性で推定、実環境 PoC で確定要。"
+    ],
+    "unread_originals": [
+      "各 OSS 公式ドキュメント本体(eslint-plugin-boundaries / dependency-cruiser / sheriff): 機能概要のみ参照、設定例の詳細未読。",
+      "Common 事業部長諮問記録 §1: 引用のみ、全文未読。"
+    ],
+    "needs_reverification": [
+      "OSS 採用判定: 戦略Commander + Common 事業部長合議で別途実施(本 DO はレポートのみ)。",
+      "PoC 必要: DO-COMMON-D-004 (推奨次アクション 1 件目)で dependency-cruiser PoC 設定 + ADR-030 P3-bis 1 ルール実証。",
+      "既存 functions/scripts/arch-gate-check.js との関係: 統合 / 並存 / 置換のいずれにするかは採用判定時に確定。"
+    ]
+  }
+}

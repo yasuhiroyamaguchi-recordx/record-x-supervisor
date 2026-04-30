@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-S-003",
+  "status": "merged",
+  "reported_at": "2026-04-29T11:25:30+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-04-29T11:10:00+09:00",
+    "ended_at": "2026-04-29T11:25:30+09:00",
+    "duration_minutes": 15,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 91
+  },
+  "merged_at": "2026-04-29T11:21:46+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/975",
+  "merge_commit": "5e6e6117348c652034f7300a1727340f3d3659ac",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "docs/common/wave1_survey/audit_extraction_targets.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "honest_declaration": {
+    "guessed_parts": [
+      "ログレベル運用統計: factory/cockpit/ の console.* / logger.* で 33 occurrences across 10 files を確認、これは抜粋であり全 record-x/ 集計は省略。debug/info/warn/error の比率は主観的観察(error 多用、debug 未確認)。",
+      "ADR-028 §3.2.4 観測可能性ゲート整合: ADR-028 全文未読、FACTORY_LAWS §230 等の引用記載のみで判断。`規定はあるが実装が分散・部分実装` の結論は grep ベース観察。"
+    ],
+    "unread_originals": [
+      "ADR-028 全文(§3.2.4 観測可能性ゲート): 引用のみ参照、原典未読。",
+      "ADR-008A guard-implementation-spec 全文: §3 correlation_id 必須規定のみ引用。",
+      "FACTORY_LAWS.md §229〜231 のログ規定: 抜粋のみ参照。"
+    ],
+    "needs_reverification": [
+      "サーバー側 trace_id 発番 middleware の不在は重要ギャップ。Wave 1 で common/audit/middleware.ts 新設要、ADR-028 §3.2.4 への準拠優先度高。",
+      "redact.ts(factory/tools/lib)は議事録系のみ利用、HTTP ログ等の自動マスキング未実装。Wave 1 で common/audit/redact_integration.ts 経由の logger 前処理統合要。",
+      "構造化 logger(pino / winston 等)の導入判断: 既存実装は素 console.* が主流、規定との乖離が大。Wave 1 着手時の戦略Commander 判断。"
+    ]
+  }
+}
