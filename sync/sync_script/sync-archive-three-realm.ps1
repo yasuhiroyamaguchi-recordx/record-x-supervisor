@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    Archive three-realm sync v0.1 (DO-SUPERVISOR-003)
+    Archive three-realm sync v0.3 (DO-SUPERVISOR-003 + B-line completion_report 着地経路吸収)
 
 .DESCRIPTION
     Mirrors supervisor + commander archives into factory side mirror directory.
@@ -10,6 +10,11 @@
     Sync direction: supervisor + commander -> factory mirror (one-way)
     Update strategy: mtime-based delta transfer (changed files only)
     Idempotent: re-runs are safe
+
+    v0.3 (2026-05-01 Argus-B 自律執行): B ライン completion_report の supervisor b_line/ 着地経路を本装置に吸収。
+    旧 pull-b-completion-reports.ps1 (DO-COMMANDER-B-001) の機能等価を物理復活 (Source = commander/processed,
+    Destination = supervisor/b_line/、DO-COMMON-* / DO-CITY-* / DO-COMMANDER-B-* フィルタ、flatten copy)。
+    本改修により設計重複論を維持しつつ B-001 削除で喪失した経路を補完する。
 
 .PARAMETER DryRun
     Test mode: list sync candidates only, no actual copy.
@@ -96,7 +101,7 @@ $transferred = 0
 $skipped = 0
 $errors = 0
 
-Write-Host "=== Archive Three-Realm Sync v0.1 (DO-SUPERVISOR-003) ==="
+Write-Host "=== Archive Three-Realm Sync v0.3 (DO-SUPERVISOR-003 + B-line absorb) ==="
 Write-Host "Mirror root: $FactoryMirrorRoot"
 Write-Host "DryRun: $DryRun"
 Write-Host ""
@@ -188,6 +193,53 @@ foreach ($map in $syncMappings) {
             $skipped++
         }
     }
+}
+
+# v0.3 NEW (2026-05-01 Argus-B 自律執行): B-line completion_report 着地経路吸収
+# Source: commander/sync/completion_reports/processed (date 配下から再帰)
+# Destination: supervisor/sync/completion_reports/b_line (flatten)
+# Filter: DO-COMMON-* / DO-CITY-* / DO-COMMANDER-B-*
+# 設計根拠: B-001 (pull-b-completion-reports.ps1) 削除で喪失した経路を本装置に吸収、
+#         司令官 α 第 66 号「v0.2 が機能等価」主張の事実誤認 (Source 同・Destination 異) を構造的訂正
+$bLineSrc = Join-Path $CommanderRoot "sync\completion_reports\processed"
+$bLineDst = Join-Path $supervisorRoot "sync\completion_reports\b_line"
+if (Test-Path $bLineSrc) {
+    if (-not (Test-Path $bLineDst)) {
+        if ($DryRun) {
+            Write-Host "[DryRun] Would create b_line dst: $bLineDst"
+        } else {
+            New-Item -ItemType Directory -Path $bLineDst -Force | Out-Null
+        }
+    }
+    $bLineFiles = Get-ChildItem -Path $bLineSrc -Filter "*.json" -File -Recurse -ErrorAction SilentlyContinue
+    foreach ($f in $bLineFiles) {
+        if ($f.Name -notmatch '^(DO-COMMON-|DO-CITY-|DO-COMMANDER-B-)') {
+            continue
+        }
+        $destFile = Join-Path $bLineDst $f.Name
+        $needCopy = $true
+        if (Test-Path $destFile) {
+            $destFileObj = Get-Item $destFile
+            if ($destFileObj.LastWriteTime -ge $f.LastWriteTime) {
+                $needCopy = $false
+            }
+        }
+        if ($needCopy) {
+            if ($DryRun) {
+                Write-Host "  [DryRun] b_line: $($f.Name) -> $destFile"
+            } else {
+                Copy-Item $f.FullName -Destination $destFile -Force
+                if ($VerboseOutput) {
+                    Write-Host "  [copy] b_line: $($f.Name)"
+                }
+            }
+            $transferred++
+        } else {
+            $skipped++
+        }
+    }
+} else {
+    Write-Host "  [skip] b_line src not present: $bLineSrc"
 }
 
 Write-Host ""
