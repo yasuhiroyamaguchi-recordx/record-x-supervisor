@@ -1,33 +1,33 @@
 {
-  "snapshot_id": "bottleneck_probe_20260501-034309",
-  "captured_at": "2026-05-01T03:43:09+09:00",
-  "generator": "pipeline-bottleneck-probe.ps1 v0.1",
+  "snapshot_id": "bottleneck_probe_20260501-034825",
+  "captured_at": "2026-05-01T03:48:25+09:00",
+  "generator": "pipeline-bottleneck-probe.ps1 v0.2 (with meta-meter / self-watching dog)",
   "overall": {
     "symbol": "🔴",
     "alert": "red"
   },
   "stage1": {
-    "alert": "green",
-    "gap_hours": 0,
-    "dst_latest_mtime": "2026-05-01T03:26:48+09:00",
-    "description": "factory staging -> commander processed",
     "src_count": 102,
+    "src_latest_mtime": "2026-05-01T02:58:42+09:00",
+    "dst_latest_mtime": "2026-05-01T03:26:48+09:00",
+    "alert": "green",
     "dst_count": 104,
-    "src_latest_mtime": "2026-05-01T02:58:42+09:00"
+    "description": "factory staging -> commander processed",
+    "gap_hours": 0
   },
   "stage2": {
-    "alert": "green",
-    "gap_hours": 5,
-    "dst_latest_mtime": "2026-04-30T22:03:42+09:00",
-    "description": "commander processed -> supervisor b_line",
     "src_count": 104,
+    "src_latest_mtime": "2026-05-01T03:26:48+09:00",
+    "dst_latest_mtime": "2026-04-30T22:03:42+09:00",
+    "alert": "green",
     "dst_count": 15,
-    "src_latest_mtime": "2026-05-01T03:26:48+09:00"
+    "description": "commander processed -> supervisor b_line",
+    "gap_hours": 5
   },
   "queue": {
-    "description": "commander tickets_issued depth",
+    "depth": 30,
     "alert": "red",
-    "depth": 30
+    "description": "commander tickets_issued depth"
   },
   "schtasks_health": [
     {
@@ -61,7 +61,7 @@
     {
       "TaskName": "RX-Layer3-News",
       "LastRunTime": "2026-04-30T16:14:54+09:00",
-      "HoursSinceLast": 11,
+      "HoursSinceLast": 12,
       "LastResult": 0,
       "Alert": "green"
     },
@@ -71,6 +71,26 @@
       "HoursSinceLast": 39,
       "LastResult": 0,
       "Alert": "yellow"
+    }
+  ],
+  "meter_health": [
+    {
+      "Meter": "daily_cockpit",
+      "LastUpdate": "2026-04-30T16:42:01+09:00",
+      "HoursSinceLast": 11,
+      "Alert": "green"
+    },
+    {
+      "Meter": "pipeline_state",
+      "LastUpdate": "2026-04-30T17:21:55+09:00",
+      "HoursSinceLast": 10,
+      "Alert": "green"
+    },
+    {
+      "Meter": "role_exec_snapshot",
+      "LastUpdate": "2026-04-28T23:04:41+09:00",
+      "HoursSinceLast": 53,
+      "Alert": "red"
     }
   ]
 }
