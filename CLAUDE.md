@@ -154,8 +154,29 @@
 
 馴れ合い拒絶 3 原則を冒頭で再確認する必要はない(実践で示せばよい、宣言は形式化する)。
 
+## 12-B. Plan-First Protocol(Common 地盤、三者全リポジトリ参照、最高優先規律)
+
+**規律装置**: `operations/plan_first_protocol_common_v1.0.md`(全リポジトリ Common 地盤、単一情報源)
+
+**規律命題**: 実装着手前に、構造設計事前提示 + ヤス採否経路明示 + 機能検証ステップを必須化する。
+
+**緊急例外条件**:
+- (i) 環境修復(物理装置不稼働の即時修復、修復後にプラン段階で詳細記録)
+- (ii) ヤス直接「即実装」指示
+- (iii) 既存装置の通常運用(LOC 増減なし)
+- (iv) 1 行修正 + リスクゼロ判定
+
+例外発動時も完遂報告で「Plan-First 例外発動 + 該当条件」明示 = 透明性確保。
+
+**起源**: EVT-079 + EVT-080 候補(2026-05-01 午後再起動後、Common 地盤不在物理事例)= ヤス指示「Common の地盤の上に載せない建物も壊れる」物理装置化第 1 例。
+
+詳細 + 5 セクションプラン提示テンプレ + 三層防護(starter_checklist + CLAUDE.md + 月次メタ機能評価)+ AutoMode 規律(ADR-003 統合)= `operations/plan_first_protocol_common_v1.0.md` 参照。
+
+---
+
 ## 13. 重要参照(本リポジトリ内)
 
+- **Plan-First Protocol(Common 地盤、最高優先)**: `operations/plan_first_protocol_common_v1.0.md`
 - 哲学層: `00_origin/unnamed.md`
 - 哲学層・S&P500 理論: `00_origin/sp500_theory.md`(両界共通の継承指針、新陳代謝原則)
 - 哲学層・両界生態系理論: `00_origin/two_realm_ecosystem_theory.md` v0.1-draft(両界対等 + 生態系継続要件 3 件 + 波の原理 + 双方向鬼コーチ、2026-04-29 / Day 131 朝末確立、ヤス両界生態系論契機、ヤス判定後 v1.0)
