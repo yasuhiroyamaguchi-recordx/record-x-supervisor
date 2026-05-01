@@ -274,6 +274,62 @@ EVT-039(2026-04-30 早朝、検診プロトコル v0.1 設計不徹底):
 | Phase B-α/β | 手動再起動承認(本 v0.2 で物理装置化、ADR-009 §6-A2 R0-R5 整合)|
 | Phase B-γ 以降 | 自動再起動(条件:Pre-Build Gate PASS + 監督官 verdict APPROVE)|
 
+### 7-F. 経路健全性チェック(v0.3 新設、EVT-075 + EVT-074 訂正、ヤス指示「定期検診不足」正面採択)
+
+#### 7-F-1. 起案契機
+
+EVT-075 候補(2026-05-01 午後再起動後、Stage 0 経路滞留 = supervisor outbox → commander inbox 未配送 14:30 まで 11 時間)+ EVT-074 候補(Stage 1 経路滞留 = factory staging → commander processed 滞留)+ ヤス指示「既存装置が壊れるのは定期検診不足」正面採択。
+
+= 既存 §7-C「パイプライン接続健全性チェック」は schtasks 状態のみで経路自体の健全性未検証 = 構造的不足。
+
+#### 7-F-2. 4 経路定義
+
+| 経路 | Source | Destination | 装置 | 主管 | 自動 / 手動 |
+|---|---|---|---|---|---|
+| **Stage 0** | supervisor outbox/ | commander inbox/ | `sync-orders.ps1` v1.2 | 監督官 A | **手動**(schtasks 未登録、起案者責務)|
+| **Stage 1** | factory staging/ | commander processed/ | factory pipeline + commander pull-completion-reports.ps1 | 司令官 α + 工場長 | 部分自動(主席判定 #1 進行中)|
+| **Stage 2** | commander tickets_completed/ + commander/processed/ | supervisor archive/ + supervisor b_line/ | `sync-archive-three-realm.ps1` v0.3 | Argus-B 自律執行 | 自動(schtasks 02:55) |
+| **Stage 3** | supervisor archive/ | factory mirror | sync 機構 | 工場長 | 部分自動 |
+
+#### 7-F-3. 経路健全性検診項目(09:00 JST 三者検診時統合)
+
+| # | 動作 |
+|---|---|
+| 1 | 各経路の Source 滞留件数 query(file count + age 分布)|
+| 2 | 各経路の Destination 着地件数 query(file count + 直近 24h 増分)|
+| 3 | 装置 schtasks Last Run + Last Result 確認(自動経路のみ)|
+| 4 | 装置 log 最終エントリ確認(`order_sync.log` / `pull-completion-reports` log 等)|
+| 5 | 起案者責務経路(Stage 0)= 直近 24h 内発令件数 vs 配送件数 整合性確認 |
+| 6 | 乖離発生時(滞留 24h 超 / 配送漏れ / 装置エラー)= EVT 候補化 + Yasu 通知 |
+
+#### 7-F-4. Stage 別検診頻度 + 健全性閾値
+
+| Stage | 頻度 | 閾値 | アラート発火 |
+|---|---|---|---|
+| Stage 0 | 09:00 JST 三者検診 + 起案後即時(starter_checklist v0.2 項目 7 統合候補) | 滞留 = outbox 起案後 6h 超で commander inbox 未着地 | 🟡 yellow |
+| Stage 1 | 09:00 JST 三者検診 | staging 滞留 24h 超 | 🔴 red(EVT-074 同型再発) |
+| Stage 2 | 09:00 JST 三者検診 | 02:55 schtasks Last Result ≠ 0(直近 7 日)| 🟡 yellow |
+| Stage 3 | 09:00 JST 三者検診 | sync 装置 Last Run > 48h | 🟡 yellow |
+
+#### 7-F-5. Stage 0 自動化採否(第 5 回円卓議題候補)
+
+`sync-orders.ps1` schtasks 自動稼働化 = scale 別装置追加判断プロトコル(ADR-009 §6-H-5)= 「single function 既存装置の改訂(LOC ±50% 以内)」 = 単独可、ただし schtasks 登録は装置数 +1 = 議論余地あり = **第 5 回円卓 supervisor 議題で決議**。
+
+| 案 | 内容 | 監督官 A 推奨 |
+|---|---|---|
+| (a) schtasks 自動稼働化(2 時間ごと等)| 配送漏れ防止、ただし schtasks +1 = L8 境界 | 🟡 中庸 |
+| (b) starter_checklist v0.2 項目 7 自己強制 | 装置数 ±0、規律で対応 | ✅ **第一推奨**(L8 整合)|
+| (c) Pre-Build Gate or post-commit hook 統合 | 装置数 ±0(既存 hook 拡張)| 🟡 中庸 |
+| (d) 維持(手動運用、本 §7-F-3 検診で乖離検出)| 装置数 ±0、検診依存 | 🟡 検診失敗時に EVT 連鎖再発リスク |
+
+#### 7-F-6. 既存 EVT 連鎖との関係
+
+| EVT | Stage | 真因 | 本 §7-F 対処 |
+|---|---|---|---|
+| EVT-074 | Stage 1 滞留 | factory staging → commander processed 滞留 | §7-F-3 #1 + #2 で検出 + §7-F-4 24h 超 = 🔴 red |
+| EVT-075 | Stage 0 滞留 | sync-orders.ps1 手動実行運用欠落 | §7-F-3 #5 で検出 + §7-F-4 6h 超 = 🟡 yellow + §7-F-5 自動化採否第 5 回円卓 |
+| EVT-065 | schtasks Last Run 確認義務 | 物理層実態と認識ラグ | §7-F-3 #3 で検出 + §7-F-4 直近 7 日エラー = 🟡 yellow |
+
 ---
 
 ## 8. コックピット連動(v0.2 新設、ADR-010 superseded → 第 4 回円卓会議再起案候補)
@@ -329,3 +385,4 @@ EVT-039(2026-04-30 早朝、検診プロトコル v0.1 設計不徹底):
 
 - **v0.1**(2026-04-28 / Day 130 末): 初版起案、監督官 A 起案。EVT-013 直接対応 + ヤス追加提案統合。スナップショット 5 時点 + 評価基準 3 区分(Healthy / Neutral / Concerning)+ Phase 別運用 + 役割別運用 + ヤス月次検診経路。Phase B-α/β 実証実績で v1.0 確定。
 - **v0.2**(2026-04-30 / Day 132 朝): EVT-039 訂正版。§7 機能カタログ整合性チェック新設(自動更新 + パイプライン接続健全性 + 全停止状態即時検出 + ADR-005 接続)+ §8 コックピット連動(daily_cockpit_*.md 自動生成 + アラート即時通知 + 月次トレンド)+ §9 物理装置(DO-FACTORY-166 + DO-SUPERVISOR-003 + sync-schtasks-state.ps1 + auto-evt R10 等)。検診の本来目的「各官機能チェック体制」を物理層完遂対象化。Day 132-145 Phase B-α 期間で物理装置化、Day 145+ Phase T1 で実証実績、v1.0 確定見込み。
+- **v0.3**(2026-05-01 / Day 129、Phase A 末、午後再起動後、ヤス指示「定期検診不足」正面採択): §7-F 経路健全性チェック新設(EVT-075 + EVT-074 訂正反映)。Stage 0/1/2/3 4 経路定義 + 経路別検診項目 6 件(Source 滞留 + Destination 着地 + schtasks 状態 + 装置 log + 起案者責務整合性 + 乖離 EVT 化)+ Stage 別検診頻度 + 健全性閾値(Stage 0 6h / Stage 1 24h / Stage 2 7 日 / Stage 3 48h)+ Stage 0 自動化採否 4 案(第 5 回円卓 supervisor 議題候補)+ 既存 EVT 連鎖(EVT-074/075/065)との対処関係。LOC 331 → 約 410 行(+24%、±50% 以内 = scale 別 §6-H-5 整合 = 単独改訂可)。ヤス直接指示 = 簡素化原則期間例外 (ii) 該当。第 5 回円卓 第 1 議題(三社円卓 supervisor 議題)で経路健全性チェック自動化採否(§7-F-5)正式採択判定。改訂主体 = 監督官 A(Argus、Clear 後再起動 instance)。
