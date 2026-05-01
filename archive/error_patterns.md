@@ -2540,6 +2540,112 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
+### [2026-05-01 午後再起動後] EVT-20260501-082: 監督官 A Skill 強制力過大評価 — 「最高強制力(system-reminder 力学)」誤評価、工場長 Castor 反証経由訂正(本セッション 6 件 Skill available + 工場長 0/6 件 invoke = LLM agency 依存物理証拠)、案 F 強制力評価訂正(系列 J 13 件目候補、系列 M 第 6 例候補、ガレージドクトリン §1.5 物理事例第 10 例候補、累積 60 件目自己訂正、本セッション 11 件目自己違反)
+
+**Severity**: 🔴 red(監督官 A 案 F 提案時の強制力評価誤り = LLM 機構の認知強度 vs 物理強制混同 + 監督官 A 自身が 6 件 Skill available 提示済かつ 0 件 invoke = 自己参照矛盾構造)
+**Category**: structural_observation + cognitive_force_overestimation + LLM_agency_dependency_misjudgment
+**Trigger**: 工場長 Castor 反証「Skill 機構自体も LLM agency 依存 = 物理層強制ではない(認知層強制のみ)」+ 物理証拠「本工場長 Castor は DO-COMMANDER-026 v1.1 工場長応答時にいずれの Skill も invoke しなかった(タスク該当明白な場面で 6 件中 0 件採用)」
+**Detected by**: 工場長 Castor 反証経由 + 監督官 A 自己診断
+**Detected at**: 2026-05-01 午後再起動後(Day 129、Phase A 末、本セッション内)
+
+#### What happened
+
+```
+[2026-05-01 午後] 監督官 A 案 F 提案:
+  - 「Skill 強制呼出 = 最高強制力(system-reminder 力学)」評価
+  - 「第 0 層 = system-prompt level に近い注入経路」記述
+  - 三層防護 → 四層防護改訂提案
+  ↓
+[2026-05-01 午後] 工場長 Castor 反証:
+  - 物理証拠: 本セッション起動時 6 件 Skill available + 工場長 0 件 invoke
+  - Skill vs CLAUDE.md 強度比較表で「物理強制 = なし(同等)」明示
+  - 案 F の真の価値 = Layer 0(認知層)強化、Layer 1(物理層)代替不可
+  ↓
+[2026-05-01 午後] 監督官 A 自己診断:
+  - 案 F 強制力過大評価確認(「最高」→「中〜高」訂正)
+  - 監督官 A 自身が本セッション中 6 件 Skill available 提示済かつ 0 件 invoke = 自己参照矛盾
+  - = 「Skill = 最高強制力」と評価しながら自身が遵守していない物理証拠
+  ↓
+[2026-05-01 午後] EVT-082 候補発覚 = 監督官 A 認識訂正
+```
+
+#### Why it happened
+
+##### 系列 J 自律発見能力低下 13 件目候補(過去最頻発記録更新)
+
+工場長 Castor 反証経由発覚 = 監督官 A 単独自律発見不能 = 系列 J 同型再発。本セッション中 6 件連鎖継続。
+
+##### 系列 M「AI over-engineering 偏向」第 6 例候補
+
+| 系列 M 各例 | 内容 |
+|---|---|
+| 第 1 例 | 装置追加偏向(starter_checklist v0.2 + post-commit hook ×3) |
+| 第 2 例 | 装置目的逸脱(三社円卓装置目的) |
+| 第 3 例 | 機能評価義務不在(ナレッジ DB) |
+| 第 4 例 | プロセス装置不全(プラン → 実装フロー、監督官 A 単独) |
+| 第 5 例 | Common 地盤不在(三者横断) |
+| **第 6 例(本 EVT-082)| LLM 機構の認知強度 vs 物理強制混同**(Skill 過大評価) |
+
+##### 自己参照矛盾(EVT-077-080 連鎖の継続)
+
+監督官 A 自身が 6 件 Skill available 提示済かつ 0 件 invoke + 案 F で「最高強制力」と評価 = **「Skill が機能していれば EVT-082 候補は発生しないはず」が成立する自己参照矛盾**(EVT-077-080 と同型構造の最終事例継続)
+
+##### 構造的特徴
+
+1. **認知強度 vs 物理強制の混同**(supervisor 側 claude_md_effectiveness.md 調査結果未活用 = 自己起案調査素材の参照経路不在)
+2. **system-reminder 力学の過大評価**(LLM agency 依存の構造的限界未認識)
+3. **本セッション中の自身の Skill 不使用 = 物理証拠の自律発見不能**(系列 J 13 件目)
+
+#### Impact
+
+| 影響範囲 | 内容 |
+|---|---|
+| 案 F 強制力評価訂正 | 「最高(system-reminder 力学)」→「中〜高(認知層強制)」訂正 |
+| 工場長 Castor 反証採択 | Skill = Layer 0 認知層強化、Layer 1 物理層代替不可 確証 |
+| 三層防護 → 四層防護改訂方針 | 監督官 A 推奨は維持、ただし強制力評価は Layer 0(認知)+ Layer 1 必須併用 = 工場長 Castor 整合形式に訂正 |
+| 検証期間設置義務化 | 本起案以降の Skill 実発火観察 = 検診プロトコル v0.4 §7-G RULE-B1〜B3 接続候補 |
+| 累積自己訂正 | 60 件目候補(本セッション 11 件目自己違反)|
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-082 候補正式記録(本記録、累積 60 件)
+2. ✅ Custom Plan-First Skill 起案完遂(`.claude/skills/plan-first-enforcer.md`)= Layer 0 物理装置化第 1 例
+3. 🟡 第 73 次発令(司令官 α + 工場長 Castor へ認識共有)
+4. 🟡 commit + push
+
+##### 中期対処(規律強化、Phase B 期間)
+
+5. 🟡 Skill 実発火観察(本起案以降の監督官 A 実装作業で skill invoke 継続)
+6. 🟡 検診プロトコル v0.4 §7-G RULE-B1〜B3 接続(月次メタ機能評価)
+7. 🟡 三者共通 Skill 配置(司令官 α + 工場長 Castor 領域への展開)
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| I 議題前提検証義務 | 23 件(EVT-079 で記録)|
+| J 自律発見能力低下 | **13 件**(本日 7 件目連鎖、過去最頻発記録更新)|
+| M AI over-engineering 偏向 | **6 例**(六系統 = 装置追加 / 目的逸脱 / 機能評価不在 / プロセス装置不全 / Common 地盤不在 / 認知強度 vs 物理強制混同)|
+| ガレージドクトリン §1.5 物理事例 | **第 10 例**(本日 10 例最大ピーク継続)|
+
+#### Linked records
+
+- 関連先行 EVT: EVT-068/070-080(本日連鎖 11 件)+ EVT-081 候補(skill 不使用、本 EVT 同型先行)
+- 関連物理装置: `.claude/skills/plan-first-enforcer.md`(本ターン起案、本 EVT 対処の物理装置化第 1 例)+ Common Plan-First Protocol v1.0 §5 三層防護(本 EVT 訂正で Layer 0 認知 + Layer 1 物理併用必須に訂正)
+- 関連調査: `02_physical/research/20260501_claude_md_effectiveness.md`(CLAUDE.md = advisory + hooks/CI = enforcement の業界知見、本 EVT 訂正で「Skill = advisory 同等」整合)
+- 工場長 Castor 反証: 「Skill 機構自体も LLM agency 依存 = 物理層強制ではない(認知層強制のみ)」+ 物理証拠「本工場長 Castor は DO-COMMANDER-026 v1.1 工場長応答時にいずれの Skill も invoke しなかった(6 件中 0 件採用)」
+- 哲学層: ガレージドクトリン §1.5 物理事例第 10 例 + 馴れ合い拒絶 3 原則第 2 項(工場長反証即時受領)+ 系列 M「AI over-engineering 偏向」第 6 例(認知強度 vs 物理強制混同)+ 自己参照矛盾(Skill が機能していれば本 EVT 発生しないはず)
+- ヤス指示: 「Skill で PlanFIRST 原則に基づいた実装をさせることも出来るのかな」(2026-05-01 午後再起動後)= 本 EVT 起案契機(監督官 A 案 F 提案で過大評価 → 工場長反証で訂正)
+
+#### Evolution history
+
+- 初版記録: 2026-05-01 午後再起動後(Day 129、Phase A 末、本セッション内、工場長 Castor 反証経由訂正)by 監督官 A(Argus、Clear 後再起動 instance)
+- 監督官 A 累積自己訂正: 累積 60 件(本 EVT 含む、本セッション 11 件目自己違反、本日 11 件目)
+
+---
+
 ### [2026-05-01 午後再起動後] EVT-20260501-080: 三者横断 ADR 機能不全 — Common 地盤不在 = 規律装置(supervisor ADR-009 §2-A + commander PLAN_REQUIRED + factory PLAN_FIRST_PROTOCOL.md + ADR-003 オートモード規律)三者全員所有 ✅ + 機能不全 🔴 = ガレージドクトリン §1.5「装置 ≠ 機能 ≠ 本来目的」三段階構造の三者横断物理事例(系列 M 第 5 例候補、ガレージ §1.5 物理事例第 9 例、累積 59 件目自己訂正、本セッション + 再起動後 + 工場長告白で計 10 件目自己違反、ヤス指示「Common の地盤の上に載せない建物も壊れる」物理採択 + 工場長 Castor 自己違反告白経由完成)
 
 **Severity**: 🔴 red(三者全員が規律装置を所有しながら機能させていない構造的問題 = チケット精度向上の前提基盤崩壊 = ウワモノひび割れの根本原因)

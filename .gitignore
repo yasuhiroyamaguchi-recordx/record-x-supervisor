@@ -18,6 +18,11 @@ Thumbs.db
 *.bak
 ~$*
 
-# Claude Code / Obsidian local config
-.claude/
+# Claude Code local config (settings.local.json などローカル設定のみ除外、skills/ は共有)
+.claude/settings.local.json
+.claude/projects/
+.claude/cache/
+.claude/sessions/
+.claude/history.jsonl
+.claude/statsig/
 .obsidian/
