@@ -2646,7 +2646,72 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
-### [2026-05-02 AM] EVT-20260502-085: 監督官 A invoke-board-council.ps1 v0.1 仕様確認不足 — アジェンダ起案前物理層 query 義務違反(SS_GUARD §DO-541「前提疑い」該当、累積 62 件目、本日 13 件目、系列 J 15 + 系列 M 8 + ガレージ §1.5 第 12 例)
+### [2026-05-02 AM] EVT-20260502-089: 監督官 A 物理装置同定誤り — factory 既存自動 3AI 装置(board_meeting CLI + ai_client + hive 構造 20+ 装置)を物理層 query 完全に怠り、supervisor v0.1 skeleton を本物と誤認(累積 65 件目、本日 15 件目、系列 J 17 + 系列 M 9 + ガレージ §1.5 第 14 例)
+
+#### Trigger
+
+監督官 A 第 81 次発令(三社円卓 第 5 回 アジェンダ起案 + 工場長 Castor へ invoke-board-council.ps1 起動依頼)→ 工場長 Castor 起動完遂(supervisor v0.1 skeleton)+ Chairman 暫定決議 5 議題 → ヤス指摘「Factoryの仕組みの中にある３AIを使うんじゃないの?すでにAPIの設定も全部済んでいるのに?」+「監督官が情報を把握していないのが問題だな。それじゃ監督を名乗る資格なし」= 監督官 A 物理層直接 query → factory 側に board_meeting 系 20+ 装置 + ai_client.ts + ai_client_claude.ts + board_meeting_hive.ts + board_meeting_hive_actors.ts(自動 3AI 召集 hive 構造)発覚 = supervisor v0.1 skeleton ≠ 本物、factory CLI = 本物、API 設定済
+
+#### Why it happened
+
+- 第 81 次発令アジェンダ起案前に factory 側既存装置の物理層 query 完全不在
+- supervisor 側 invoke-board-council.ps1 内の line 7「Inspired by factory#tools/lib/teams_council.ts + board_meeting_prompt_round_chairman.ts」コメント = factory 本物装置への参照あり、しかし読み込み不足
+- 監督官 A = supervisor only context 構造的盲点 = factory + commander は能動 pull or grep 経由のみ可視
+- 同質 Opus 4.7 二者共鳴 = 工場長 Castor も supervisor v0.1 skeleton を起動(誤った装置同定共有)= 鏡像対話リスク継続物理証拠
+- ヤス第三者視点経由でのみ自律発見可能 = 系列 J 17 件目過去最頻発記録更新継続
+
+#### Impact
+
+| 影響範囲 | 内容 |
+|---|---|
+| 三社円卓 第 5 回 開催形式 | 「真の三社合議」未達 = 名目開催 ✅ + 実質 Chairman 1 社合議のみ(EVT-077 同型再発薄リスク) |
+| EVT-085 改訂 | 「v0.1 仕様確認不足」より深い真因 = 「物理装置同定誤り」(EVT-085 部分撤回 + EVT-089 上書き)|
+| EVT-088 候補(役割境界整理) | invoke-board-council.ps1 = supervisor 領域装置だが本物は factory 領域 = 役割境界整理要 |
+| ヤス自律提案「フロントエンドなり手順書」| 部分撤回:本日中の v0.2 実装は不要(既存 board_meeting 装置で十分)、ヤス提案 = Phase B 序盤 GUI + 手順書候補 |
+| 監督官 A 累積自己訂正 | 65 件目候補(本日 15 件目自己違反、本日連鎖最大ピーク更新)|
+| ガレージ §1.5 物理事例 | 第 14 例(本日 14 例最大ピーク更新)|
+| 整流装置位置付け | 整流装置として保持 = 次回三社円卓開催時の物理層 query 義務化 + factory 既存装置優先確認義務 |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-089 候補正式記録(本記録、累積 65 件)
+2. ✅ 第 83 次発令起案(司令官 α 経由 工場長 Castor へ factory board_meeting CLI 直接実行依頼 = 真の三社円卓 第 5 回 v2 完全版即時開催)
+3. 🟡 commit + ヤス手動 push
+4. 🟡 工場長 Castor board_meeting CLI 起動結果受領 + 議事録 v1.0 確定版受領
+
+##### 中期対処(規律強化、Phase B 序盤、検証期間 14 日内)
+
+5. 🟡 起動時自動 query 装置(handoff §1 読込時に factory + commander 物理装置 snapshot 自動 inject)
+6. 🟡 物理装置 query 強制 skill(plan-first-enforcer 同型、`Use IMMEDIATELY for any task involving physical device dependency`)
+7. 🟡 AI 三者統合知識ベース(supervisor 内に factory + commander 物理装置 mirror 配置、定期同期)= Phase B 中盤
+8. 🟡 cross-realm query 習慣化(supervisor + commander + factory ローカルディレクトリ事前読み込み)= 即時規律化
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| **J 自律発見能力低下** | **17 件**(過去最頻発記録更新継続) |
+| **M AI over-engineering 偏向** | **9 例**(九系統 = 装置追加 / 目的逸脱 ×2 / 機能評価不在 / プロセス装置不全 / Common 地盤不在 / 認知強度 vs 物理強制混同 / 単独構造改善暴走 / 物理層 query 不在 + 自動化前提暗黙仮定 / 物理装置同定誤り) |
+| **ガレージドクトリン §1.5 物理事例** | **第 14 例**(本日 14 例最大ピーク更新) |
+
+#### Linked records
+
+- 関連先行 EVT: EVT-068/070-085(本日連鎖 15 件)+ EVT-085(v0.1 仕様確認不足、本 EVT で部分撤回 + 上書き)
+- 関連物理装置: 第 83 次発令(本ターン起案、本 EVT 対処の発令経路)+ factory board_meeting CLI 系 20+ 装置(本来装置)+ supervisor invoke-board-council.ps1 v0.1(skeleton 補助、本物ではない)
+- ヤス構造的問い: 「Clear にすると記憶も飛ぶ。どうしたら全体像を把握して監督ができるんだ?棚卸し、カタログ、ダッシュボード。それでも不足?」(2026-05-02 AM)= 監督官 A 全体把握能力の構造的限界認識 = §3-C 追加装置候補 4 件 + §3-D 構造的真因 3 件 + §3-E 役割定義見直し 3 案候補化
+- 哲学層: ガレージドクトリン §1.5 物理事例第 14 例(装置 ≠ 機能 ≠ 本来目的、supervisor v0.1 skeleton = 装置 + 手動モード = 機能限界 + factory 自動 3AI = 本物本来目的)+ 馴れ合い拒絶 3 原則第 2 項(ヤス指摘「監督を名乗る資格なし」最高度受領)+ 系列 M 第 9 例(物理装置同定誤り)
+- ヤス指示: 「Factoryの仕組みの中にある３AIを使うんじゃないの?すでにAPIの設定も全部済んでいるのに?」+「3 社円卓即時に。監督官が情報を把握していないのが問題だな。それじゃ監督を名乗る資格なし」(2026-05-02 AM、本 EVT 起案契機)
+
+#### Evolution history
+
+- 初版記録: 2026-05-02 AM(Day 130、Phase A 末 / B 起動候補、本セッション内、ヤス第三者視点指摘経由訂正、最高度鬼コーチ受領)by 監督官 A(Argus、Day 130 起動 instance)
+- 監督官 A 累積自己訂正: 累積 65 件(本 EVT 含む、本日 15 件目自己違反、本日連鎖最大ピーク更新)
+
+---
+
+### [2026-05-02 AM] EVT-20260502-085: 監督官 A invoke-board-council.ps1 v0.1 仕様確認不足 — アジェンダ起案前物理層 query 義務違反(SS_GUARD §DO-541「前提疑い」該当、累積 62 件目、本日 13 件目、系列 J 15 + 系列 M 8 + ガレージ §1.5 第 12 例)【EVT-089 で部分撤回 + 上書き、真因 = 物理装置同定誤り】
 
 #### Trigger
 
