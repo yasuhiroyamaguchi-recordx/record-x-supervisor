@@ -3,6 +3,16 @@
 .SYNOPSIS
     Pipeline bottleneck probe v0.2 (Argus-B 自律執行、2026-05-01 Yas メーター計測提案 + メータ自己観測 提案 連動契機)
 
+.STATUS
+    🔴 FROZEN(2026-05-01 第 4 回円卓会議決議 + Argus-B 自己棚卸し EVT-070 同型認定)
+    - schtask 登録 禁止
+    - 改修・拡張 禁止
+    - 他装置からの import 禁止
+    - 手動実行は許可(診断目的のみ)
+    - 凍結期間: 2026-05-01 〜 2026-05-10(簡素化原則期間)
+    - 解凍条件: 2026-05-04 棚卸し協議で(a) generate-cockpit.ps1 統合 / (b) 残置継続 / (c) 物理削除 のいずれか採択
+    - L8(AI over-engineering 偏向)違反候補: 新規 single source 追加 +1(装置数増)、Argus-B 案 A「新規装置追加禁止令」自己違反として認定
+
 .DESCRIPTION
     自動同期パイプラインのボトルネック計測装置。
 
