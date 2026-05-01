@@ -2540,6 +2540,128 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
+### [2026-05-01 午後] EVT-20260501-074: 監督官 A 設計重複論誤認 + DO-COMMANDER-B-001 superseded 化判断 + Stage 1 死亡認識欠如 + sync-archive v0.3 改修内容深掘り欠如(系列 I 21 件目候補、系列 J 8 件目候補、累積 54 件目自己訂正、本セッション 5 件目自己違反、Argus-B inbox 009 + 司令官 α 主席判定経由発覚)
+
+**Severity**: 🔴 red(EVT-062 構造解釈基盤誤り = 本セッション内複数判断の根拠崩壊 + 経路全段階死亡 P0 認識欠如 + supervisor 棚卸し v0.5 装置精査浅薄)
+**Category**: structural_observation + premise_verification_failure + cognitive_model_misalignment + meta_analysis_shallow
+**Trigger**: Argus-B inbox 009(P0 REQUEST_CHANGES、9ddec64 commit)+ 司令官 α 主席判定 X2 採択(commit 6cbf4f4)受領 → 監督官 A 物理層検証 → sync-archive v0.3 改修(commit 06acc03、本セッション開始前 by Argus-B)既完遂 + supervisor/sync/completion_reports/b_line/ 着地経路稼働確認
+**Detected by**: Argus-B inbox 009 + 司令官 α 主席判定経由 + 監督官 A 物理層検証
+**Detected at**: 2026-05-01 午後(Day 129、Phase A 末、本セッション内)
+
+#### What happened
+
+```
+[2026-05-01 早朝] Argus-B 自律執行: sync-archive-three-realm.ps1 v0.3 改修(commit 06acc03)
+  = B-001 機能吸収(commander/processed → supervisor/b_line/、フィルタ DO-COMMON-* / DO-CITY-* / DO-COMMANDER-B-*、flatten copy)
+  ↓
+[2026-05-01 朝] 第 62 次発令(outbox 008)起案時、EVT-062 認識「設計重複論」採用
+  = DO-COMMANDER-B-001 v0.1 と sync-archive v0.2 が同機能(設計重複)= superseded 化判断
+  ↓ ただし
+[2026-05-01 朝] supervisor 棚卸し v0.5(本セッション中起案)で sync-archive v0.3 改修を浅く把握
+  - 「✅ B-001 削除込で装置数 -1(L8 整合)」と記載
+  - 改修内容(b_line/ destination 経路復活)= 深掘りせず
+  ↓
+[2026-05-01 午後] Argus-B inbox 009 P0 REQUEST_CHANGES 受領:
+  - 「設計重複論 = 事実誤認」(Source 同じ + Destination 異なる、機能等価ではない)
+  - 「Stage 1 死亡」(W1-002/003/004 staging 滞留 + commander processed 不在)
+  - 「Stage 2 切断」(supervisor 側取込痕跡なし、ただし v0.3 改修で解消済)
+  - 「autonomy 適用境界規律不在」(Argus-B 命名 EVT-067)
+  ↓
+[2026-05-01 午後] 司令官 α 主席判定 X2 採択(commit 6cbf4f4)受領:
+  - X2 = sync-archive v0.3 改修(B-001 機能吸収)= 既完遂物理装置化の追認判定
+  - X1 = B-001 復活 = 却下
+  - EVT-062 構造解釈訂正(系列 I 12 + L 3 + J 7 三重該当、三者共同責任)
+  - C-1/C-2/C-3 規律候補(機能等価未検証 / Source/Destination/Filter 3 観点 / ad-hoc 禁則)
+  ↓
+[2026-05-01 午後] 監督官 A 物理層検証:
+  - sync-archive v0.3 既完遂(commit 06acc03 by Argus-B、本セッション開始前)確証
+  - supervisor/sync/completion_reports/b_line/ 配下 既存(DO-COMMON-D/S 系 multiple ファイル着地)
+  - DryRun 動作確認: 6 件転送候補 + 210 件 skipped + 0 errors
+  ↓
+[2026-05-01 午後] EVT-074 候補発覚 = 監督官 A 認識訂正(本セッション 5 件目自己違反)
+```
+
+#### Why it happened
+
+##### 系列 I 議題前提検証義務 21 件目候補 + 系列 J 自律発見能力低下 8 件目候補
+
+| 観点 | 内容 |
+|---|---|
+| 系列 I | EVT-062 認識「設計重複論」採用前に Source/Destination/Filter 3 観点物理 trace 未実施 |
+| 系列 J | Argus-B inbox 009 + 司令官 α 主席判定経由で初発覚 = 監督官 A 単独自律発見ではない |
+| 装置精査浅薄 | supervisor 棚卸し v0.5 で sync-archive v0.3 「改修済」と記載のみ、改修内容(b_line/ destination 経路)未深掘り |
+| Stage 1 死亡認識欠如 | W1-002/003/004 staging 滞留を本セッション中認識せず継続放置 |
+
+##### 構造的特徴(複数失敗の連鎖)
+
+1. **「設計重複論」誤認**(Source 同じだけで等価判定、Destination/Filter 3 観点物理 trace 省略)
+2. **DO-COMMANDER-B-001 superseded 化判断**(機能未統合状態での廃止判断)
+3. **Stage 1 死亡 認識欠如**(physical pipeline 滞留を見逃し)
+4. **supervisor 棚卸し v0.5 装置精査浅薄**(本セッションで起案した装置でさえ深掘り欠如、L8 同型再発候補)
+
+= ガレージドクトリン §1.5 「装置の存在 ≠ 機能」物理事例第 4 例(本セッションで本日 4 例目)
+
+#### Impact
+
+| 影響範囲 | 内容 |
+|---|---|
+| EVT-062 構造解釈 | 系列 I 12 + L 3 → 系列 I 12 + L 3 + **J 7 三重該当**、責任主体 = 司令官 α 単独 → **三者共同責任**(司令官 α + 監督官 A + Yas + Argus-B 四者全員) |
+| DO-COMMANDER-B-001 superseded 化判断 | 結果的には正解(機能 = v0.3 に統合済)、ただし **認識経路誤り**(設計重複論ではなく装置統合論) |
+| Stage 2 切断 | **解消済**(Argus-B v0.3 改修で b_line/ 着地経路稼働) |
+| Stage 1 滞留 | **未解消**(commander 側問題、司令官 α 主席判定 #1 で調査主体宣言) |
+| supervisor 棚卸し v0.5 → v0.6 | 訂正必要(sync-archive v0.3 改修深掘り + L8 整合実例として詳細追記) |
+| 累積自己訂正 | 54 件目候補(本セッション 5 件目自己違反) |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-074 候補正式記録(本記録、累積 54 件)
+2. ✅ EVT-067 命名統一採択(autonomy 適用境界規律不在 = Argus-B 真因表現)
+3. ✅ EVT-062 構造解釈訂正受領(系列 I 12 + L 3 + J 7 三重該当 + 三者共同責任、commander 側 error_patterns.md 連携)
+4. ✅ supervisor 棚卸し v0.5 → v0.6 訂正(sync-archive v0.3 改修深掘り反映)
+5. ✅ 第 67 次発令起案(outbox 014、司令官 α 主席判定書受領 + 採否累積 13 件回答 + 認識訂正)
+6. ✅ 第 4 回円卓議事録 v1.3 改訂(C-1/C-2/C-3 規律候補認識共有)
+7. ✅ commit + push
+
+##### 中期対処(規律強化、第 5 回円卓議題候補)
+
+8. 🟡 starter_checklist v0.2 v0.3 候補項目 9「装置統合判断時の Source/Destination/Filter 3 観点物理 trace」追加(C-1/C-2/C-3 規律統合)
+9. 🟡 supervisor 棚卸し時の装置精査深度規律(改修済装置でも改修内容深掘り義務化)
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| I 議題前提検証義務 | **21 件**(本日 9 件目連鎖、過去最頻発記録更新)|
+| J 自律発見能力低下 | **8 件**(Argus-B 経由自己発見 + 司令官 α 経由)|
+| M AI over-engineering 偏向 | 1 件(第 4 回円卓認定)|
+| C(C-1/C-2/C-3 規律候補)| 第 1 例(司令官 α 自己宣言) |
+
+#### EVT-067 命名統一採択(本 EVT-074 内整理)
+
+| 命名候補 | 主体 | 採否 |
+|---|---|---|
+| 並行 Beacon 採番衝突 | Argus-A 第 71/72 号 + 司令官 α adcc402 | 🔴 症状表現、却下(EVT-067 内記述として統合)|
+| **autonomy 適用境界規律不在** | Argus-B inbox 009 | ✅ **採択(真因表現、正規化)** |
+
+EVT-067 = autonomy 適用境界規律不在(機能等価未検証 + 物理 trace 省略 + ad-hoc バイパスのいずれか or 複合)。並行 Beacon 採番衝突は症状の一つ。
+
+#### Linked records
+
+- 関連先行 EVT: EVT-062(本 EVT で構造解釈訂正)+ EVT-067(本 EVT で命名統一)+ EVT-068-073(本セッション自己違反連鎖)
+- 関連発令: 第 62 次(EVT-062 引用)+ 第 67 次予定(本 EVT 訂正発令)+ 第 73 号(司令官 α 主席判定書、commander 側)
+- 関連物理装置: sync-archive-three-realm.ps1 v0.3(commit 06acc03 by Argus-B、既完遂)+ DO-COMMANDER-B-001 SUPERSEDED v1.1(commander 側、commit 6cbf4f4)
+- 哲学層: ガレージドクトリン §1.5(装置 vs 機能、本 EVT で物理事例第 4 例)+ 馴れ合い拒絶 3 原則第 2 項(自己違反受領)+ 系列 M AI over-engineering 偏向(装置精査浅薄も同型)
+- C 規律候補: C-1 機能等価未検証の削除/廃止判断は autonomy 範囲外 + C-2 装置統合時 Source/Destination/Filter 3 観点物理 trace + C-3 ad-hoc バイパス禁則
+
+#### Evolution history
+
+- 初版記録: 2026-05-01 午後(Day 129、Phase A 末、Argus-B inbox 009 + 司令官 α 主席判定経由)by 監督官 A(Argus、Clear 後新 instance)
+- 監督官 A 累積自己訂正: 累積 54 件(本 EVT 含む、本セッション 5 件目自己違反)
+
+---
+
 ### [2026-05-01 午後] EVT-20260501-073: 監督官 A M2.6-B 自動稼働確証認識ラグ — ArchiveSync/DreamCrystallize 自動稼働実績ゼロ認識は本日 02:55/03:00 で解消済 = 段階 2 進捗 40-50%認識訂正(60% 復元)= ハンドオフ §6 スナップショット時刻信頼の構造的限界(系列 I 20 件目候補、系列 J 7 件目候補、累積 53 件目自己訂正、本セッション 4 件目自己違反、ヤス指示「タスクスケジューラ依存せず次に進む」契機)
 
 **Severity**: 🔴 red(段階 2 進捗認識誤り = 司令官 α + 工場長 Castor への誤情報伝達リスク + ADR-009 §6 v1.4 + 議事録 v1.1 + 第 65 次発令の事実誤認)

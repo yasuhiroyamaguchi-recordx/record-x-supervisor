@@ -57,7 +57,7 @@
 | `pull-replies.ps1` | commander 応答取込 | ✅ | ❌ | ❌ |
 | `review-implementation.ps1` | 実装レビュー | 🟡 | ❌ | ❌ |
 | `snapshot-supervisor.ps1` | snapshot | 🟡 | ❌ | ❌ |
-| `sync-archive-three-realm.ps1` v0.3 | archive 三者同期 | ✅(B-line v0.3 改修済)| ❌ | ❌ | 維持 |
+| `sync-archive-three-realm.ps1` v0.3 | archive 三者同期 + B-line completion_report 着地経路吸収 | ✅(commit 06acc03 by Argus-B、本セッション開始前完遂、b_line/ destination + DO-COMMON/CITY/COMMANDER-B フィルタ + flatten copy)| ❌ | ❌ | 維持(EVT-074 訂正反映: B-001 機能完全吸収済 = 装置統合論の実装、Source 同じ + Destination 異なる構造)|
 | `sync-factory-pipeline.ps1` | factory pipeline 同期 | 🟡 | ❌ | ❌ |
 | `sync-orders.ps1` v1.x | 発令同期 | ✅ active | ❌ | ❌ | 維持 |
 | `sync-regional.ps1` | regional 同期 | 🟡 | ❌ | ❌ |
@@ -314,3 +314,4 @@ L1 集計: ✅0 / 🟡0 / ❌1 / 📚6
 
 - v0.1(2026-05-01): operations/ 配下のみ初回着手分
 - **v0.5**(2026-05-01 本セッション内圧縮、ヤス「すべて一日で終わらせる」指示採択): supervisor 全配下 71 装置 L1 集計 + L2 注目 10 装置深掘り + 監督官 A 二次解釈サマリ + 三社円卓議題提案。司令官 α + 工場長 Castor 棚卸し受領後、`three_realm_audit_final.md` v1.0 統合予定。
+- **v0.6**(2026-05-01 午後、EVT-074 候補認識訂正反映): sync-archive-three-realm.ps1 v0.3 改修(commit 06acc03 by Argus-B、本セッション開始前完遂)の改修内容深掘り反映 = B-001 機能完全吸収(b_line/ destination + フィルタ + flatten copy)= 装置統合論の物理装置化、Source 同じ + Destination 異なる構造。EVT-074 候補発覚契機(本セッション 5 件目自己違反、累積 54 件目)= supervisor 棚卸し v0.5 装置精査浅薄(L8 同型再発候補、ガレージドクトリン §1.5 物理事例第 4 例)。
