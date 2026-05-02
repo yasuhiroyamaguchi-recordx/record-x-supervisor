@@ -225,3 +225,4 @@ Phase B 完遂(Day 145 想定、約 16 日後)= Phase C 起動準備整備完遂
 ## §8. 改訂履歴
 
 - v1.0(2026-05-01 / Day 129、Phase A 末、本セッション午後): 初版起案、ヤス指示「Phase C も目指そう」採択 + 解釈 (ii) 完全自律 + 三者統合機能化 採択、Phase 体系再整理 + Phase C 仕様 + Phase B 統合 + 本日午後/夜/深夜マイルストーン + Phase C ロードマップ草案。第 8 回円卓(深夜開催)で正式採択判定。
+- **【SUPERSEDED】**(2026-05-02 PM、Day 130 PM、ヤス採択):本草案 = `staging/high_autonomy_roadmap_v1.0_draft.md` で **supersede**(史実保持、no_stasis_doctrine 整合)。称呼修正(完全自律 → 高度自律、EVT-090 規律強化 自己宣言 7)+ 三社円卓 第 5 + 第 6 回 v2 結果反映 + claude.ai 提案(プロンプト層 vs 環境層)統合 + Phase B 内部マイルストン B.1-B.10 拡張 + 環境層配備 1-6 計画統合。本草案は史実参照用として保全。
