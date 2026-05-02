@@ -2646,6 +2646,63 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
+### [2026-05-02 AM] EVT-20260502-091: 監督官 A orchestrator 依存性確認不足 — board_meeting_cli.ts 直接実行可能性大と発言、registerCommand 経由 = orchestrator 必須を未確認(EVT-089 同型継続、累積 67 件目、本日 17 件目、系列 J 19 + 系列 M 11 + ガレージ §1.5 第 16 例)
+
+#### Trigger
+
+監督官 A EVT-089 完全告白後、ヤス指示「即時、3 社円卓を」に対して board_meeting_cli.ts 起動経路を確認 → ヤス問い「円卓会議の指示手順を示せ」→ 監督官 A 物理層 read で `registerCommand('board-meeting', ...)` 経由 = orchestrator dispatcher 必須発覚 → 前回応答「board_meeting_cli.ts 直接実行可能性大」= 部分誤り認識
+
+#### Why it happened
+
+- EVT-089 完全告白直後、同型構造的盲点(物理層 query 不在)継続発生
+- registerCommand 設計 = orchestrator 起動時に登録 → board_meeting_cli.ts 単独実行不可、を **物理層 read 前に発言**
+- ヤス手順依頼 → 物理層 read → 真相発覚 = ヤス第三者視点経由でのみ自律発見 = 系列 J 19 件目連鎖継続
+
+#### Impact
+
+| 影響範囲 | 内容 |
+|---|---|
+| 自動三社円卓開催 | orchestrator.ts 修復(B-006)が **前提条件** = 本日中開催不可、修復完遂後即起動経路 |
+| 監督官 A 累積自己訂正 | 67 件目候補(本日 17 件目自己違反、本日連鎖最大ピーク更新)|
+| ガレージ §1.5 物理事例 | 第 16 例(本日 16 例最大ピーク更新)|
+| EVT-089 同型継続認識 | 物理層 query 不在 = 構造的盲点 = hook + MCP 物理装置化が真の解(claude.ai 提案 + zenn MCP 事例整合)|
+| dream_mode §1-B 整合 | コンテキスト溢出による誤判断の現れ = 2026-04-28 時点既予測 = 整流哲学整合 |
+
+#### Corrective action
+
+##### 即時対処(本ターン完遂)
+
+1. ✅ EVT-091 候補正式記録(本記録、累積 67 件)
+2. ✅ 第 85 次発令起案(削減運用規律 + claude.ai 提案 + MCP 統合 + 監督官 A 自己宣言適用宣言)
+3. 🟡 commit + ヤス手動 push
+
+##### 中期対処(Phase B 序盤〜中盤、検証期間 14 日内)
+
+4. 🟡 SessionStart hook + Capability Registry(claude.ai 提案、Phase B 序盤)= board_meeting CLI 含む全装置 alias→id 逆引き経路確立
+5. 🟡 capability_registry MCP(本提案、Phase B 中盤)= 装置依存性自動 query 装置
+
+#### 系列分類更新
+
+| 系列 | 累積 |
+|---|---|
+| J 自律発見能力低下 | **19 件**(過去最頻発記録更新継続) |
+| M AI over-engineering 偏向 | **11 例**(十一系統 = EVT-070/077/078/079/080/082/083/085/088/089/091)|
+| ガレージドクトリン §1.5 物理事例 | **第 16 例**(本日 16 例最大ピーク更新) |
+
+#### Linked records
+
+- 関連先行 EVT: EVT-089(物理装置同定誤り、本 EVT 同型継続)+ EVT-090(規範層 + 哲学層 query 不在、本 EVT 同型構造)
+- 関連物理装置: factory `record-x/factory/tools/commands/board_meeting_cli.ts`(registerCommand 経由)+ `orchestrator.ts`(jsonrepair 破損、B-006 修復対象)
+- 関連 ヤス指示: 「3 社円卓即時に」+「円卓会議の指示手順を示せ」(2026-05-02 AM)
+- 哲学層: dream_mode_doctrine §1-B「コンテキスト溢出による誤判断」既予測整合 + ガレージ §1.5 第 16 例 + 系列 M 第 11 例
+
+#### Evolution history
+
+- 初版記録: 2026-05-02 AM(Day 130、本セッション内、ヤス手順依頼経由訂正)by 監督官 A(Argus、Day 130 起動 instance)
+- 監督官 A 累積自己訂正: 累積 67 件(本 EVT 含む、本日 17 件目自己違反、本日連鎖最大ピーク更新)
+
+---
+
 ### [2026-05-02 AM] EVT-20260502-090: 監督官 A 規範層 + 哲学層 query 不在 — ロードマップ + 完全自律道筋 + 哲学層を記憶頼り運用、「完全自律可能」称呼は現状虚偽(累積 66 件目、本日 16 件目、系列 J 18 + 系列 M 10 + ガレージ §1.5 第 15 例 = 全層 query 不在の最深層真因)
 
 #### Trigger
