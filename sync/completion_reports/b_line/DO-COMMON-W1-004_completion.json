@@ -1,0 +1,88 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-W1-004",
+  "status": "merged",
+  "factory_id": "B",
+  "reported_at": "2026-05-01T02:40:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-05-01T02:10:00+09:00",
+    "ended_at": "2026-05-01T02:40:00+09:00",
+    "duration_minutes": 30,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 30
+  },
+  "merged_at": "2026-05-01T02:37:39+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/1012",
+  "merge_commit": "d93d063c7eb6d363f023dd153037e9853d4f9fd1",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/common/audit/README.md",
+    "record-x/common/audit/survey_report.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "verified_against": [
+    "ADR-030_Appendix_A_audit_row_line_344",
+    "ADR-030_Appendix_A_audit_implementation_lines_99_405",
+    "ADR-028_section_3_2_4_observability_gate",
+    "DO-COMMON-S-003",
+    "DO-COMMON-S-008",
+    "agenda_v0_2_F-1",
+    "agenda_v0_2_J",
+    "agenda_v0_2_B-1",
+    "ADR-029_retention_periods_table"
+  ],
+  "honest_declaration": {
+    "guessed_parts": [
+      "§1.1 specialist_consultations_ddl.sql / risk_checks_ddl.sql 列追加が consultation_logs に対する ALTER であることは care_db_pg_init.sql line 89+ の主スキーマ定義からの推論で、両 ddl は ALTER TABLE 単体スクリプトとして view 済だが、production DB 上の実適用順序(migration order)は未検証。",
+      "§3.1 Edu-RX 保存期間 5-20 年の幅は ADR-029 の記載をそのまま採用、学校保健安全法・指導要録規定の具体年数(教科による違い等)は本 DO で未調査、§5 / §9 候補 5 設計時に再確認要。",
+      "§9 候補 1-4 の規模見積 (correlation 200-350 行 / middleware 150-250 行 / logger 200-300 行 / redact_integration 200-400 行) は S-008 §6 の API スキーマ Draft からの暫定値、unit test 8-12 ケース等は範例見積で実装時 1.5-2 倍変動の余地あり。"
+    ],
+    "unread_originals": [
+      "該当なし。ADR-030 付録 A 全文 (line 99 / 122-128 / 341-347 / 402-408) を direct view、ADR-028 §3.2.4 (line 141-146) を direct view、ADR-029 §規制業界における非破壊性の要求水準 (line 30-46) を direct view、対話アジェンダ v0.2 議題 B-1 (line 78-105) / 議題 D §正副データ同期 (line 158-162) / 議題 F-1 (line 201-227) / 議題 J (line 312-337) を direct view、DO-COMMON-S-003 全 110 行 + DO-COMMON-S-008 全 237 行 view 済。"
+    ],
+    "needs_reverification": [
+      "§1.2 Factory ledger 系 (factory_events.ts / GEP / dispatcher / kairos_state_machine 等) を網羅列挙したが、tools/lib 配下の補助 ledger (impl_ticket / cli_docs_meta_guard 等) で audit 観点として並列扱いするか業務固有として除外するかは事業部長判断、§9 候補 3 起案時に再分類要。",
+      "§7.2 ハッシュチェーン PowerShell 実装 (calc_hash_prev.ps1 v0.1) の Linux Cloud Run 互換性は本 DO 未検証、Tax-RX 適用拡大時に .NET SHA-256 cross-platform 再現性 + JCS RFC 8785 完全準拠の v0.5 評価が前提となる。",
+      "§9 候補 5 (保管期間規約) の Wave 2 着手は tenant カテゴリ (W2-001) と並走前提だが、tenant 側の 5 階層 (税理士事務所→顧問先→取引先→個人→経営者一族) 設計確定が先行条件、議題 D + Tax-RX Phase 1 着手後 (Day 165-170 以降) 起案推奨。"
+    ]
+  },
+  "next_queue_judgment_inputs": {
+    "wave1_audit_extraction_scale": {
+      "correlation_ts_new": "3-4 files / 200-350 lines (S-008 §6-A 直接化、unit test 含む)",
+      "middleware_ts_new": "3-5 files / 150-250 lines (S-008 §6-B、http_dispatch.ts 組込 1 箇所)",
+      "logger_ts_new": "3 files / 200-300 lines (本体新設のみ、console.* 33 occurrences の段階移行は別 DO 5-10 件)",
+      "redact_integration_ts_new": "5-7 files / 200-400 lines (common/pii 連動 + AI 送信前自動マスキング)",
+      "retention_policy_ts_new": "5-8 files / 200-400 lines (Wave 2、tenant カテゴリ + Cloud SQL PITR 連動)"
+    },
+    "w1_audit_linkage_with_other_categories": [
+      "§4 pii masking 監査経路 → W1-002 §6.2 候補 5 (pii ↔ audit 連動 API) と統合起案推奨、redact_integration.ts (候補 4) で実装",
+      "§2 相関 ID 規約 → W1-003 候補 1 (security headers Common 移植) + 候補 2 (CSRF) で trace_id / span_id がエラー応答型に自動注入される連動経路、middleware.ts (候補 2) で物理化",
+      "§3 保管期間規約 → W2-001 (tenant) と並走、tenant 5 階層モデル確定後に retention.ts (候補 5) 起案",
+      "§7 ハッシュチェーン → Tax-RX Phase 1 着手後、`common/audit/hashchain.ts` 新設で calc_hash_prev.ps1 を TypeScript 移植 + JCS RFC 8785 v0.5 評価"
+    ],
+    "feat_priority_topics_for_director": [
+      "Wave 1 audit 4 module (correlation/middleware/logger/redact_integration) の起案順序: 候補 1 (correlation) 単独先行 → 候補 2 + 3 並列 → 候補 4 で統合、または候補 1-3 を 1 PR 統合(規模 5-12 files / 550-900 行) かの 2 案",
+      "console.* 33 occurrences の段階移行ポリシー: ファイル単位 1 PR (10-15 PR) vs ドメイン単位 1 PR (cockpit/care 1 PR / cockpit/factory 1 PR / cockpit/auth 1 PR)",
+      "W3C Trace Context 採用での既存 GEP correlation_id 後方互換: 別フィールド扱い (新規 trace_id 追加) vs 一本化 (correlation_id を W3C 32 文字 hex に格上げ + dual-write 期間)",
+      "redact_integration.ts の責務範囲: logger 前処理のみ vs HTTP リクエスト/レスポンス body redact + AI 送信前 redact の統合 (factory/tools/lib/redact.ts の Common 化判断含む)",
+      "保管期間規約の物理強制方法: Cloud SQL DELETE 禁止トリガー + GCS archive 自動移行 vs アプリ層 retention check + 期限超過行の archive_table 移送"
+    ]
+  },
+  "next_queue_recommendation": {
+    "remaining_b_line_backlog": [
+      "W2-001",
+      "W2-002",
+      "W2-003",
+      "W3-001",
+      "W3-002"
+    ],
+    "wave1_completion_status": "Wave 1 (types + pii + http + audit) 4 カテゴリ全 survey 完了、事業部長着任後の正式 feat/refactor 起案フェーズへ移行可",
+    "next_priority": "W2-001 (tenant survey) — Tax-RX 5 階層 + 保管期間規約 + ABAC の地盤、議題 D / 議題 F-1 / W1-004 §3 §9 候補 5 連動",
+    "session_context_used_pct": 30,
+    "session_capacity_remaining": "次キュー 2-3 本 (W2-001 / W2-002 / W2-003) を本セッション内で処理可能"
+  }
+}

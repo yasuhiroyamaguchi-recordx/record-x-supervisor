@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-W1-002",
+  "status": "merged",
+  "factory_id": "B",
+  "reported_at": "2026-05-01T01:25:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-05-01T00:30:00+09:00",
+    "ended_at": "2026-05-01T01:25:00+09:00",
+    "duration_minutes": 55,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 70
+  },
+  "merged_at": "2026-05-01T01:14:00+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/1010",
+  "merge_commit": "c46c1da00e24cf0f0b84adfd9d66402c171422de",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/common/pii/README.md",
+    "record-x/common/pii/survey_report.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "verified_against": [
+    "ADR-030_Appendix_A_pii_row",
+    "DO-COMMON-S-001",
+    "DO-COMMON-S-007"
+  ],
+  "honest_declaration": {
+    "guessed_parts": [
+      "§4 person_name 検出戦略 α/β/γ の精度・コスト評価は survey 主観(α=低精度・低コスト、β=高精度・facility scope 必要、γ=中精度・運用コスト高)。実測は事業部長着任後の評価チケットで検証要、本 survey では戦略選択肢提示に留める。",
+      "§7 候補 5(pii↔audit 連動 API)の影響規模 200-400 行は audit 側責務マトリクスを W1-004 確定後に再算出する前提の暫定値。"
+    ],
+    "unread_originals": [
+      "該当なし。ADR-030 付録 A 全文(line 331-460)は前 DO(W1-001 follow-up)で direct view 済、本 DO §5 で line 341 の pii 行を直接引用。FACTORY_LAWS 第 111 条も同様に既読。DO-COMMON-S-001(`docs/common/wave1_survey/pii_extraction_targets.md`)は §1-7 の起点として全文 view 済(80 行抜粋確認、6 観点散在調査全項目を本 DO §1-3 に統合)。S-007 は本 DO §7 候補 1 で 3 段階手順を直接化。"
+    ],
+    "needs_reverification": [
+      "§5 ADR-030 付録 A pii 責務マッピング 5/6 領域は付録 A 5 列のうち『業界別辞書』のみ Wave 範囲外と判定。事業部長着任後に Tax-RX(マイナンバー必須)/Edu-RX(児童特性辞書)視点で範囲再評価の余地あり。",
+      "§7 候補 1 の S-007 3 段階手順を直接化したが、S-007 文書本体は要約引用のみで全文 direct view せず。3 段階が現状コードで実行可能かは候補 1 の DO 起案時に再検証要。",
+      "§7 候補 4(purpose policy 昇格)で `pii-purpose-bridge.ts` の REGULATORY_CLEAR_TYPES + getDetectionsToMask を Common に移すと提案したが、`export-purpose.ts` 側の getPurposePolicy / pii_level / 'plaintext_encrypted' policy との分離点は未確定。Wave 1 着手時の境界判断要。"
+    ]
+  },
+  "next_queue_judgment_inputs": {
+    "wave1_pii_refactor_scale": {
+      "step1_import_replace": "6 files / 6 lines (test 含む 7 import 元から逆依存切替)",
+      "step2_git_mv_body": "1 file 移動 + index.ts re-export 配線(20-50 lines)",
+      "step3_delete_wrapper": "1 file 削除 + arch-gate 拡張",
+      "person_name_alpha": "2 files / 30-50 lines + テスト 5-10 ケース",
+      "my_number": "1 file / 10-20 lines + テスト 3-5 ケース",
+      "purpose_policy_promotion": "5-7 files / 100-150 lines",
+      "pii_audit_link": "10-15 files / 200-400 lines (W1-004 確定後)"
+    },
+    "w1_003_http_linkage_points": [
+      "現状の pii は HTTP 経路にトリガー無し(careHttpDispatch / aiResponseEngine 内で sanitizeForAI 呼出のみ)",
+      "Wave 1 で HTTP request body の自動 PII スキャン → audit 連動に発展する可能性、W1-003 http survey で確認要"
+    ],
+    "w1_004_audit_linkage_points": [
+      "本 DO §6 で 4 種監査イベント候補(pii.detected / pii.masked / pii.export / pii.backup_unmasked)列挙",
+      "W1-004 audit survey で audit 側の共通スキーマ確定 → Wave 1 候補 5 (pii↔audit 連動 API)で結合"
+    ],
+    "refactor_priority_topics_for_director": [
+      "person_name 検出戦略 α/β/γ の選択(α 単独 vs ハイブリッド)",
+      "purpose policy の Common 昇格範囲(`getPurposePolicy` を含むか / `export-purpose.ts` に留めるか)",
+      "業界別辞書の Wave 配置(Wave 1 拡張 vs Wave 2 別 DO)",
+      "deprecated `maskConsultationContent`(consultationMask.ts)削除タイミング(person_name α 完了後 vs 別 DO)"
+    ]
+  }
+}

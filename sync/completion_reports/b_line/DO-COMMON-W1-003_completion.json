@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "ticket_id": "DO-COMMON-W1-003",
+  "status": "merged",
+  "factory_id": "B",
+  "reported_at": "2026-05-01T01:55:00+09:00",
+  "implementation_session_meta": {
+    "started_at": "2026-05-01T01:30:00+09:00",
+    "ended_at": "2026-05-01T01:55:00+09:00",
+    "duration_minutes": 25,
+    "model_id": "claude-opus-4-7",
+    "context_used_pct": 82
+  },
+  "merged_at": "2026-05-01T01:40:43+09:00",
+  "pr_url": "https://github.com/yasuhiroyamaguchi-recordx/ProjectRX/pull/1011",
+  "merge_commit": "e9b8fb70ca0a1105f9028cafcdc5fb7c556cf198",
+  "branch_deleted": true,
+  "scope_actual": [
+    "Common"
+  ],
+  "files_changed": [
+    "record-x/common/http/README.md",
+    "record-x/common/http/survey_report.md"
+  ],
+  "tests_passed": true,
+  "linguistic_audit": "passed",
+  "verified_against": [
+    "ADR-030_Appendix_A_http_row_line_343",
+    "DO-COMMON-S-002"
+  ],
+  "honest_declaration": {
+    "guessed_parts": [
+      "§3 retry / timeout の HTTP 専用実装が 0 件と判定したが、grep ヒット 20+ ファイルから factory/tools/ の CI scheduling を除外する手作業判定。`AbortController` を `fetch()` の signal に渡すパターンが部分的に存在する可能性、PR レビューで再検証要。",
+      "§8 候補 2 (CSRF) の影響規模 300-500 行は middleware 配線 + cockpit-front fetch 共通呼出層改修を含む暫定値、設計選択(double-submit / origin check)で 1.5-2 倍変動の可能性。"
+    ],
+    "unread_originals": [
+      "該当なし。ADR-030 付録 A 全文は前 DO で direct view 済、§7 で line 343 http 行を直接引用。DO-COMMON-S-002 全文 view 済(91 行、5 観点散在調査)。"
+    ],
+    "needs_reverification": [
+      "§5 ad-hoc `send(400, {...})` の散在総数は W1-001 計測の `success/ok` 系 288 occurrences の一部として推測。HTTP 専用 ad-hoc エラー応答の正確な数は本 DO で個別計測せず、候補 4 起案時に再検証要。",
+      "§6 AppSheet Strangler Fig Cut-over 完了タイミングは Yasu 経営判断事項、survey 時点で未確定。Cut-over 完了 → sheetsWriteback.ts 縮退判断は Wave 1 範囲外で別 ADR 起案前提とした。",
+      "§8 候補 1 と候補 3 の起案順序(security headers 移植 vs 統一 client 新設)は survey 主観で候補 1 → 候補 3 推奨だが、事業部長判断で逆順序の余地あり(client.ts 新設後に security headers が client 経由で適用される設計も可)。"
+    ]
+  },
+  "next_queue_judgment_inputs": {
+    "wave1_http_extraction_scale": {
+      "security_headers_cors_migration": "5-7 files / 100-200 lines (移植 + import 置換 2 箇所)",
+      "csrf_new_implementation": "8-12 files / 300-500 lines (段階的)",
+      "unified_client": "3-5 files / 200-400 lines (新設のみ、置換は別 DO)",
+      "api_error_type_unify": "5-10 files / 200-400 lines (W1-001 連動)",
+      "tenant_header_auto_inject": "5-8 files / 150-300 lines (Wave 2 連動)"
+    },
+    "w1_004_audit_linkage_points": [
+      "§5 API エラー応答型統一は audit ログ連動と直結(エラー応答の trace_id / req_id 自動注入が audit カテゴリ範疇)",
+      "§2 CSRF 対策実装時、attack 検出ログが audit に流れる経路の設計連動(W1-004 確定後の候補 5 起案で本格設計)"
+    ],
+    "feat_priority_topics_for_director": [
+      "CSRF 対策設計選択(double-submit cookie vs origin check vs SameSite=Strict 自動方針)",
+      "統一 HTTP client の retry policy(指数 backoff の base/max retries、timeout の既定値 5s/15s/30s 範囲)",
+      "AppSheet Strangler Fig Cut-over 完了後の sheetsWriteback 縮退タイミング",
+      "tenant header 移行ポリシー(body/query 後方互換期間、Wave 2 着手時の方針)"
+    ]
+  },
+  "context_warning": {
+    "session_context_used": "82% 推定、本セッションで残り survey 0-1 本が現実的上限",
+    "next_session_handoff_recommended": true,
+    "remaining_b_line_backlog": [
+      "W1-004",
+      "W2-001",
+      "W2-002",
+      "W2-003",
+      "W3-001",
+      "W3-002"
+    ],
+    "argus_b_directive_001_007_alignment": "outbox _003.md §4 コンテキスト警告に整合、handoff 起案 → 次セッションで W1-004 から着手推奨"
+  }
+}
