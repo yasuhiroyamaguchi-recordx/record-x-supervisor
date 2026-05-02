@@ -2646,7 +2646,7 @@ CLAUDE.md §2.2 明記:「司令官・工場長への発令プロンプトは AI
 
 ---
 
-### [2026-05-02 AM] EVT-20260502-091: 監督官 A orchestrator 依存性確認不足 — board_meeting_cli.ts 直接実行可能性大と発言、registerCommand 経由 = orchestrator 必須を未確認(EVT-089 同型継続、累積 67 件目、本日 17 件目、系列 J 19 + 系列 M 11 + ガレージ §1.5 第 16 例)
+### [2026-05-02 AM] EVT-20260502-092: 監督官 A orchestrator 依存性確認不足 — board_meeting_cli.ts 直接実行可能性大と発言、registerCommand 経由 = orchestrator 必須を未確認(EVT-089 同型継続、累積 67 件目、本日 17 件目、系列 J 19 + 系列 M 11 + ガレージ §1.5 第 16 例)
 
 #### Trigger
 
