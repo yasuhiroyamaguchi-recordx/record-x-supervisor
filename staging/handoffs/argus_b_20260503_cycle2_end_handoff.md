@@ -55,8 +55,8 @@ mission: Common 地盤確立 第 3 サイクル(司令官 α 応答受領処理 
 | 2 | Wave 1 実装 GO 判定 | ✅ **本セッションヤス「承認」完遂** |
 | 3 | チケット起案 | ✅ 司令官 α 配備済(commit 323198e)|
 | 4 | factory 領域発行 | ✅ 同上 |
-| 5 | 工場長 Castor 自律実装 | 🟢 着手 GO(障壁ゼロ)|
-| 6 | Care 並行 PR 起案 | 🟢 着手 GO(障壁ゼロ)|
+| 5 | 工場長 Castor 自律実装 | 🟢 **進行中**(本日 5/3 朝 1 時時点 W1-T-002 + W1-026 + W1-027 + W2-004 merged、W1-T-003 + W1-T-004 BLOCKED)|
+| 6 | Care 並行 PR 起案 | 🟡 着手 GO(司令官 α 経由 Care 発信待機)|
 | 7 | Wave 1 P0 完遂判定 | 🟡 Step 5+6 完遂後 |
 
 ### 3-C. handoff §10 精度不足検出 2 件(構造的反省)
@@ -87,18 +87,29 @@ mission: Common 地盤確立 第 3 サイクル(司令官 α 応答受領処理 
 
 = **A-line + B-line 並行で本日 5/3 朝(0-1 時)= 司令官 α 応答処理 + Phase B 序盤起動正式宣言 + Wave 1 GO 転送 統合進捗**
 
-## 6. factory 側 Common merge レース成果(5/2 23:00 JST 〜 5/3 00:46 JST)
+## 6. factory 側 Common merge レース成果(5/2 23:00 JST 〜 5/3 01:08 JST、約 2.5 時間)
 
 | 区分 | PR 件数 | 中身 |
 |---|---|---|
 | Common Wave 1 skeleton | 7 件(W1-005/006/007/008/009/010/022/023/024)| types/pii/http/audit/logger/config/error 9 カテゴリ完成 |
-| Common Wave 1 本実装 | 2 件(W1-015 audit FileSink + W1-025 pii detector 9 種)| 本実装第 2 弾 |
+| Common Wave 1 本実装 | 4 件(W1-015 audit FileSink + W1-025 pii detector 9 種 + W1-026 pii masker + W1-027 http client retry)| 本実装第 4 弾 |
+| Common Wave 1 上層 branded ID | 1 件 merged(W1-T-002 Result)+ 2 件 BLOCKED(W1-T-003 Time + W1-T-004 UUID)| 4 種中 1 種 merged、2 種 arch-gate FAILURE 疑い |
+| Common Wave 2 skeleton | 1 件(W2-004 tenant skeleton)| TenantContext + RLS stub + 5 階層 |
 | arch-gate | 4 件(G-001/002/003/004)| Stage 1 warn + baseline + ESLint + CI 統合 |
 | Common Wave 3 survey | 2 件(W3-001 backup + W3-002 egress)| - |
 | Mirror + plan history | 2 件(#1050 plan files + #1051 mirror)| 史実保持 |
 | その他 | 1 件 | - |
 
-= **約 2 時間で 18 PR merge(7-9 分/PR)= 工場長 Castor 自律発見能力 第 5 例物理証拠**(系列 N 連続 5 例強化、A-line 第 105 次発令 §1 で正式記録依頼経路)
+= **約 2.5 時間で 22 PR merged + 2 PR BLOCKED(7-9 分/PR)= 工場長 Castor 自律発見能力 第 5 例物理証拠**(系列 N 連続 5 例強化、A-line 第 105 次発令 §1 で正式記録依頼経路)
+
+### 6-A. BLOCKED PR 2 件原因特定(本セッション末調査)
+
+| PR | チケット | mergeStateStatus | mergeable | 主因 |
+|---|---|---|---|---|
+| #1070 | W1-T-003 Time/Duration branded | BLOCKED | MERGEABLE | `Common arch-gate Stage 1 (warn)` **FAILURE**(同層依存違反疑い)+ `fast-gate` IN_PROGRESS + `Cursor Bugbot` IN_PROGRESS |
+| #1072 | W1-T-004 UUID/RecordId branded | BLOCKED | MERGEABLE | 同根可能性高(本セッション末未個別調査、第 3 サイクル要追跡)|
+
+= **conflict ではなく arch-gate Stage 1 警告ルール違反**(G-001/G-003 で導入された Common 同層依存禁止 ESLint カスタムルール起因疑い)、司令官 α + 工場長 Castor 主管原因特定 + 解消経路立案要請事項
 
 ## 7. 第 3 サイクル mission + 起動条件
 
