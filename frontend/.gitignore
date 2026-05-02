@@ -1,0 +1,3 @@
+# standalone 版 = 19MB 単一ファイル(変動派生物、JSX 群から再生成可能)= git LFS なしでは過大
+# 必要時はローカルでブラウザ直接開く or 別途 LFS 配備検討
+記録庁ダッシュボード_standalone.html

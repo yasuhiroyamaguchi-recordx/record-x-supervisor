@@ -1,0 +1,110 @@
+/* ========================================================================
+   記録庁ダッシュボード — 共通スタイル
+   モダンSaaS × 機関っぽさ。Linear/Notion系の整然とした余白と、
+   明朝体を見出しに使うことで「公的な機関」のトーン。
+   ======================================================================== */
+
+:root {
+  /* Neutrals — slightly warm, low chroma */
+  --bg:           oklch(0.985 0.003 80);
+  --bg-soft:      oklch(0.97 0.004 80);
+  --bg-panel:     oklch(1.00 0 0);
+  --bg-sunken:    oklch(0.955 0.004 80);
+  --line:         oklch(0.91 0.005 80);
+  --line-strong:  oklch(0.84 0.006 80);
+  --ink-1:        oklch(0.22 0.01 80);   /* 主見出し */
+  --ink-2:        oklch(0.36 0.01 80);   /* 本文 */
+  --ink-3:        oklch(0.52 0.008 80);  /* 補助 */
+  --ink-4:        oklch(0.68 0.006 80);  /* キャプション・薄字 */
+
+  /* Accent — 単一色相、彩度抑えめ。「機関」らしい紺寄り */
+  --accent:       oklch(0.48 0.10 250);
+  --accent-soft:  oklch(0.94 0.025 250);
+  --accent-ink:   oklch(0.32 0.08 250);
+
+  /* Status */
+  --ok:           oklch(0.62 0.12 155);
+  --ok-soft:      oklch(0.95 0.03 155);
+  --warn:         oklch(0.72 0.13 75);
+  --warn-soft:    oklch(0.96 0.04 80);
+  --crit:         oklch(0.58 0.18 25);
+  --crit-soft:    oklch(0.95 0.04 25);
+  --idle:         oklch(0.65 0.01 80);
+  --idle-soft:    oklch(0.94 0.005 80);
+
+  /* Typography */
+  --font-sans:    "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-serif:   "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Radii */
+  --r-sm: 4px;
+  --r-md: 6px;
+  --r-lg: 10px;
+  --r-xl: 14px;
+
+  /* Shadows */
+  --shadow-1: 0 1px 2px rgba(20, 20, 30, 0.04), 0 0 0 1px var(--line);
+  --shadow-2: 0 6px 24px rgba(20, 20, 30, 0.06), 0 0 0 1px var(--line);
+}
+
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink-1);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "palt", "kern";
+}
+
+button { font-family: inherit; cursor: pointer; }
+
+/* ── 共通プリミティブ ─────────────────────────────────── */
+
+.kira-mono { font-family: var(--font-mono); font-feature-settings: "tnum"; }
+.kira-serif { font-family: var(--font-serif); }
+
+.kira-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.kira-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: none;
+}
+.kira-dot.ok   { background: var(--ok); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok) 22%, transparent); }
+.kira-dot.warn { background: var(--warn); box-shadow: 0 0 0 3px color-mix(in oklab, var(--warn) 22%, transparent); }
+.kira-dot.crit { background: var(--crit); box-shadow: 0 0 0 3px color-mix(in oklab, var(--crit) 22%, transparent); animation: pulse 1.4s ease-in-out infinite; }
+.kira-dot.idle { background: var(--idle); }
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 3px color-mix(in oklab, var(--crit) 22%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in oklab, var(--crit) 8%, transparent); }
+}
+
+/* スクロールバー（控えめ） */
+.kira-scroll {
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+.kira-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.kira-scroll::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 4px; }
+.kira-scroll::-webkit-scrollbar-track { background: transparent; }
