@@ -44,6 +44,33 @@
 
 bypass 発動経路: ヤス明示承認 + 監督官 A → ヤスへ申請 + 完遂後 EVT 候補正式記録(透明性確保)。
 
+## permission-mode `acceptEdits`(2026-05-03 採択、Day 131 朝起動時 本セッション末)
+
+### 起源
+
+ヤス指示「カーソルではプロシード確認無く進めたから Claude Code も可能。最優先にしよう」(2026-05-03 早朝、本セッション末)契機。
+
+### 設定
+
+`.claude/settings.json` に `"permissions": { "defaultMode": "acceptEdits" }` 配備:
+- **編集系操作(Edit/Write/通常 Bash)= 自動承認**(プロシード壁解消、Cursor 流自律稼働)
+- **destructive 操作(force push / hard reset / DROP / --no-verify 等)= PreToolUse hook 経由 deny 強制継続**(安全網)
+
+= **二重防護完成**(自律速度 + 物理ガード)= Cursor を上回る安全性 + カーソル流速度
+
+### 速度予測
+
+| 段階 | 工場長 Castor 単独 1 日 PR 数 |
+|---|---|
+| 旧(プロシード壁あり) | 16-22 件 |
+| 新(プロシード壁解消) | 30-50 件(中央値想定) |
+| サブエージェント並列度向上後 | 60-100 件 |
+| 全体並走時 | 300-500 件(検収側追従可能なら) |
+
+### 三者横断同型展開
+
+supervisor(本配備)→ commander(司令官 α 主管、第 112 次発令経由依頼)→ factory(工場長 Castor、司令官 α 経由)= 議題 #13 三者横断同型展開深化 第 N 例
+
 ## 関連発令
 
 - 第 99 次(claude.ai 提案 6 件 + 設計素材 v0.1)
