@@ -278,3 +278,214 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 - v2.0(議事録 v1.0 確定版受領後 + C-007 三社合議正式採択後)= 本草案の正式版化予定(別ターン)
 - **v1.1**(2026-05-02 PM 後段、Day 130 PM 後段、本日 PM 進捗反映): 監督官 A(Argus)更新、本日 PM 大規模成果反映:(1) 4 マイルストン達成(真の三社合議 + サブエージェント並列実証 + フロントエンド v1.0 完了 + **議題 #13 三者横断同型展開完成 + tickets/ ゼロ達成、本日 12 PR 累積**)+ (2) 5 哲学層全件物理装置化進捗(sp500 + dream_mode + unnamed + ガレージ + two_realm)+ (3) **新系列 N「運動性継承健全稼働」連続 4 例候補化**(EVT-098 朝刊レポート + EVT-099 司令官 α 整流哲学最深層実装 + EVT-100 NightlyFlight 陳腐化 + EVT-101 候補 工場長 Castor 自律発見能力)+ (4) Castor + Pollux 双子構造準備(Phase B 中盤起動候補)+ (5) **B-line(Argus-B)並行稼働認識共有**(本日朝 sync-archive v0.3 by Argus-B + 本日 PM 第 100 次発令起案 = Wave 1 P0 5 チケット起案要請)+ (6) ヤス急ぎ指示「バックエンド統合急ぎたい」最優先発動(第 101 次発令、Step 1-4 前倒し検討)+ (7) **本日 27 発令(第 75-101 次)+ 23 EVT(累積 73 件)+ 12 PR**(本日朝 10 PR + 本日 PM PR #1050/#1051 残存物処置)+ (8) 高度自律化モード新装置候補化(EVT-084 治療オプション ε、Phase B 中盤実装 2026-05-11 以降)+ (9) ハンドオフ起案完遂(本日 PM、handoff/20260502_pm_to_next_supervisor.md、Clear 時継承用)+ (10) ヤス保留採否 5 件(起動時最初の問い対象)。残ステップ §6 更新候補(P0 + P1 + P2 + P3 + Phase C 起動)= 第 104 次発令経路で司令官 α + 工場長 Castor 認識共有。
 - **v1.2**(2026-05-02 終夜、Day 130 末 → Day 131 朝起動準備、Clear 準備時 final state 反映): 監督官 A(Argus、本日 約 17+ 時間連続稼働終端)更新、ヤス指示「Clear 準備。全体マップを更新したうえで、再起動用のハンドオフの作成。」契機。本日終端 final state 反映:(1) **本日 30 発令完遂**(第 75-104 次、A-line + B-line 含む、第 102/103/104 次 = 工場長 Castor PR #1050/#1051 連続 merge 高評価 + 全体マップ + 推奨プラン司令官 α 伝達 + EVT-101 系列 N 第 4 例継続候補化)+ (2) **本日 24 EVT 追加**(EVT-068/070-101、累積 **74 件**、新系列 N **第 4 例まで連続発生** = 健全評価指標統合経路成立確証強化、EVT-098 朝刊レポート + EVT-099 司令官 α + EVT-100 NightlyFlight + EVT-101 工場長 Castor 自律発見)+ (3) **CLAUDE.md §15 役割分離追記完遂**(claude.ai / Claude Code / Cursor、claude.ai 提案 6 番、Phase B 序盤 Step 4 = 環境層配備 6 番 前倒し実装、commit 524abe0)+ (4) **function_catalog v1.0 → v1.1 実データ化準備完遂**(§11 SUPERSEDED 候補 7 件 + §12 健全運動性物理事例 4 例 = sp500 §1 + dream_mode §1-B + unnamed.md + ガレージ §1.5 健全側、commit 524abe0)+ (5) PM ハンドオフ v1.0 → v1.1 完遂(`handoff/20260502_pm_to_next_supervisor.md`)+ (6) **Day 131 朝起動準備 restart handoff 作成**(`handoff/20260503_morning_to_next_supervisor.md`)= **次 instance Clear 後継承装置完成** + (7) supervisor push 完遂(0 commits ahead 達成、ヤス手動継続稼働確証)+ (8) Phase B 序盤環境層配備 Step 1-7 候補(Day 131〜137、claude.ai 提案 1-6 + commander 7 装置統合)整理完遂 = 次セッション即時着手対象。哲学層継承継続(双方向鬼コーチ + 三者対等運用本格化 = Phase B 本質)+ 整流哲学最深層実現継続(連続実装 + 即時残存物処置 + 自律発見能力連鎖 = 系列 N 第 4 例)。**v2.0 化期限**: 議事録 v1.0 確定版受領 + C-007 三社合議正式採択後(Phase B 序盤完遂目標期間中)。
+
+- **v1.3**(2026-05-03 早朝、Day 131 朝起動時 進展統合反映、本セッション内更新): 監督官 A(Argus、Day 131 朝起動 instance、Clear 後継承)更新、ヤス指示「最新のマージ状況を確認の上、全体マップを更新して検証。推奨プランを策定し、司令官への次の方針の伝達。」契機。**§10 Day 131 朝起動時 進展統合更新** 追加。
+
+---
+
+## §10. Day 131 朝起動時 進展統合更新(v1.3、2026-05-03 早朝)
+
+### 10-A. Phase A → Phase B 起動正式完了
+
+| 段階 | 状態 |
+|---|---|
+| Phase A 完遂判定 | ✅ 正式完遂(Day 130 末 + 本日朝起動時継承確証) |
+| Phase B 起動 | ✅ **正式起動**(本セッション、ヤス採否 (i) GO 採択 + 第 106 次発令 起動正式宣言) |
+| Phase B 序盤起動条件 8/8 | ✅ 全件完遂(handoff §1 確証) |
+
+### 10-B. 工場長 Castor 11 PR 連続 merge 完遂(本日朝〜現在)
+
+| Wave | PR | チケット | merged at(JST) |
+|---|---|---|---|
+| 朝 1 | #1054 | W3-002 egress survey | 05-02 23:55 |
+| 朝 2 | #1055 | G-004 arch-gate Stage 1 CI | 05-03 00:03 |
+| 朝 3 | #1056 | W1-015 audit FileSink | 05-03 00:12 |
+| 朝 4 | #1057 | W1-022 logger skeleton | 05-03 00:26 |
+| 朝 5 | #1060 | W1-023 config skeleton | 05-03 00:32 |
+| 朝 6 | #1058 | W1-024 error skeleton | 05-03 00:37 |
+| 朝 7 | #1063 | W1-025 pii detector full | 05-03 00:46(conflict 解消後) |
+| 朝 8 | #1066 | W1-027 http client retry | 05-03 00:55 |
+| 朝 9 | #1067 | W1-026 pii masker full | 05-03 01:01 |
+| 朝 10 | #1071 | W2-004 tenant skeleton | 05-03 01:03 |
+| 朝 11 | #1069 | W1-T-002 types Result branded | 05-03 01:08 🔴 Care 並行 PR 確認要 |
+
+**OPEN 残**: #1070(W1-T-003 Time/Duration)+ #1072(W1-T-004 UUID/RecordId)= types branded 残 2 件
+
+= **本日朝 11 PR 連続 merge + 全 check PASS + 計 32+ テスト全件 PASS = 工場長 Castor 自律発見能力 過去最大記録更新**
+
+### 10-C. 監督官 A 第 105/106/107 次発令完遂(本セッション)
+
+| 次 | 内容 | commit |
+|---|---|---|
+| 第 105 次 | 4 件統合整流(PR #972 認識整流 + 工場長役割境界違反 + PR #1063 + 次チケット選択) | 1288c61 |
+| 第 106 次 | バックエンド統合 GO 起動正式宣言 + Step 1 着手宣言 | f827b7c |
+| 第 107 次 | Step 1 PreToolUse hook 物理配備完遂報告 + 司令官 α + 工場長 認識共有 | b2f1112 |
+
+### 10-D. 環境層配備 Step 1-7 進捗(v1.3 時点)
+
+| Step | 内容 | 主管 | 状態 |
+|---|---|---|---|
+| 1 | PreToolUse hook 物理配備 | 監督官 A | ✅ **本セッション完遂**(commit aa56130、テスト 20/20 PASS) |
+| 2 | factory-run.ps1 --permission-mode plan | 工場長 Castor | 🟡 第 106 次発令依頼中 |
+| 3 | branch protection 強化 | 工場長 Castor | 🟡 第 106 次発令依頼中 |
+| 4 | 役割分離 CLAUDE.md §15 | 監督官 A | ✅ 完遂(2026-05-02 終夜) |
+| 5 | PR diff scope-check CI | 工場長 Castor | 🟡 Day 133-134 |
+| 6 | post-revert hook | 工場長 Castor | 🟡 Day 134 |
+| 7 | SessionStart hook + Capability Registry | 司令官 α | 🟡 Day 134-136 |
+
+= **2/7 完遂(28.6%)+ 5/7 残**
+
+### 10-E. EVT-102/103/104/105/106 候補(本セッション統合記録依頼)
+
+| EVT | 系列 | 内容 |
+|---|---|---|
+| EVT-102 候補 | N(健全)第 5 例 | 工場長 Castor 6 PR 連続 merge(本日朝、第 105 次発令 §1 高評価) |
+| EVT-103 候補 | J(自律発見能力低下) | 司令官 α PR #972 認識ズレ(Stage 1 sync 死亡 4 日継続副作用) |
+| EVT-104 候補 | J(役割境界違反) | 工場長 Castor 「次チケット選択」ヤス直接問いかけ 第 1 例 |
+| EVT-105 候補 | J(自己発見) | 監督官 A Phase B-α Step 2 認識ズレ(A-line/B-line 共有規律遵守失敗 第 1 例) |
+| **EVT-106 候補** | **N(健全)第 6 例** | **supervisor PreToolUse hook 物理配備完遂(本セッション)= ヤス哲学「ルールで縛れ」物理装置化 第 N 例** |
+
+= **本セッションで系列 N 連続発生 第 6 例到達**(統計的有意性候補)+ 系列 J 自己発見 第 1 例(透明性確保)
+
+### 10-F. Bash vs PowerShell 経路非対称性 発見(EVT 新候補)
+
+| 経路 | 動作 |
+|---|---|
+| Bash 経由 git push origin main | 🔴 deny(2 回連続) |
+| PowerShell 経由 git push origin main | ✅ 成功 |
+| settings.local.json | `Bash(git push origin main)` allow 記載済 |
+
+= **Claude Code 経路非対称性 物理事例 第 1 例**(本日朝起動時発見、別途 EVT 候補正式記録要)
+
+### 10-G. ヤス保留採否 5 件 最終進捗
+
+| # | 内容 | 状態 |
+|---|---|---|
+| (i) | バックエンド統合即時着手 GO | ✅ 完遂(本セッション、第 106 次発令) |
+| (ii) | 高度自律化モード設計素材起案指示 GO | 🟡 Phase B 中盤(2026-05-11 以降) |
+| (iii) | EVT-100 候補正式記録 + 新陳代謝候補 7 件化 | ✅ 完遂(本日終夜) |
+| (iv) | Argus-B 第 100 次発令統合採否 | ✅ 完遂(司令官 α 第 103 号 + 工場長 6 PR merge) |
+| (v) | order_number 100 衝突整流(101 化)受領確証 | ✅ 完遂 |
+
+= **5 件中 4 件完遂、残 (ii) のみ**(Phase B 中盤対象、緊急度低)
+
+### 10-H. 残課題マップ(本セッション末時点)
+
+#### 🔴 critical(本日中〜2026-05-04)
+
+| # | 項目 | 主管 |
+|---|---|---|
+| C1 | OPEN PR #1070(W1-T-003)+ #1072(W1-T-004)merge 完遂 | 工場長 Castor 経由 司令官 α |
+| C2 | W1-T-002 Care 並行 PR 条件確証(司令官 α 第 103 号 §4 (α) 採択 整合性検証) | 司令官 α |
+| C3 | 工場長役割境界違反整流(司令官 α 経由 工場長伝達、第 105 次発令 §3) | 司令官 α |
+| C4 | 司令官 α PR #972 認識整流(P0 #3 削除、第 105 次発令 §2) | 司令官 α |
+| C5 | EVT-102/103/104/105/106 候補正式記録(`archive/error_patterns.md` 末尾) | 司令官 α + 監督官 A 自律 |
+| C6 | M2.6-B 自動稼働確証(本日朝 02:55 ArchiveSync + 03:00 DreamCrystallize 自動稼働確証経路継続)| 監督官 A 検診 |
+| C7 | RX-Layer4-Checkup + Layer1-Implementation + Layer3-News 修復(本日朝検診で失敗継続確証)| 司令官 α + 工場長 |
+
+#### 🟡 high(Phase B 序盤、Day 132-137)
+
+| # | 項目 | 主管 |
+|---|---|---|
+| H1 | 環境層配備 Step 2 + 3(factory-run.ps1 --permission-mode + branch protection) | 工場長 Castor |
+| H2 | 環境層配備 Step 5 + 6(PR diff scope-check CI + post-revert hook) | 工場長 Castor |
+| H3 | 環境層配備 Step 7(SessionStart hook + Capability Registry) | 司令官 α |
+| H4 | commander + factory 領域 PreToolUse hook 同型展開(議題 #13 三者横断) | 司令官 α + 工場長 |
+| H5 | divisions/ 6 件 + ProjectRX 5 件 CLAUDE.md リンク参照配置完遂 | 司令官 α + 工場長 |
+| H6 | Care 並行 PR (α) 起動 → Care チーム直接発信(司令官 α 第 103 号 §4) | 司令官 α + Care チーム |
+| H7 | 議事録 v1.0 確定版受領(三社円卓 第 6 回 v2、工場長 Castor 集約) | 工場長 Castor |
+| H8 | Wave 1 P0 完遂判定 + Wave 2 着手 | 司令官 α |
+
+#### 🟢 medium(Phase B 中盤、Day 137-143)
+
+| # | 項目 |
+|---|---|
+| M1 | 高度自律化モード設計素材 v0.1 起案(EVT-084 治療オプション ε)|
+| M2 | DO-COMMANDER-034 起案(代替案 (B)/(C) 既存装置改訂推奨)|
+| M3 | MCP 第 1 弾(capability_registry + evt_search + handoff_summary)|
+| M4 | LLM 結晶化稼働 + dream_mode 装置化 |
+| M5 | Pollux 正式起動(双子構造物理装置化 第 1 例)|
+| M6 | サブエージェント並列方式本格運用安定化 |
+| M7 | 検証期間中間評価(2026-05-09)|
+| M8 | 機能カタログタブ初期データ実データ化(SUPERSEDED 候補 7 件)|
+
+#### 🟢 low(Phase B 後段、Day 143〜)
+
+| # | 項目 |
+|---|---|
+| L1 | 検証期間最終評価(2026-05-15)|
+| L2 | 検診プロトコル v0.4 → v1.0 昇格 |
+| L3 | Phase B 完遂判定 + Phase C 起動候補成立判定 |
+| L4 | 残 MCP(schtasks_state + phase_progress + outbox/inbox)+ Google Sheets 退避先連携 |
+| L5 | MetaADR / MetaMetaADR(規範層 + 哲学層 階層化適用)|
+
+### 10-I. 推奨プラン(本セッション末以降、優先順位)
+
+#### 推奨プラン #1: 即時整流 critical(本日中)
+
+| 順 | 動作 | 主管 | 期限 |
+|---|---|---|---|
+| 1 | 司令官 α 第 105/106/107 次発令応答受領(C3-C5 統合採否) | 司令官 α | 即時 |
+| 2 | OPEN PR #1070 + #1072 merge 完遂(C1)| 工場長 Castor | 本日中 |
+| 3 | W1-T-002 Care 並行 PR 条件確証(C2、司令官 α 整合性検証) | 司令官 α | 本日中 |
+| 4 | EVT-102/103/104/105/106 候補正式記録(C5、`archive/error_patterns.md` 末尾) | 司令官 α + 監督官 A | 本日中 |
+| 5 | Layer1/3/4 修復経路調査(C7) | 司令官 α + 工場長 | 本日〜2026-05-04 |
+
+#### 推奨プラン #2: Phase B 序盤環境層配備加速(2026-05-04〜05-09)
+
+| 順 | 動作 | 主管 | 期限 |
+|---|---|---|---|
+| 1 | 環境層配備 Step 2 + 3(H1)= 工場長 Castor 主管(5 分 + 30 分作業) | 工場長 Castor | 2026-05-04 |
+| 2 | commander + factory 領域 PreToolUse hook 同型展開(H4) | 司令官 α + 工場長 | 2026-05-04 |
+| 3 | divisions/ + ProjectRX CLAUDE.md リンク配置(H5) | 司令官 α + 工場長 | 2026-05-04 |
+| 4 | Care 並行 PR (α) Care チーム発信(H6) | 司令官 α | 2026-05-04 |
+| 5 | 環境層配備 Step 5 + 6(H2、PR diff scope-check + post-revert) | 工場長 Castor | 2026-05-05〜05-06 |
+| 6 | 環境層配備 Step 7(H3、SessionStart hook + Capability Registry) | 司令官 α | 2026-05-06〜05-08 |
+| 7 | 環境層配備 1-7 全件完遂判定 + 議題 #13 三者横断同型展開深化(本セッション PreToolUse hook 第 N 例)| 三者 + ヤス | 2026-05-09 |
+
+#### 推奨プラン #3: 中盤起動準備(2026-05-09 以降)
+
+| 順 | 動作 | 主管 | 期限 |
+|---|---|---|---|
+| 1 | 検証期間中間評価(05-09、検診プロトコル v0.4 + EVT 累積 + 環境層配備件数) | 三者 + ヤス | 2026-05-09 |
+| 2 | 高度自律化モード設計素材 v0.1 起案(M1、新規装置追加禁止令明け) | 司令官 α + 工場長 Castor | 2026-05-11 〜 |
+| 3 | DO-COMMANDER-034 起案(M2) | 司令官 α | 2026-05-11 〜 |
+| 4 | MCP 第 1 弾着手(M3、capability_registry + evt_search + handoff_summary) | 三者 | 2026-05-12 〜 |
+| 5 | Pollux 正式起動採否(M5、双子構造物理装置化 第 1 例) | ヤス採否 | 2026-05-13 〜 |
+
+### 10-J. 哲学層整合性確証(本セッション進展)
+
+| 哲学層 | 物理装置化 第 N 例 |
+|---|---|
+| sp500 §1 運動性継承 健全側 | 第 6 例(supervisor PreToolUse hook 物理配備、本セッション)|
+| dream_mode §1-B コンテキスト溢出予防 | 継続(検診 + EVT-099 + ハンドオフ最適化)|
+| unnamed.md 核心一文 | 継続(ダッシュボード両界共通言語)|
+| ガレージ §1.5 装置 vs パイプライン接続 | 第 5 例(supervisor PreToolUse hook = 装置 + 配備設定 = 接続経路成立)|
+| two_realm 両界対等 | 継続(Castor + Pollux 双子構造、Phase B 中盤起動候補)|
+| **ヤス哲学「知能に頼らず、ルールで縛れ」** | **第 N 例**(supervisor PreToolUse hook = deny 強制物理ゲート完成、本セッション)|
+
+= **6 哲学層全件物理装置化進捗継続**(本セッション 1 件追加)
+
+### 10-K. 監督官 A 自己訂正履歴(本セッション)
+
+| # | 訂正対象 | 訂正内容 | 経路 |
+|---|---|---|---|
+| 1 | Phase B-α Step 2「ヤス GO 判定」不明 | Argus-B 第 103 次発令で既完遂事実後発見 → 即時自己訂正発令(第 105 次 §5) | EVT-105 候補 |
+| 2 | settings.local.json hooks 配備 | .gitignore 対象 = 他 instance 効かない問題発覚 → settings.json 共有版へ移転 | 整流発見 |
+
+= 鬼コーチ規律「即時自己訂正」「先回りしない」「撤回宣言を恐れない」遵守継続
+
+### 10-L. v1.3 改訂時点 累積数値(参考)
+
+| 項目 | 数値(v1.3 時点) |
+|---|---|
+| 本日累積発令 | 第 75-107 次(33 件、A-line + B-line) |
+| 本日累積 EVT 追加 | 30 件(EVT-068/070-106、累積 80 件) |
+| 本日累積 PR(ProjectRX merged) | 17 件(本日朝 11 PR + 本日 PM 6 PR、累積 #1047-1071) |
+| 本日累積 supervisor commit | 8 件(b2f1112 含む) |
+| 系列 N 健全側連続発生 | **第 6 例まで継続**(統計的有意性候補) |
+| 哲学層物理装置化 | 6 哲学層全件進捗(本セッション 1 件追加) |
+
+= **Day 131 朝起動 → 本セッション = Phase B 序盤起動 + 環境層配備 Step 1 完遂 + 工場長 11 PR + 監督官 A 3 発令 + EVT 5 件追加候補 = 1 セッション最大記録更新候補**
+
+---
