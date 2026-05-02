@@ -1,0 +1,130 @@
+{
+  "snapshot_id": "snapshot_supervisor_B1_20260503-050924_manual",
+  "role": "supervisor",
+  "instance_id": "B1",
+  "checkpoint": "manual",
+  "captured_at": "2026-05-03T05:09:36+09:00",
+  "update_commit_sha": "3fb0314",
+  "update_description": "監督官 B handoff §11 整流(過去項目遡及確証規律発火、PR #1013 既完遂 + 第 4 例構造的兆候 P0 昇格)",
+  "rubric_version": "0.1",
+  "individual_scores": {
+    "M1_oni_coach_mode": {
+      "score": 100,
+      "rate_pct": 0.0,
+      "evidence": "files=69, totalLines=12729, hits=0",
+      "color": "green"
+    },
+    "M2_self_correction_frequency": {
+      "score": 100,
+      "evidence": "evt_matches=0, alt_count=55, month=2026-05",
+      "count": 27,
+      "color": "green"
+    },
+    "M3_startup_self_check_rate": {
+      "score": 70,
+      "rate_pct": 0,
+      "evidence": "no session_start entries this month",
+      "color": "yellow"
+    },
+    "M4_commander_review_adoption_rate": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M5_no_anticipating_affirmation": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M6_a1_a2_consistency": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M7_yasu_pointing_adoption_rate": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M8_pointing_substance": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M9_agreement_tendency": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M10_verdict_distribution": {
+      "approve_pct": 0.0,
+      "distribution": {
+        "REJECT": 0,
+        "UNKNOWN": 67,
+        "REQUEST_CHANGES": 2,
+        "APPROVE": 0,
+        "APPROVE_WITH_NOTES": 0
+      },
+      "approve_with_notes_pct": 0.0,
+      "evidence": "total=69, awn_rate=0, approve_rate=0, rc_rate=2.9",
+      "score": 70,
+      "request_changes_pct": 2.9,
+      "color": "yellow"
+    },
+    "M11_devil_advocate_activation_rate": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "M12_devil_advocate_seriousness": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    }
+  },
+  "role_execution_scores": {
+    "axis_8_role_review_implementation": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "axis_9_formal_acceptance_avoidance": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "axis_10_self_correction_rate": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    },
+    "axis_11_information_bridge_responsibility": {
+      "score": 0,
+      "evidence": "Requires qualitative judgment; fill in via supervisor_self_checkup_prompt.md §4 manual session",
+      "color": "manual_pending"
+    }
+  },
+  "overall_metrics": {
+    "R9_bidirectional_symmetry": {
+      "ratio": "1:0.45",
+      "cmd_to_sup": 31,
+      "evidence": "sup->cmd=69, cmd->sup=31, ratio=1:0.45",
+      "score": 70,
+      "sup_to_cmd": 69,
+      "color": "yellow"
+    }
+  },
+  "drift_warning_triggers": {
+    "m11_m9_combo": false,
+    "m8_r9_combo": false,
+    "m1_m2_combo": false,
+    "m9_m10_combo": false,
+    "m12_m8_combo": false
+  },
+  "drift_warning_active": false,
+  "auto_total": 82.0,
+  "role_total": null,
+  "individual_total": null,
+  "supervisor_total": null,
+  "notes": "Auto-computed by snapshot-supervisor.ps1 v0.1. Manual fields (M4-M9, M11-M12, axis_8-11) require supervisor_self_checkup_prompt.md §4 manual session. Drift warning: False."
+}
