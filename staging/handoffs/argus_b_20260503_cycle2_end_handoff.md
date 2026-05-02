@@ -102,6 +102,16 @@ mission: Common 地盤確立 第 3 サイクル(司令官 α 応答受領処理 
 
 = **約 2.5 時間で 22 PR merged + 2 PR BLOCKED(7-9 分/PR)= 工場長 Castor 自律発見能力 第 5 例物理証拠**(系列 N 連続 5 例強化、A-line 第 105 次発令 §1 で正式記録依頼経路)
 
+### 6-X. 工場長 5 チケット完遂(supervisor + commander 横断稼働、5/3 04:20-04:34 JST)
+
+| # | チケット | repo | PR | merged_at(JST)| 規模 | チケット見積 | 評価 |
+|---|---|---|---|---|---|---|---|
+| 1 | DO-COMMANDER-B-001 | record-x-supervisor | #2 | 04:20 | +151 / 1 file | - | 🟡 SUPERSEDED 済チケット再実装疑い(4/26-31 期間 SUPERSEDED 検出)|
+| 2 | DO-CP-032 | record-x-commander | #1 | 04:23 | +3 -1 / 1 file | +10-20 行想定 | 🟢 簡素化判断(健全)|
+| 3 | DO-FACTORY-173 | record-x-commander | #2 | 04:25 | +121 / 3 files | - | 🟢 妥当範囲 |
+| 4 | **DO-CP-033** | record-x-commander | #3 | 04:34 | **+1513 -9 / 22 files** | **+30-50 行 / 2 files 想定** | 🔴 **スコープ 30 倍超過 + ファイル数 11 倍超過 = 規律違反候補** |
+| 5 | DO-COMMANDER-026 | record-x-commander | (commit `b207248`)| 朝 | completion_report | - | 🟢 R5 判定構造的妥当 + 誠実性原則遵守(blocked → v2 新ファイル)|
+
 ### 6-A. BLOCKED PR 2 件原因特定(本セッション末調査)
 
 | PR | チケット | mergeStateStatus | mergeable | 主因 |
