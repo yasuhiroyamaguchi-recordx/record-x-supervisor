@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File .claude/hooks/pretooluse_breaker_block.ps1"
+          }
+        ]
+      }
+    ]
+  }
+}
