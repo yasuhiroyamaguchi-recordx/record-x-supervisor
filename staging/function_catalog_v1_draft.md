@@ -172,3 +172,27 @@ Plan-First 物理事例第 1-11 例本日連鎖 = 過剰加速リスク = 検証
 ## §10. 改訂履歴
 
 - v1.0(2026-05-02 / Day 130 AM): 監督官 A(Argus)起案、ヤス Mamaz 報奨金ルール全文素材直接受領経由起案、議題 #5 採否対象。Mamaz 報奨金制度同型 7 セクション構造(目的 + 制度導入背景 + 達成度別評価 + 補正運用 + Q&A + 算定例 + 自動復旧)+ 三者統合 weighted_average + 個別評価 50-80% + 検証期間外条件 + 補正ポイント運用(速度 ≠ 規律対処)+ コントロールパネル v2.0 + 検診 v0.4 §7-G 連動。EVT-083 起源(検証期間 1 日目発生 = 規律装置完成 ≠ 規律機能の物理証拠)。
+- **v1.1**(2026-05-03 朝 / Day 131 朝、本日 PM 実データ化準備): 監督官 A(Argus)更新、ヤス指示「推奨順にすすめて」契機。SUPERSEDED 候補リスト確定 7 件(EVT-098 朝刊レポート + EVT-100 NightlyFlight + supervisor invoke-board-council v0.1 + phase_c_roadmap v1.0 + no_stasis_doctrine v0.1 + ADR-010 + starter_checklist v0.2)+ 健全運動性物理事例リスト確定 4 例(EVT-098/099/100/101、新系列 N 連続 4 例、機能カタログタブ「健全運動性物理事例」リスト統合候補)+ Phase B 中盤実装フェーズで初期データ実データ化(現状サンプルデータ → 本物 SUPERSEDED 候補 + 健全事例置換)。
+
+## §11. SUPERSEDED 候補リスト(本日経験、Phase B 中盤実データ化候補)
+
+| # | 旧装置 | 後継装置 | 起源 EVT |
+|---|---|---|---|
+| 1 | 朝刊レポートメール配信(factory 初期機能)| ダッシュボード(本日 PM フロントエンド v1.0)| EVT-098 |
+| 2 | supervisor invoke-board-council.ps1 v0.1(skeleton 手動)| factory board_meeting CLI(自動 3AI)| EVT-089 整流 |
+| 3 | phase_c_roadmap_draft_v1.0.md | high_autonomy_roadmap_v1.0_draft.md(本日 PM)| - |
+| 4 | no_stasis_doctrine.md v0.1-draft | dream_mode_doctrine.md v1.0-draft(既 supersede)| - |
+| 5 | ADR-010(三者統合コックピット)| コントロールパネル v2.0 + ダッシュボード(議題 #3 採択 + revived)| - |
+| 6 | starter_checklist v0.2 | starter_checklist v0.3(議題 #13、本日 DO-COMMANDER-033 + DO-FACTORY-168 完遂)| - |
+| 7 | RecordX_NightlyFlight | 高度自律化モード(ヤス提案、Phase B 中盤実装候補)| EVT-100 |
+
+## §12. 健全運動性物理事例リスト(新系列 N、本日連続 4 例)
+
+| 例 | 中身 | 主体 |
+|---|---|---|
+| 第 1 例 EVT-098 | 朝刊レポート SUPERSEDED(sp500 §1 物理事例第 1 例)| ヤス気付き |
+| 第 2 例 EVT-099 | 司令官 α 整流哲学最深層実装(dream_mode §1-B 直接適用第 1 例)| 司令官 α 自律 |
+| 第 3 例 EVT-100 | NightlyFlight 陳腐化(sp500 §1 物理事例第 3 例)| 工場長 Castor + ヤス |
+| 第 4 例 EVT-101 | 工場長 Castor 自律発見能力連続実例(系列 J 改善物理証拠継続) | 工場長 Castor 自律 |
+
+= **連続 4 例 = 健全評価指標統合経路成立確証強化**(検診 §7-G 拡張候補、Phase B 中盤)
