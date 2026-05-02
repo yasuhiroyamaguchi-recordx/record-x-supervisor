@@ -227,18 +227,19 @@ mission: Common 地盤確立 第 3 サイクル(司令官 α 応答受領処理 
 | # | 項目 | 主管 | 状態 | 物理確証コマンド出力 |
 |---|---|---|---|---|
 | 1 | ~~RX-Layer4-Checkup 03:00 → 09:00 修正(継承、未実施)~~ | ヤス | ✅ **既完遂**(本セッション末ヤス指摘契機 整流)| `schtasks /Query /TN "RX-Layer4-Checkup"` → Start Time: **9:00:00** + Next Run: 2026/05/03 9:00:00 + Status: Ready = 物理確証 |
-| 2 | PR #1013 admin override merge(γ案物理完遂、EVT-068 関連、継承)| ヤス | 🟡 **要再確証**(handoff スナップショット精度不足 第 3 例検出経由、過去項目遡及確証推奨)| `gh pr view 1013 --repo yasuhiroyamaguchi-recordx/ProjectRX --json state,mergedAt`(別ターン実行)|
+| 2 | ~~PR #1013 admin override merge(γ案物理完遂、EVT-068 関連、継承)~~ | ヤス | ✅ **既完遂**(本セッション末ヤス「推奨順にすすめて承認」契機 過去項目遡及確証 整流)| `gh pr view 1013 --repo yasuhiroyamaguchi-recordx/ProjectRX` → state: MERGED + mergedAt: **2026-05-01T04:11:06Z**(2 日前完遂)+ mergeCommit `42229aab` = 物理確証 |
 | 3 | pii ハイブリッド α+β 再検討余地(本セッション B-line 第 102 次発令 §4-C 構造的反論)| ヤス + 司令官 α | 🟢 後段(W1-021 実装後)| W1-021 = #1076 MERGED 5/3 01:24 JST、再検討タイミング到来 |
 
-### 11-A. handoff スナップショット精度不足 第 3 例構造的兆候
+### 11-A. handoff スナップショット精度不足 第 4 例構造的兆候(P0 昇格)
 
 | # | handoff 記載 | 物理状態 | 検出経路 |
 |---|---|---|---|
 | 1 | 「9c69c6e + d8d8c15 共に未 push」 | push 完遂 | 第 2 サイクル `git log origin/main..HEAD` |
 | 2 | 「PR #972 admin override 未済」 | MERGED 2026-04-29 | 第 3 サイクル `gh pr view 972` |
-| **3** | **「RX-Layer4-Checkup 修正 未済」** | **Start Time 9:00:00 既完遂** | **本セッション末 `schtasks /Query`(ヤス指摘契機)** |
+| 3 | 「RX-Layer4-Checkup 修正 未済」 | Start Time 9:00:00 既完遂 | 本セッション末 `schtasks /Query`(ヤス指摘契機) |
+| **4** | **「PR #1013 admin override 未済」** | **MERGED 2026-05-01T04:11:06Z(2 日前完遂)** | **本セッション末 `gh pr view 1013`(過去項目遡及確証規律発火物理事例化)** |
 
-= **3 例連続 = 構造的兆候**、handoff 規律改訂候補(物理確証コマンド出力併記必須を **過去項目遡及適用**)第 4 サイクル handoff 起案時導入
+= **4 例連続 = 構造的兆候 P0 昇格**、handoff 規律改訂 **必須**(物理確証コマンド出力併記必須を **過去項目遡及適用** + 第 4 サイクル handoff 起案時導入 確定)
 
 ## 12. 末尾
 
