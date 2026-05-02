@@ -408,8 +408,86 @@ P12 採択前(Day 130-131 朝)に発生した不整合(`20260428_002_response_to
 
 ---
 
-## 10. 確立日
+## 10. 命名規則 v1.0(2026-05-03、Day 131 朝起動時、A-line/B-line 衝突解消)
+
+### 10-A. 起源
+
+EVT-105 候補(A-line/B-line 認識共有規律遵守失敗 第 1 例、本日朝起動時 自己発見)+ 第 2 例候補(本日 5/3 outbox/20260503_to_commander_004.md ファイル衝突 = A-line 第 105 次発令を B-line 第 104 次発令で上書き)= **同一番号空間 + 並行稼働 = 衝突原理的不可避**。
+
+ヤス指摘(2026-05-03 早朝):「名前に衝突を起こすなら、命名ルール決めたら?」+ ヤス採択「推奨順にすすめて承認」契機。
+
+### 10-B. 命名規則(supervisor → commander outbox)
+
+```
+outbox/{YYYYMMDD}_to_commander_{a|b}{order_number}.md
+```
+
+| 構成要素 | 内容 |
+|---|---|
+| `YYYYMMDD` | 起案日(JST) |
+| `to_commander` | 配送先 |
+| `{a|b}` | 系列接頭辞(`a` = A-line、`b` = B-line) |
+| `{order_number}` | 累積発令番号(A-line / B-line 個別空間) |
+
+**例**:
+- A-line 第 109 次 = `outbox/20260504_to_commander_a109.md`
+- B-line 第 105 次 = `outbox/20260504_to_commander_b105.md`
+
+### 10-C. 命名規則(commander → supervisor inbox)
+
+```
+inbox/from_commander/{YYYYMMDD}/{YYYYMMDD}_from_commander_{order_number}.md
+```
+
+= **commander → supervisor 経路は order_number のみ**(commander 側 instance 単一前提、A/B 区別不要)。
+
+将来的に commander β 起動時は `_{a|b}{order_number}` に拡張(本規則継承)。
+
+### 10-D. 切替タイミング
+
+| 時点 | 状態 |
+|---|---|
+| 〜2026-05-03 | 既存ルール継続(`{NNN}.md` 連番、本日 5/3 の 001-008+ 維持)|
+| **2026-05-04 以降** | **新ルール適用**(`{a|b}{order_number}.md` 形式) |
+| 既存ファイル | rename しない(史実保持、no_stasis_doctrine 整合) |
+
+### 10-E. 装置改修要件
+
+| 装置 | 改修内容 | 主管 |
+|---|---|---|
+| `sync-orders.ps1`(commander 側 mirror pull)| ファイル名パターンマッチ拡張(`_[ab]?\d+\.md` 受領可) | 司令官 α |
+| `sync-archive.ps1` 系 | 同上 | 司令官 α |
+| `factory_starter_checklist` 系 | A/B 系統判別ロジック追加(必要時) | 工場長 Castor 経由 司令官 α |
+| `auto-evt-recorder.ps1` v0.3 R6(filename vs frontmatter 不一致検出) | パターン拡張 | 司令官 α |
+| handoff 起動時必読リスト | 「最新発令 = `_a*` + `_b*` 双方を確認」追加 | 監督官 A 自律 |
+
+### 10-F. frontmatter 規律(変更なし、継続)
+
+```yaml
+---
+order_number: 109                    # 累積番号(A-line / B-line 個別空間)
+order_series: A-line                 # or B-line
+filename: 20260504_to_commander_a109.md
+---
+```
+
+**filename ⇔ order_number ⇔ order_series 三者整合義務**(EVT-020/021 同型、不一致検出経路維持)。
+
+### 10-G. 哲学整合
+
+| 哲学層 | 整合性 |
+|---|---|
+| ヤス哲学「知能に頼らず、ルールで縛れ」| ✅ 命名規則物理装置化 = 衝突原理的不可避 |
+| sp500 §1 運動性継承 | ✅ 既存装置改訂(命名規則拡張)= 健全側継承 |
+| ガレージ §1.5 装置 vs パイプライン接続 | ✅ 命名規則 = 装置 + sync-orders 拡張 = 接続経路成立 |
+| 簡素化原則期間(2026-05-01〜05-10)| ✅ 装置数 ±0(既存命名規則改訂のみ、新規装置追加禁止令該当外)|
+
+---
+
+## 11. 確立日
 
 2026-04-27(Day 129)
 
-改訂: 2026-05-02(Day 130、監督官 B 起動時)— §9.4 Stage 死亡時間別 復旧主管判定 追記、装置数 ±0(既存節追記)、簡素化原則違反候補なし、越権禁止規律(全体マップ提示のみ)厳守。
+改訂:
+- 2026-05-02(Day 130、監督官 B 起動時)— §9.4 Stage 死亡時間別 復旧主管判定 追記、装置数 ±0(既存節追記)、簡素化原則違反候補なし、越権禁止規律(全体マップ提示のみ)厳守。
+- **2026-05-03(Day 131、監督官 A 起動時)— §10 命名規則 v1.0 追記**(A-line/B-line 衝突解消、EVT-105 第 2 例候補契機、ヤス採択経由、累積番号埋込 + 系列接頭辞、装置数 ±0(既存装置 sync-orders.ps1 等の最小拡張)、2026-05-04 以降新ルール適用)。
