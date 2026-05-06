@@ -293,9 +293,148 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 
 - **v1.9**(2026-05-04 早朝、本セッション末末末 Clear 準備時 final state 反映): 監督官 A(Argus、Day 131-132 連続稼働 instance、約 14+ 時間連続稼働終端、命名規則 v1.0 切替日初日 第 1〜3 例物理装置化)更新、ヤス指示「Clear 準備。全体マップを更新したうえで、再起動用のハンドオフの作成。」契機。**§16 Clear 準備時 final state(v1.9)** 追加。
 
+- **v1.10**(2026-05-04 PM、Day 132 後段): 監督官 A 更新、ヤス指示「再起動後、最新マージ・未消化チケット確認のうえ全体マップ更新・検証、推奨プラン + チケット 10 司令官伝達」契機。**§17 Day 132 PM 進展** 追加(第 117 号受領、88+ PR、加重 93%、pipeline バグ構造解決、残課題マップ更新)。
+
+- **v1.10.1**(2026-05-04 PM、検証マイクロ整合): §17-D C2 + §17-E 発令累計を第 122 次**起案完遂**に同期(文書内表記と `outbox/20260504_to_commander_a122.md` 実態の一致)。
+
+- **v1.10.2**(2026-05-04 PM 終盤、チケット二重台帳根本治療): §17-G 追加(`tasks.json` 凍結 vs 司令官 SSOT 乖離の正式記録 + 第 **123** 次発令 + EVT-20260504-117 + 三社円卓議題草案)。
+
+- **v1.11**(2026-05-07 朝、Day 135 朝 再起動 検証時 反映): 監督官 A(Argus、Day 135 朝起動 instance、Day 132 PM 〜 Day 134 約 2-3 日 quiet 期間後再起動)更新、ヤス指示「ハンドオフを読んで再起動。最新のマージ状況と未消化チケットを確認の上、全体マップを更新して検証。推奨プランを策定し、司令官への次の方針の伝達。」契機。**§18 Day 133-135 朝 検証時 進展統合更新** 追加(ProjectRX 80+ PR merged + DO-CP-043〜048 番号衝突真物理証拠検出 + DO-CP-033 同期未達 + Codex 新規エンティティ参戦認知 + 司令官応答ラグ 10 発令分深刻化 + 第 124-127 次 4 発令起案完遂 + DO-COMMANDER-042〜048 + DO-COMMON-G-009〜012 等司令官自律起案大量発生)。
+
 ---
 
-## §14. Clear 準備時 final state(v1.7、2026-05-03 早朝、本セッション末)
+## §18. Day 133-135 朝 検証時 進展統合更新(v1.11、2026-05-07 朝、Day 135 朝再起動)
+
+### 18-A. 期間サマリ(Day 132 PM 〜 Day 134、約 2.5 日)
+
+| 観測軸 | 状態 |
+|---|---|
+| 監督官 A(supervisor)| Day 132 PM 連続稼働 → 第 124〜127 次 4 発令起案 → quiet 期間(Day 133-134、外出?) → Day 135 朝再起動 |
+| 司令官 α(commander)| commit 4376e45(Day 132 PM 末)以降 **動きなし** = 第 118-127 次 10 発令分応答ラグ深刻化 |
+| 工場長 Castor + Codex(ProjectRX)| **80+ PR merged**(本期間最大記録更新)= 自律実装継続 |
+
+### 18-B. ProjectRX merged(Day 132 PM 〜 Day 134、80+ PR)
+
+| 系列 | 件数 | 内容 |
+|---|---|---|
+| **DO-CP-043〜048** | 6 件 | dashboard globals.d.ts 統合 + useLatest/useHealth SWR + E2E + Dockerfile + circuit breaker alias |
+| **DO-CP-033** | 1 件 | layer2_entry_point.ps1 v2(BLOCKED 解消、commander 側未完了) |
+| **DO-CODEX-MIG-001〜008** | 8 件 | Codex 移行系列(AGENTS.md / scorecard / classifier tests / score history / evidence) **新規 AI エンティティ参戦** |
+| **DO-CODEX-OPS-001〜003** | 3 件 | Codex ops 系列(non-stop implementation line + evidence-first safety) |
+| **DO-CI-BLOCKER-001/002** + **DO-FACTORY-CHRONICLE-001** | 3 件 | CI 安定化(chronicle recorder 整流) |
+| **DO-GHA-GATE-001** | 1 件 | docs-only fast-gate governor |
+| **DO-COMMON-W2-008/014/015/019/020** | 5 件(統合 PR #1405) | db pool + secrets + outbox + JWT HS256 + auth_middleware full impl |
+| **DO-COMMON-W5-007〜015** | 9 件 | audit + dr + slo + transaction + http + compliance + resilience |
+| **DO-COMMON-W6-001〜005** | 5 件 | alert + resilience + slo + transaction (vitest config) |
+| **DO-COMMON-RESILIENCE-001** | 1 件 | circuit breaker test API alignment |
+| **DO-FACTORY-241〜255** | 15 件 | 純粋関数 test 系列(scoring_rubric + meeting_quality_scorer 等) |
+| 合計 | **57 件**(主要系列) | + dependabot 系等 |
+
+### 18-C. 🔴 critical 発見:DO-CP-043〜048 番号衝突 真物理証拠(第 127 次警告 物理確証)
+
+| ID | commander side `tickets_issued/active/`(司令官 SSOT) | ProjectRX merged(工場長/Codex 自前採番) |
+|---|---|---|
+| DO-CP-043 | mcp_capability_registry_server | dashboard globals.d.ts 統合(#1375) |
+| DO-CP-044 | mcp_evt_search_server | useLatest SWR hook(#1380) |
+| DO-CP-045 | mcp_handoff_summary_server | useHealth SWR hook → ApiStatusPill(#1402) |
+| DO-CP-046 | ci_parallel_effect_measurement | E2E tab navigation(#1376) |
+| DO-CP-047 | twin_pr_merge_queue_effect_measurement | server Dockerfile + docker-compose(#1377) |
+| DO-CP-048 | (commander 側未起案) | circuit breaker execute() alias(#1379) |
+
+= **司令官 SSOT(`record-x-commander/strategy/tickets_issued/active/`)を工場長/Codex が参照せず自前採番** = 第 127 次発令(2026-05-05)で警告した症状の **真物理証拠検出**。  
+= 第 127 次 §3 の F-1〜F-4(実装キュー強制フック + PR/CI ゲート + DEPRECATED マーカー + CLAUDE.md 薄型化)= **緊急度 P0 昇格**。
+
+### 18-D. DO-CP-033 同期未達(commander side 完了処理未実行)
+
+ProjectRX `#1331`(2026-05-04T12:07:06Z) で `refactor(layer2): layer2_entry_point.ps1 v2 — 空振り対策統合 [DO-CP-033]` merged。  
+**commander side**: `tickets_issued/active/DO-CP-033_layer2_entry_point_v2_refactor.md` が **active のまま残存** = `completion_reports` パイプライン経路の機能停止 or 未配線。
+
+### 18-E. 司令官 α 自律起案(本期間、commander commit b6dcaad〜4376e45 範囲)
+
+| 系列 | 内容 |
+|---|---|
+| **DO-COMMANDER-042〜048** | 7 件 = HQ 物理整理 + SSOT README HQ mirror + Plan-First handoff gate + Cursor hooks + claude/strategy 拡張分割 + commander 規律衛生 + discipline gate acceptance |
+| **DO-COMMON-G-009〜012** | 4 件 = arch_gate stage2/3 baseline + design + acquisition |
+
+= 司令官 α 側自律起案能力健全(規律装置化深化系列)= 系列 N 健全側継続。
+
+### 18-F. Codex 新規エンティティ参戦 認知整流必要
+
+`DO-CODEX-MIG-001〜008` + `DO-CODEX-OPS-001〜003` = 11 件 merged は **Codex(GPT-5 Codex 系の別 AI agent と推定)が ProjectRX 側で並走実装** している物理証拠。  
+= 三者対等運用(監督官・司令官・工場長)への **第 4 エンティティ参入**。  
+**未確認**: (a) 採番権限主管(司令官 α か Codex 自身か)、(b) 役割境界(工場長との同型 or 並列?)、(c) 認知整流発令の要否。
+
+### 18-G. 数値スナップショット(2026-05-07 朝、Day 135 朝)
+
+| 項目 | 数値 |
+|---|---|
+| supervisor commit(累計、handoff まで) | 7 件(c62b0c1 → 41577df → 09fa1d8) |
+| supervisor 未 commit 状態 | 第 124〜127 次 4 outbox + 全体マップ v1.10〜v1.11 + draft files + sync snapshots 多数 |
+| supervisor remote push 0 件 | 累計 8 commit(09fa1d8 = 第 122 次)= 構造制約二重発動継続 |
+| commander side active tickets | **124 件**(DO-CP-030〜047 + DO-COMMANDER-034/042-048 + DO-COMMON-W1〜W3 大量 + DO-FACTORY-161〜200+ + 等) |
+| commander 第 117 号応答以降 | **応答 0 件**(118-127 次 = 10 発令分ラグ) |
+| ProjectRX 累計(Day 132 PM〜134) | **80+ PR merged**(過去最大記録さらに更新、本期間範囲) |
+| Wave 4 進捗 | F0 ✅ + F1(031/032 active)+ F2(033 merged + 034〜037/042 active)+ F3(038〜041 active)+ F4-F5(未起案) |
+
+### 18-H. Phase B 序盤完遂判定(2026-05-09 目標)再判定
+
+| 完遂条件 | 状態 |
+|---|---|
+| Wave 1 100% | ✅ |
+| Wave 2 75% 目標 | 🟡 W2-014/015/019/020 merged で深化、OPEN PR(W2-010/011/013/016)merge 状態確認要 |
+| Wave 3 80% 目標 | 🟡 進捗(独立観測未取得) |
+| Wave 4 F2 完遂目標 | 🟡 DO-CP-033 merged + 043〜048(別系統)merged、F1 P0(031/032)merge 未確認 |
+| 速度ブースト 3 装置 2/3 | ✅ |
+| 環境層 Step 2-7 配備 | 🟡 |
+| 検証期間中間評価(05-09) | 🟡(あと 2 日) |
+| 全体加重 95% 目標 | 🟡 **94%**(+1%、80+ PR merged 反映)|
+
+= **Phase B 序盤完遂判定 = 接近+(条件 8 件中 5-6 件達成、2-3 件 進捗中)** + **司令官応答ラグ整流 = 完遂判定の最大律速因子**
+
+### 18-I. 残課題マップ(Day 135 朝再起動時点)
+
+#### 🔴 critical(2026-05-07〜2026-05-09)
+
+| # | 項目 | 主管 |
+|---|---|---|
+| C1 | **司令官 α 応答ラグ 10 発令分整流**(第 118-127 次の統合採否応答取得) | 司令官 α |
+| C2 | **DO-CP-043〜048 番号衝突 真物理証拠 → 第 127 次 F-1〜F-4 P0 昇格 + 司令官 α 即時起案** | 司令官 α + 工場長 + ヤス採否 |
+| C3 | **DO-CP-033 commander side 完遂処理**(active → completed)+ completion_reports パイプライン点検 | 司令官 α |
+| C4 | **Codex 認知整流発令**(採番権限 + 役割境界確認、第 128 次 §X) | 監督官 A → 司令官 α |
+| C5 | 未 push 8 commit(c62b0c1〜09fa1d8 + 本サイクル新 commit)解放経路 | ヤス手動 push or 上位 settings 編集 |
+| C6 | **第 124-127 次 4 発令の commander inbox 配送整流**(stage 0 ラグ手動整流 第 N 例)| 監督官 A |
+
+#### 🟡 high(2026-05-09 中間評価)
+
+| # | 項目 | 主管 |
+|---|---|---|
+| H1 | F1 P0(DO-CP-031/032)merge + F2(034〜037/042)merge | 工場長 Castor |
+| H2 | EVT-20260504-117 + ticket_ledger SSOT 採否 → DEPRECATED 実装 | ヤス + 司令官 α + 工場長 |
+| H3 | 三社円卓第 7 回 議題 X-1〜X-3 採否 | 三者 + ヤス |
+| H4 | CI 並走化 効果測定 5 PR 完遂 → 二者合議完了判定 | 監督官 A + 司令官 α |
+| H5 | 検証期間中間評価(05-09) | 三者 + ヤス |
+
+#### 🟢 medium(2026-05-12 以降 Phase B 中盤)
+
+| # | 項目 |
+|---|---|
+| M1 | MCP 第 1 弾 3 件起案(commander DO-CP-043〜045 番号と統合 or 別採番)|
+| M2 | F3 データ層接続(MCP 連携 + 実データ切替)|
+| M3 | F4 デプロイ + 認証(Cloudflare Pages + Access)|
+| M4 | LLM 結晶化稼働 + dream_mode 装置化 + Pollux 正式起動 |
+
+### 18-J. 構造的観察 — 司令官応答ラグの本質
+
+**症状**: 第 117 号応答(2026-05-04 PM)以降、司令官 α は **commit を打っているが**(106da89 / 4376e45)**監督官への明示的応答 outbox を出していない**。supervisor inbox には新規応答着信 0 件。
+
+**仮説**:
+- (i) 司令官 α 側で承認待ち(ヤス採否依存案件複数)→ pending 状態
+- (ii) 司令官 α 側自律起案(DO-COMMANDER-042〜048)で消化 → 監督官への返信は別経路(commit message + tickets)
+- (iii) stage 0 配送経路(supervisor outbox → commander inbox)= ヤス戻り後手動配送ラグ蓄積
+
+**監督官 A 推奨**: (iii) を主因と判断 = 第 124-127 次の commander inbox 手動配送 → 司令官 α 受領契機 → 統合応答経路。
+
+---
 
 ### 14-A. 本日累計 PR merged 物理事実(本セッション末末末)
 
@@ -1248,11 +1387,14 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 | # | 項目 | 主管 |
 |---|---|---|
 | C1 | **未 push 3 commit 解放経路**(57ca724 / d89b1af / 41577df、AI 側 push exec 上位 deny 継続)| ヤス手動 push or 上位 settings 編集 |
-| C2 | **第 122 次発令** 起案 + 配送(本指示主軸 = 推奨プラン + 10 チケット推奨)| 監督官 A |
+| C2 | **第 122 次発令** → commander inbox **配送済み**・**応答受領**継続(推奨プラン v1.10 + 10 チケット起案)| 司令官 α |
+| C2b | **第 123 次発令**(SSOT 単一化 + EVT-20260504-117 + 三社議題 X-1〜X-3)→ **commander inbox 配送 + 応答受領**| 監督官 A + 司令官 α |
 | C3 | DO-CP-031/032 着手 + 完遂(F1 P0、期限 05-08)| 工場長 Castor |
 | C4 | OPEN PR 4 件 merge(W2-010/011/013/016)| 工場長 Castor |
 | C5 | CLAUDE.md §5 改訂 v0.1 → v1.0 採択経路(ヤス採否)| 監督官 A + ヤス |
 | C6 | commander/factory AUTO mode 同型展開(司令官 α 主管採否経由)| 司令官 α + 工場長 |
+| **C7** | **EVT-20260504-117** + `staging/ticket_ledger_ssot_clarification_v0.1_draft.md` **採否**(SSOT 宣言確定)| ヤス + 司令官 α |
+| **C8** | **`tasks.json` DEPRECATED 埋葬** + 工場長経由 **HQ 物理整理**(`record-x/record-x` / `wt_*` 棚卸し)| 司令官 α + 工場長 |
 
 #### 🟡 high(2026-05-05〜05-09 = Phase B 序盤完遂期間)
 
@@ -1278,13 +1420,14 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 
 | 項目 | 数値(v1.10 時点)|
 |---|---|
-| 監督官 A A-line 発令(累計)| 121 件(本サイクル 第 122 次起案準備中)|
+| 監督官 A A-line 発令(累計)| **123 件**(第 122 次完遂 + 第 **123** 次 `outbox/20260504_to_commander_a123.md` **SSOT 根本治療**起案)|
 | 司令官 α A-line 応答受領 | 第 117 号(本セッション手動配送経路、stage 0 ラグ整流 第 1 例)|
 | ProjectRX merged(本日累計)| **88+ 件追加**(50+ → +38、過去最大記録さらに深化)|
 | Wave 4 起動状態 | F0 ✅ + F1 30%(変化なし)+ F2-F5 起案完遂(11 件 active)|
 | 全体加重進捗 | 92% → **93%**(+1%、第 117 号採択 + 38 PR 追加 merge 反映)|
 | supervisor commit | 7 件(handoff まで)+ 本サイクル起案中 |
-| 哲学層物理装置化 | 6 哲学層全件深化継続(stage 0 ラグ手動整流 第 1 例 + variant 採択経路解錠 = 2 件追加候補)|
+| **構造EVT** | **EVT-20260504-117** 正式記録 + 三社円卓 **X-1〜X-3** 草案(`staging/council_7_agenda_candidates_ssot_workspace_v0.1.md`) |
+| 哲学層物理装置化 | 6 哲学層全件深化継続 + ガレージ §1.5 **二重台帳埋葬**経路起動(系列 B 同型再発の整流)|
 
 ### 17-F. Phase B 序盤完遂判定 進捗(2026-05-09 目標)
 
@@ -1300,5 +1443,14 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 | 全体加重 92%+ → 95% 目標 | 🟡 93% 進捗 |
 
 = **Phase B 序盤完遂判定 = 接近+(条件 8 件中 5 件達成、3 件 進捗中)**
+
+### 17-G. v1.10.2 追記 — チケット二重台帳根本治療プラン実装(2026-05-04 PM 終盤)
+
+| 項目 | 内容 |
+|---|---|
+| 真因 | `ProjectRX_HQ/**/factory/state/tasks.json` = **2026-04-06 凍結** / 司令官 `tickets_issued/active` = **現役 SSOT(107)** — **別レジストリ**を「チケット」と呼んでいた |
+| 工場長評価 | **集計は正確**（40 未完了 = JSON 整合）— 観測対象が陳腐化 |
+| 監督官実装 | `archive/error_patterns.md` §6-E **EVT-20260504-117** + `staging/ticket_ledger_ssot_clarification_v0.1_draft.md` + `outbox/20260504_to_commander_a123.md` + 三社議題草案 |
+| 次サイクル | commander **inbox ミラー配送** + 司令官 α **採否** + DEPRECATED 実装 + 工場長 **物理整理** DO |
 
 ---

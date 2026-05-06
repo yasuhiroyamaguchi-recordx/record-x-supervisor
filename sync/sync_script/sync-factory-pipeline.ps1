@@ -1,7 +1,7 @@
 #Requires -Version 5.1
 <#
 .SYNOPSIS
-    sync-factory-pipeline.ps1 v0.1 - commander -> factory observation mirror [Day 130 末 drafted]
+    sync-factory-pipeline.ps1 v0.2 - commander -> factory observation mirror [Day 130 末 drafted]
 
 .DESCRIPTION
     Read-only mirror of commander -> factory observation path.
@@ -25,6 +25,7 @@
     Drafted: 2026-04-28 (Day 130 末, supervisor instance A)
     EVT-016 garage doctrine 1.5-B applied at draft (Who/When/Where/Reflection 4 points).
     Garage Doctrine 1.5: built device must be driven, not garaged.
+    v0.2 (2026-05-04): Summary にチケット SSOT / 凍結 tasks.json 恒常 1 行（EVT-20260504-117 / staging SSOT v0.1 §5）。
 #>
 param(
     [switch]$DryRun
@@ -167,7 +168,7 @@ function Mirror-RoleExecutionSnapshots {
 }
 
 # === Main ===
-Write-Log "=== sync-factory-pipeline v0.1 start ==="
+Write-Log "=== sync-factory-pipeline v0.2 start ==="
 Write-Log "DryRun: $DryRun"
 Write-Log "Commander repo: $commanderRepo"
 Write-Log "Mirror dir: $mirrorDir"
@@ -195,6 +196,7 @@ if ($DryRun) {
 # === Summary for prompt context ===
 Write-Log ""
 Write-Log "=== Summary ==="
+Write-Log 'SSOT_REMINDER: commander/strategy/tickets_issued/active = active ticket SSOT | factory/state/tasks.json = frozen 2026-04-06 snapshot only (not SSOT)'
 Write-Log ("tickets_issued: total={0} / 24h={1}" -f $snapshot.tickets_issued.total_count, $snapshot.tickets_issued.updated_24h)
 Write-Log ("tickets_completed: total={0} / 24h={1}" -f $snapshot.tickets_completed.total_count, $snapshot.tickets_completed.added_24h)
 Write-Log ("completion_reports: total={0} / 24h={1}" -f $snapshot.completion_reports.total_count, $snapshot.completion_reports.added_24h)

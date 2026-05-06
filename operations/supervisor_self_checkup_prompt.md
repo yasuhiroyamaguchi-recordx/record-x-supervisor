@@ -1,9 +1,9 @@
-# 監督官自己採点 発動プロンプト v0.1
+# 監督官自己採点 発動プロンプト v0.2
 
 **配置先**: `operations/supervisor_self_checkup_prompt.md`
-**起案日**: 2026-04-29(Day 131 朝)
+**起案日**: 2026-04-29(Day 131 朝)、**v0.2 改訂**: 2026-05-04
 **起案 instance**: 監督官 instance A1
-**目的**: 監督官 instance A1 / A2 各々の **自己採点を毎回同じ指標で発動** + スナップショット保存 + ドリフト早期検知
+**目的**: 監督官 instance A1 / A2 各々の **自己採点を毎回同じ指標で発動** + スナップショット保存 + ドリフト早期検知 + **工場コード健全性ミラー（§2-D）**
 **根拠**:
 - ヤス指示「監督官自身の定期検診のパッケージはもう作ってあるのかな」(2026-04-29 朝、Day 131)
 - ヤス確定「推奨プラン (α) → (β) → (γ) でステップバイステップ」
@@ -90,6 +90,18 @@ Layer 0 entry_point.ps1 v1.6 の Step 3.3 sync-factory-pipeline と同列で **S
 - M12 黄/赤 + M8 黄/赤(本気度欠如 + 指摘品質低下の連動)
 
 警報発火時、本セッション(or 次セッション)で **distilled §1 即時採択サイクル発動** + EVT 起案 + 構造的訂正。
+
+### 2-D. 工場コード健全性ミラー（`factory_code_health`、定期検診プロトコル v0.6 §5-C-1 連動）
+
+監督官は **司令官経由**で着地する工場レポートを SSOT とする（ローカル作業 clone の数値は補助証拠）。
+
+| # | 確認 | 欠落時 |
+|---|---|---|
+| D1 | 直近の `completion_reports`（または司令官が指定する SSOT パス）に **`factory_code_health` ブロック**があるか | `supervisor_note` に欠落を記録 → 司令官 α へ再着地要請 |
+| D2 | `test_to_prod_line_ratio` と `health_flag` を 1 行でメモ（前回スナップショットと比較） | 前回が無い場合は T+0 として baseline 宣言 |
+| D3 | `vitest_duration_sec` が急増していないか（任意、黄判定は司令官・工場長と合議） | null 続きは **計測未実装**として黄メモ可 |
+
+要約を **`snapshot_supervisor_*.json` の `notes`** に残し、**axis_11** のエビデンスに紐づける。
 
 ---
 
@@ -179,7 +191,12 @@ sync/checkup-scores/role_execution/
 4. ドリフト予兆連動検知ルール(§2-C)を確認、警報発火時は EVT 起案
 5. snapshot_supervisor_{instance_id}_{YYYYMMDD-HHMMSS}_{checkpoint}.json を
    sync/checkup-scores/role_execution/ に配置
-6. 採点で発見した構造的盲点があれば distilled §1 即時採択サイクル発動
+6. 直近の司令官 `sync/checkup-scores/role_execution/snapshot_commander_*.json` に対し
+   `sync/sync_script/verify-role-snapshot-vs-rubric.ps1 -SnapshotPath <path> -WriteSidecar` を実行し、
+   `overall_status` が `drift_warning` のコンポーネント名と `delta_by_component` を
+   上記 snapshot の `notes` または本セッション作業ログに必須記載(§7-H 連動、検証不能時は `unavailable_path` を明示)
+7. §2-D（`factory_code_health` ミラー）を実施し、D1〜D3 の結果を `notes` に 1 段落で記載（未実装期間は「工場側未着地」と明示）
+8. 採点で発見した構造的盲点があれば distilled §1 即時採択サイクル発動
 
 採点後、以下のいずれかを発令 or 投稿:
 - 軸 8/9/10/11 のいずれかが赤判定 → archive/error_patterns.md に EVT 起案 + L1 circular で共有
@@ -266,7 +283,7 @@ sync/checkup-scores/role_execution/
 
 - 検診仕様書: `02_physical/recording_office_health_check_v1_0.md` v1.0(commit `e265f2a`、本プロンプトの上位概念)
 - 役割実行 rubric: `rubrics/role_execution_rubric.yaml` v0.1(本プロンプトの軸 8-11 採点根拠)
-- 検診プロトコル: `operations/periodic_checkup_protocol.md` v0.1(5 時点運用 + P16 採択)
+- 検診プロトコル: `operations/periodic_checkup_protocol.md` v0.6(5 時点運用 + §5-C-1 `factory_code_health` 監督官チェック)
 - 司令官側対称版: `outbox/20260428_to_commander_024.md`(第 32 次発令、司令官 α 初回定期検診実施プロンプト)
 - 司令官側スナップショット: `sync/checkup-scores/role_execution/snapshot_commander_*.json`(commit `46f928e` 自動稼働)
 - ガレージドクトリン: `operations/role_and_conduct.md` §1.5(EVT-016 由来)
@@ -278,3 +295,4 @@ sync/checkup-scores/role_execution/
 ## 10. 改訂履歴
 
 - v0.1(2026-04-29 / Day 131 朝): 初版起案、監督官 instance A1 起案。Yasu 指示「監督官自身の定期検診のパッケージ」+ 推奨プラン (α) → (β) → (γ) ステップバイステップ採択契機。司令官側 outbox/024 第 32 次発令を対称的に踏襲、監督官側自己採点の発動プロンプト本体 + JSON 採点フォーマット + ドリフト予兆連動検知 + Devil's Advocate ラウンド統合 + ガレージドクトリン §1.5 整合。Phase B-α/β 7 日間実証実績で v1.0 確定。
+- v0.2(2026-05-04): §2-D 工場コード健全性ミラー（`factory_code_health`）+ §4 手順 7 追加。根拠 = 監督官 A 第 125 次発令 + 検診プロトコル v0.6。

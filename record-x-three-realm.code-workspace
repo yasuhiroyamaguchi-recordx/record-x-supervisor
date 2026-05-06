@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "name": "監督官 (record-x-supervisor)",
+      "path": "."
+    },
+    {
+      "name": "司令官 (record-x-commander)",
+      "path": "../record-x-commander"
+    },
+    {
+      "name": "工場長 (ProjectRX_HQ/wt_common)",
+      "path": "../ProjectRX_HQ/wt_common"
+    }
+  ],
+  "settings": {}
+}
