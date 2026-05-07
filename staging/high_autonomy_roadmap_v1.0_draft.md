@@ -309,6 +309,90 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 
 - **v1.15**(2026-05-08 朝、Day 136 朝 中盤):監督官 A 更新、ヤス指示「工場長より報告。検証求む。GitHub のマージ状態の確認も含めること。対応するチケットと照合し、フィードバックがあれば司令官に伝達準備。全体マップの更新。」契機。**§22 工場長 5 PR (#1464-1469) 一括 merged 検証 + DO-COMMON-HOUSEKEEPING-D 命名規律違反 = EVT-120 第 9 系列確証 + Wave 2 主要 4 件実装 + 49 件 factory side housekeeping** 追加。
 
+- **v1.16**(2026-05-08 朝中盤、Day 136 朝中盤後):監督官 A 更新、ヤス指示「司令官 SSOT vs 工場長実装実態 大規模乖離 + 監督官横断観測装置不在 として扱う + 監督官自己批判妥当 + Y7 EVT-121 GO + Y5 部分 GO 設計 staging まで + Y6 保留 + Y8 保留 + Y4-B 別ライン + 第 139 次発令 準備案まで」契機。**§23 EVT-121 正式記録 + Observability v2 段階提案 + 4 点照合 script 設計 staging + 第 139 次発令 準備案** 追加。
+
+---
+
+## §23. Day 136 朝中盤後 進展統合更新(v1.16、2026-05-08 朝中盤後)
+
+### 23-A. EVT-20260508-121 正式 EVT 化(候補 → 正式、ヤス Y7 GO)
+
+| 項目 | 内容 |
+|---|---|
+| 配置 | `archive/error_patterns.md` §6-J |
+| 軸 4 件 | C1 completion_reports 停止 + C2 司令官 active 陳腐化 + C3 監督官横断検出不足 + C4 工場長実態 trigger 依存 |
+| 物理証拠数値(DO-COMMON 限定)| ProjectRX merged 100 + factory completion_reports 73 + commander active 57(陳腐化)+ commander completed 45 = 乖離 55 件 + パイプライン未処理 28 件 |
+| 真因の真因 | ヤス仮説「AI 判断鈍化 = 観測装置不在」物理証拠 累積 8 例 |
+| 系列分類 | 系列 X 第 1 例(構造課題、横断観測装置不在) |
+
+### 23-B. Observability v2 構造提案 v1(staging、ヤス段階採否)
+
+`staging/observability_v2_proposal_v1.md`:
+
+| Phase | 内容 | ヤス採否 | 装置数 |
+|---|---|---|---|
+| Phase 1 | supervisor 4 点照合 script(`scripts/observability/cross_repo_diff_check.ps1`)| Y5 = 部分 GO(設計 staging まで完遂、実装はサンプル承認後) | +1 |
+| Phase 2 | SessionStart 必読化 | Y6 = 保留(Phase 1 サンプル後判断)| ±0 |
+| Phase 3 | DP-001 C-3 連動(MCP + dashboard 統合)| DP-001 C-3 ヤス採否(現状 not_approved)| ±0(既存 5+ 装置統合) |
+| Phase 4 | 自動 alert(差分閾値超過時 inbox 投函) | 三社円卓 X-4 + C 軸採否 | +1 |
+
+= **新規装置 +2 件 / 既存装置 8+ 件統合** = ガレージ §1.5 整合
+
+### 23-C. 4 点照合 script 設計 staging v1(Y5 5 観点提示)
+
+`staging/cross_repo_diff_check_design_v1.md`:
+
+| 観点 | 内容 |
+|---|---|
+| 1. 入力 4 点取得元 | gh pr list / find completion_reports / ls active / find completed |
+| 2. 照合キー | ticket_id 主、PR 番号 + branch + completion_report ID 補助 |
+| 3. false positive | ticket_id_mapping(改番)+ EVT-120 documented(9 件)+ duplicate ID(DO-CP-032 等)|
+| 4. 出力形式 | daily diff report(5 区分:healthy / merged_not_completed / orphan / active_already_merged / self_authored_suspect)+ alert threshold(🟢🟡🔴)|
+| 5. サンプル出力 | 本日 2026-05-08 数値で擬似 report(DO-COMMON 限定:divergence 55 件、P0 alert 28 + 18 + 9 件、P1 12 件) |
+
+### 23-D. 第 139 次発令 準備案(staging、ヤス完全発令採否前)
+
+`staging/order_a139_preparation_draft.md`:
+
+| 主眼 | 内容 |
+|---|---|
+| 1 | DO-COMMANDER-049 P0 緊急性継続 + scope 7 → 35+ 件再見積もり |
+| 2 | DO-COMMANDER-054 新規(Wave 1-3 housekeeping、55 件分離)or 050 拡張 |
+| 3 | G-009〜G-012 = 三者協議議事録 v1.0 物理層不在のため着手不可 |
+| 4 | 工場長 PlanFIRST 応答素材(司令官 α 経由、関係性ポリシー §3.2 遵守、W7-001〜W7-004 代替案採択 + 司令官 α 起案 + sync-tickets 配信必須) |
+
+= **完全発令はヤス採否後**(本サイクルでは staging のみ、commander 配送なし)
+
+### 23-E. ヤス採否許可 / 不許可 マトリクス
+
+| 区分 | 項目 |
+|---|---|
+| ✅ 即時許可 | EVT-121 正式記録 / 全体マップ §23 / Observability v2 staging / Phase 1 設計 staging / 第 139 次準備案 staging |
+| 🔴 不許可 | 4 点照合 script 実装 / SessionStart hook 追加 / dashboard 統合 / 自動 alert / G-009〜G-012 着手 / 工場長への直接指示 |
+
+### 23-F. ヤス Y4-B v4 別ライン継続
+
+EVT-121 / Observability v2 と混ぜず、別ラインで採否継続:
+- `staging/y4_b_pretooluse_hook_v4.md`(F1+F2+F3+F4 全反映、Codex 採点 95+ 点経路、Strategy Lab F1-F4 全反映、ヤス採否対象)
+
+### 23-G. 数値スナップショット(本サイクル末)
+
+| 項目 | 数値 |
+|---|---|
+| 監督官 A A-line 発令累計(commit 済) | 138 件(本サイクル第 139 次は準備案 staging) |
+| EVT 累計(本日 Day 136)| 5 件追加(117 既存 + 118/119/120 + **121 正式**)|
+| ヤス仮説物理証拠 | 累積 8 例 |
+| ProjectRX merged DO-COMMON(2026-04 以降、参考)| 100 件 |
+| 司令官 SSOT 乖離(DO-COMMON 限定)| 55 件 + 28 件パイプライン未処理 |
+| Observability v2 提案 装置数 | +2 件 / 既存統合 8+ 件 |
+
+### 23-H. 健全側系列 N 累積(本サイクル進展)
+
+- 監督官 A 自己批判 + 物理確証 + 構造提案 = ヤス指摘への正規応答(系列 N 健全側 第 N+M+5 例)
+- ヤス段階採否(Y5 部分 GO + Y6 保留 + Y7 GO + Y8 保留)= **構造方針見直しの段階的進行**(関係性ポリシー §3.3 整合)
+
+---
+
 ---
 
 ## §22. Day 136 朝 中盤 進展統合更新(v1.15、2026-05-08 朝)

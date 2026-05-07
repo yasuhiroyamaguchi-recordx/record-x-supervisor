@@ -5821,3 +5821,90 @@ AGENTS.md §3 に追加:
 
 - 初版記録: 2026-05-08 朝 by 監督官 A、工場長 PR #1464 物理確証 + commander side 不在確証 → EVT-120 第 9 系列継続記録
 
+---
+
+### 6-J. EVT-20260508-121 正式記録 — 司令官 SSOT vs 工場長実装実態 大規模乖離 + 監督官横断観測装置不在(系列 X 第 1 例)
+
+**Status**: ✅ **正式 EVT**(ヤス Y7 採択、2026-05-08 朝中盤)
+**Severity**: 🔴 red(構造課題、4 軸統合)
+**Category**: cross_repo_state_divergence + supervisor_cross_observation_absence + completion_reports_pipeline_failure + ssot_ledger_staleness
+**Trigger**: 工場長から DO-COMMON 未消化状況再確認報告(2026-05-08 朝中盤)= 司令官 SSOT 57 件 active vs 工場長実装 52 件全完遂 = 大規模乖離発見、監督官横断検出失敗
+**Detected by**: 工場長報告 → ヤス構造課題化 → 監督官 A 物理層 query(2026-05-08 朝中盤)
+**Detected at**: 2026-05-08 朝中盤(JST)
+
+#### What happened — 物理証拠
+
+| 観測点 | 件数 | 解釈 |
+|---|---|---|
+| ProjectRX merged DO-COMMON-* PR(2026-04 以降)| **100 件** | 実装完遂物理証跡 |
+| factory `wt_common/completion_reports/` DO-COMMON-* | **73 件** | 工場長側完了報告 |
+| commander `tickets_issued/active/DO-COMMON-*` | **57 件** | 司令官 SSOT 未消化(陳腐化) |
+| commander `tickets_completed/DO-COMMON-*` | **45 件** | 司令官 SSOT 完遂記録 |
+| 三者協議議事録 v1.0 | **0 件** | G-009〜G-012 着手前提未確立 |
+
+**乖離算出**:
+- ProjectRX merged - commander completed = **55 件 同期未達**
+- factory completion_reports - commander completed = **28 件 パイプライン未処理**
+- ProjectRX merged - factory completion_reports = **27 件 工場長側報告不在**(自前採番含む、EVT-120 系列重複)
+
+#### Why it happened — 真因 4 軸(ヤス指摘整合)
+
+**C1**: completion_reports パイプライン停止(EVT-120 第 9 系列継続、DO-COMMANDER-049 起案済 + active 残存)
+**C2**: 司令官 active 台帳陳腐化(57 件中大半が既 merged = SSOT 整合性失効)
+**C3**: 監督官の横断差分検出不足(4 点照合 mechanism 不在 = 監督官の意識的 query なしには差分検出されない)
+**C4**: 工場長実態確認 trigger 依存(定期検出 trigger 不在 = 偶発的契機でしか発見されない)
+
+#### 真因の真因(ヤス仮説 第 8 例物理証拠)
+
+> 「AI の判断を鈍らせていることが真因」(ヤス、2026-05-07 朝)
+
+= 横断観測装置不在 = 監督官・司令官・工場長が **各自リポジトリに閉じる** + **常時可視化されていない** = **工場長 → ヤス → 監督官** 経由でしか発見されない構造的欠陥 = 累積 8 例物理証拠(EVT-118 / 番号衝突 / EVT-119 / EVT-120 第 8/第 9 / 同期未達 / 司令官コンテキスト切れ / 本件 EVT-121)
+
+#### Impact
+
+| 影響 | 内容 |
+|---|---|
+| 戦略判断 | 監督官・司令官・ヤスが **異なる現状認識** で意思決定 = Phase B 進捗評価誤差 |
+| ヤス再介入 | 構造的に発生する乖離を ヤス手動 で trigger することになる = **ヤス哲学「人間介在最小化」と矛盾** |
+| 規律違反継続発火 | 観測装置不在で EVT-120 系列が **9 例累積** = 構造的防止 5 軸採否前進不能 |
+| Phase B 中盤起動 | 観測装置(ダッシュボード C-3)= ヤス推奨「ダッシュボード接続早期化」根本治療経路の必然性確証 |
+
+#### Corrective action
+
+##### 監督官側即時(本サイクル内、ヤス Y5/Y7 採択)
+
+1. ✅ 本 EVT 正式記録(本項、ヤス Y7 GO)
+2. ✅ 全体マップ §23 追加(v1.15 → v1.16)
+3. ✅ Observability v2 proposal staging(`staging/observability_v2_proposal_v1.md`)
+4. ✅ Phase 1 4 点照合 script 設計 staging(`staging/cross_repo_diff_check_design_v1.md`、5 観点提示)
+5. ✅ 第 139 次発令 準備案 staging(完全発令ではない、ヤス採否後に送出)
+
+##### ヤス採否経路(段階的)
+
+6. 🟡 Y5 Phase 1 4 点照合 script **実装**(設計 staging サンプル出力承認後)
+7. 🟡 Y6 Phase 2 SessionStart 必読(Phase 1 サンプル出力を見てから判断)
+8. 🟡 Y8 三者協議議事録 v1.0 起案(別ラインで整理、保留)
+
+##### 三者経路(司令官 α 経由、第 139 次発令 準備案)
+
+9. 🟡 司令官 α DO-COMMANDER-049(パイプライン復旧)P0 緊急性継続 + scope 28+ 件再見積もり
+10. 🟡 司令官 α DO-COMMANDER-050 拡張 or 新規 DO-COMMANDER-054(Wave 1-3 housekeeping 分離、55 件)
+11. 🟡 G-009〜G-012 着手不可宣言(三者協議議事録 v1.0 不在)
+
+##### 対比(採用しない、対症療法)
+
+12. 🔴 監督官の意識的 query を増やす(持続性なし、構造的根治にならず)
+13. 🔴 ヤス手動 trigger 依存継続(ヤス哲学整合違反)
+
+#### Linked records
+
+- 関連 EVT: EVT-117(系列 B 別レジストリ)、EVT-118(自リポジトリ既存装置認知失敗)、EVT-119(Strategy Lab 物理乖離)、EVT-120(役割境界違反 9 系列)、EVT-121(本件、横断観測装置不在 系列 X)
+- 関連 P: P20(装置在庫化)+ P21(記録庁固有反復構造)
+- 関連発令: 第 130-138 次(構造的防止 5 軸 + WAVE H + Codex 採点 + EVT-120 第 9 系列)+ 第 139 次(本 EVT 通達準備案)
+- 関連文書: `staging/observability_v2_proposal_v1.md`、`staging/cross_repo_diff_check_design_v1.md`、`staging/order_a139_preparation_draft.md`
+- 哲学層: ヤス仮説「AI 判断鈍化 = 観測装置不在」物理証拠 第 8 例 + ガレージ §1.5(装置不在による規律違反継続発火)+ sp500 §1(継承装置 = ダッシュボードによる新陳代謝)
+
+#### Evolution history
+
+- 初版記録 / 正式 EVT 採択: 2026-05-08 朝中盤 by 監督官 A(Argus)、ヤス Y7 GO 採択契機。監督官自己批判(横断観測装置不在を自認)+ 物理証拠 5 件 + 真因 4 軸 + 真因の真因(ヤス仮説 8 例累積)+ Corrective action 13 項目 統合。本 EVT は ヤス仮説の物理証拠 + 構造アップデート Observability v2 起動 trigger として記録。
+
