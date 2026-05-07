@@ -305,6 +305,139 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 
 - **v1.13**(2026-05-07 朝末末末、Day 135 朝 第 3 サイクル末):監督官 A 更新、ヤス指示「司令官と工場長より報告。検証求む。GitHub のマージ状態の確認も含めること。対応するチケットと照合し、フィードバックがあれば司令官に伝達準備。全体マップの更新。」契機。**§20 司令官 + 工場長 統合報告検証 + 健全側系列 N 第 N+M+2 例(司令官 α 完全再起動 + 統合 1 通応答方式 + 工場長 7 PR 一括 merge)** 追加。
 
+- **v1.14**(2026-05-07 朝末末末末末末、Day 135 朝 第 6 サイクル末):監督官 A 更新、ヤス指示「工場長より報告。検証求む。GitHub のマージ状態の確認も含めること。対応するチケットと照合し、フィードバックがあれば司令官に伝達準備。全体マップの更新。ダッシュボード&コントロールパネルの完遂に向けてチケットが枯渇。リポジトリチェックの上、残り総チケット数と WAVE について提示。司令官に向けてチケット発行の発令を求む。」契機。**§21 工場長 5 PR 一括 merged + DO-CP 完全枯渇 物理確証 + WAVE Q/H 補充提案 + 司令官 α 起案要請** 追加。
+
+---
+
+## §21. Day 135 朝 第 6 サイクル末 進展統合更新(v1.14、2026-05-07 朝末末末末末末)
+
+### 21-A. 工場長 ProjectRX merged 5 件(2026-05-07T13:31〜13:32)
+
+| PR | merged at | DO-* | 内容 |
+|---|---|---|---|
+| #1456 | T13:31:20Z | housekeeping-C | DO-CP-101/102/103 completion_reports + cleanup |
+| #1457 | T13:31:54Z | **DO-CP-038** | **MCP first wave integration**(3 endpoints + dashboard wiring)= **ダッシュボード MCP 接続完遂** |
+| #1458 | T13:32:23Z | **DO-G-013** | PR diff scope-check workflow(role boundary gate)|
+| #1459 | T13:32:31Z | **DO-FACTORY-172** | factory SessionStart hook + FACTORY_CAPABILITIES.yaml 14 devices + boot-injector |
+| #1460 | T13:32:39Z | **DO-G-014** | branch protection policy + Merge Queue 文書 |
+
+= **本日累計 PR merged 集計**:第 1 サイクル(80+)+ 第 2 サイクル(7)+ 本サイクル(5)= **92+ 件**(過去最大記録継続深化)
+
+### 21-B. ダッシュボード&コントロールパネル チケット枯渇 物理確証
+
+#### 21-B-1. DO-CP active 残 7 件 全件既 merged 確証
+
+| ID | ProjectRX merged | 同期未達状態 |
+|---|---|---|
+| DO-CP-030 | #1242 (2026-05-04T07:59:27Z) | 🔴 active(F3 data aggregation server) |
+| DO-CP-032 | #1298 (2026-05-04T09:28:03Z) | 🔴 active(app.tsx TypeScript) |
+| DO-CP-035 | #1313 (2026-05-04T09:47:26Z) | 🔴 active(operations + subscreens build) |
+| DO-CP-036 | #1311 (2026-05-04T09:28:07Z) | 🔴 active(catalog/dream/phase build) |
+| **DO-CP-038** | #1457 (2026-05-07T13:31:54Z) | 🔴 active(**MCP integration** = 本サイクル merged) |
+| DO-CP-039 | #1272 (2026-05-04T08:29:52Z) | 🔴 active(live-updater) |
+| DO-CP-042 | #1264 (2026-05-04T08:28:29Z) | 🔴 active(git push sync section) |
+
+= **実質 DO-CP active 0 件**(全件 merged 同期未達 = completion_reports パイプライン機能停止継続)
+
+#### 21-B-2. ダッシュボード装置 物理稼働状態
+
+| 装置 | 状態 |
+|---|---|
+| MCP capability_registry server(DO-CP-101) | ✅ merged 稼働 |
+| MCP evt_search server(DO-CP-102) | ✅ merged 稼働 |
+| MCP handoff_summary server(DO-CP-103) | ✅ merged 稼働 |
+| **dashboard MCP integration**(DO-CP-038) | ✅ **本サイクル merged**(3 endpoints + dashboard wiring) |
+| Variant a 採択(DO-CP-031) | ✅ |
+| app.tsx TypeScript(DO-CP-032) | ✅ |
+| Storybook + 3 primitives(DO-CP-034) | ✅ |
+| operations + subscreens build(DO-CP-035) | ✅ |
+| catalog/dream/phase build(DO-CP-036) | ✅ |
+| three-realm stats collector(DO-CP-040) | ✅ |
+| SWR hooks 5-endpoint(DO-CP-041) | ✅ |
+| Git push sync section(DO-CP-042) | ✅ |
+| live-updater(DO-CP-039) | ✅ |
+| F3 data aggregation server(DO-CP-030) | ✅ |
+| layer2_entry_point v2(DO-CP-033) | ✅ |
+| globals.d.ts merge(DO-CP-043 ProjectRX 採番)| ✅ |
+| useLatest SWR(DO-CP-044 ProjectRX 採番)| ✅ |
+| useHealth SWR + ApiStatusPill(DO-CP-045 ProjectRX 採番)| ✅ |
+| E2E tab navigation 5 シナリオ(DO-CP-046 ProjectRX 採番 / DO-CP-029)| ✅ |
+| Dockerfile + docker-compose(DO-CP-047 ProjectRX 採番)| ✅ |
+| circuit breaker alias(DO-CP-048)| ✅ |
+| fast-gate effect measurement(DO-CP-104)| ✅(49% 削減数値検証)|
+| twin PR merge-queue measurement(DO-CP-105)| ✅(74% 効率数値検証)|
+
+= **22+ 装置稼働、Read-only MVP の中核装置群 完遂**(DP-001 C-1 範囲 + 番号衝突整流済)
+
+### 21-C. commander active 残数 内訳(2026-05-07 朝末末末末末)
+
+| 系列 | 残数 | 状態 |
+|---|---|---|
+| DO-COMMON(W1/W2/W3)| **57 件** | Wave 1/2/3、Phase B 中盤主軸 |
+| DO-FACTORY | **39 件** | factory 基盤、進行中 |
+| **DO-CP**(コントロールパネル)| **7 件 → 実質 0 件** | 🔴 **完全枯渇** |
+| DO-G(governance)| **4 件**(013/014/015/016) | 最近起案、013/014 merged |
+| DO-COMMANDER | **2 件**(034/042)| ヤス Y1 採否 + HQ 整理 待機 |
+| 合計 | **109 件**(前回 113 → -4 件)|  |
+
+### 21-D. WAVE 補充提案(司令官 α 起案要請、DP-001 制約遵守)
+
+#### 21-D-1. WAVE Q(Quality / 品質拡充、Read-only MVP 範囲内、4 件)
+
+| ID 候補 | 内容 | scope |
+|---|---|---|
+| DO-CP-201 | E2E test 拡張(現 5 → 15 シナリオ目標、tab navigation 深化) | Read-only ✅ |
+| DO-CP-202 | 視覚回帰テスト(Playwright snapshot 統合) | Read-only ✅ |
+| DO-CP-203 | アクセシビリティ監査(axe-core 統合) | Read-only ✅ |
+| DO-CP-204 | パフォーマンス計測(Lighthouse + Core Web Vitals) | Read-only ✅ |
+
+#### 21-D-2. WAVE H(Housekeeping / 整流、commander 主管、4 件)
+
+| ID 候補 | 内容 | 主管 |
+|---|---|---|
+| DO-COMMANDER-049 | **completion_reports パイプライン復旧**(EVT-120 系列構造修復) | 司令官 α |
+| DO-COMMANDER-050 | **housekeeping-D**(DO-CP-030/032/035/036/038/039/042 同期未達 7 件解消) | 司令官 α |
+| DO-COMMANDER-051 | ticket_id_mapping.md §3 拡張(DO-CP-032 二重採番事象記録 + 構造)| 司令官 α |
+| DO-COMMANDER-052 | DP-001 summary 受領経路装置化(supervisor outbox/research_reports/ → commander 自動取込 trigger)| 司令官 α |
+
+#### 21-D-3. 【保留】WAVE V + WAVE D
+
+| WAVE | 状態 | 理由 |
+|---|---|---|
+| WAVE V(View / Dashboard 拡張、DP-001 C-2 範囲)| 🟡 保留 | ヤス C-2 承認後(現状 not_approved 継続)|
+| WAVE D(Deployment / F4)| 🟡 保留 | Write 操作含む可能性 = DP-001 SCOPE_GUARDRAILS 該当 = ヤス C-4 + デプロイ scope 採否後 |
+
+### 21-E. 数値スナップショット(本サイクル末)
+
+| 項目 | 数値 |
+|---|---|
+| supervisor commit 累計(本サイクル末) | 7 件 push 待機 |
+| 監督官 A A-line 発令累計 | **133 件**(第 134 次起案準備中)|
+| ProjectRX merged(本日累計)| **92+ 件**(過去最大記録継続深化)|
+| commander active | 113 → **109 件**(-4 件)|
+| ダッシュボード装置稼働 | **22+ 件 merged**(MCP integration + 3 MCP server + 21 装置)|
+| **DO-CP 起案ストック** | **0 件 = 完全枯渇** = WAVE Q + H = 8 件補充必要 |
+| 全体加重進捗 | 96% → **97%**(+1%、MCP integration + governance 3 装置反映)|
+| Phase B 中盤起動条件 | 達成範囲 + WAVE Q/H 採択で深化 |
+
+### 21-F. 健全側系列 N 累積(本サイクル進展)
+
+本サイクル進展 = **健全側 系列 N 第 N+M+3 例**(累計):
+- (例 1)DO-CP-038 MCP integration 完遂 = ダッシュボード接続早期化主軸 達成
+- (例 2)DO-G-013/014 governance 物理装置追加 = 5 軸ガード C 軸候補(branch protection + role boundary)
+- (例 3)DO-FACTORY-172 SessionStart hook + FACTORY_CAPABILITIES = 工場長側 観測装置追加
+- (例 4)housekeeping-C(101〜103 整流)+ 工場長側 tickets/ 0 件確証 = 同期努力継続
+
+### 21-G. 司令官 α 起案要請(本サイクル末、第 134 次発令)
+
+ヤス指示「司令官にチケット発行の発令を求む」遂行:
+- WAVE Q 採択 → DO-CP-201〜204 起案
+- WAVE H 採択 → DO-COMMANDER-049〜052 起案
+- 計 8 件補充(DP-001 C-2 制約外 + Read-only MVP 範囲内 + 独立採否可能)
+- C-2 ヤス承認後に WAVE V 起案、F4/C-4 ヤス承認後に WAVE D 起案
+
+---
+
 ---
 
 ## §20. Day 135 朝 第 3 サイクル末 進展統合更新(v1.13、2026-05-07 朝末末末)
