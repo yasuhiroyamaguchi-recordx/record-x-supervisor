@@ -119,6 +119,60 @@ ticket_type: independent_reconciliation_analysis
 
 ---
 
+## 10-A. 補強(2026-05-08 朝中盤後末末末、バックグラウンドタスク完了通知契機)
+
+### 10-A-1. 真の数値 確証(本補強)
+
+| 項目 | 件数 |
+|---|---|
+| supervisor unique outbox | 147 |
+| commander unique inbox + 完了 | 141 |
+| **outbox にあって commander 不在** | **13 件** |
+| **commander にあって outbox 不在** | **7 件** |
+| **非対称差分合計** | **20 件**(13 + 7、両側非対称) |
+
+= 前回 v1 §10 「真 diff 約 6 件」推定 = **浅薄**(対称的差分前提)= **EVT-121 §6-J 第 6 例物理証拠候補**(監督官 reconciliation 能力同型再発)
+
+### 10-A-2. 13 件 supervisor → commander 不在 詳細
+
+| # | filename | 推定分類 |
+|---|---|---|
+| 1 | `20260427_to_commander.md`(prefix なし、初版)| 旧形式初版、命名規則 v1.0 切替前(2026-05-04)= 別経路 |
+| 2-13 | `20260503_to_commander_{001/005/006/007/008/010/012/013/015/018/020/021}.md`(12 件) | **2026-05-03 B-line outbox**(supervisor 内部 monitoring + handoff 系)= **commander 配送対象外**(retention + scope mismatch) |
+
+= **真 delivery failure ではなく、retention-policy + scope mismatch 確証**(13 件中 12 件 = B-line 仕様、1 件 = 旧形式初版別経路)
+
+### 10-A-3. 7 件 commander → supervisor outbox 不在(次サイクル継続)
+
+詳細特定 = 背景タスク不安定で本サイクル完遂不可。仮説:
+- (a) 過去 instance(claude.ai 上 前監督官)残骸
+- (b) 別経路投入(工場長 → commander 直接 / 司令官 α self-issue / Strategy Lab 経由)
+- (c) 命名規則 v1.0 採択以前の旧形式残骸
+
+= 次サイクル foreground query で詳細特定要(本サイクル時間制約)
+
+### 10-A-4. 結論訂正(v1 → v1.1)
+
+```
+v1 暫定:counting-method mismatch + retention-policy mismatch
+v1.1 確証:retention-policy mismatch + scope mismatch(B-line + 別経路)
+        + counting-method mismatch(完了/未集計、初動)
+        + 監督官 reconciliation 能力同型再発(EVT-121 §6-J 第 6 例物理証拠候補)
+
+= true delivery failure ではない(本サイクル確証範囲、13/13 = retention/scope mismatch)
++ 7 件 = 次サイクル特定継続
+```
+
+### 10-A-5. 構造的訂正
+
+| 観点 | 訂正 |
+|---|---|
+| 1:1 マッピング前提 | ❌ 訂正:supervisor outbox は A-line(commander 配送)+ B-line(supervisor 内部)の混合 = 1:1 期待は 不正確 |
+| stage 0 mirror 健全性 | ✅ A-line 配送経路は健全(B-line を除けば diff = 0 か微小)|
+| EVT-121 影響 | A-line/B-line 分類認知不足 = 監督官側 SSOT 認識ラグ = EVT-121 同型構造 |
+
+---
+
 ## 11. 次サイクル運用課題(本 Reconciliation の続き)
 
 | # | 内容 |
