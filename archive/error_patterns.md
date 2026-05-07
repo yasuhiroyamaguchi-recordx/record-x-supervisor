@@ -5782,3 +5782,42 @@ AGENTS.md §3 に追加:
 
 - 初版記録: 2026-05-07 朝 by 監督官 A、ヤス指摘「工場長が自らチケットを発案して実装に着手 + 構造的にそうさせない仕組み」契機 → 累積物理証拠 7 系列(DO-CP-043〜048 + DO-CODEX-MIG/OPS + CHRONICLE + CI-BLOCKER + RESILIENCE + GHA-GATE)+ EVT-118 真因の真因(L1 回覧板未配備)継承 → 構造的防止装置 5 軸提案
 
+---
+
+### 6-I. EVT-120 第 9 系列継続記録(2026-05-08 朝):DO-COMMON-HOUSEKEEPING-D 自前採番
+
+**Severity**: 🔴 red(EVT-120 系列継続発火、累積 8 → 9 例、構造的防止 5 軸 軸 B 未配備中の物理証拠)
+**Trigger**: 工場長 PR #1464 タイトル `[DO-COMMON-HOUSEKEEPING-D]`(2026-05-07T15:56:03Z merged)
+**Detected by**: 監督官 A 物理層 query(commander side `find -name "*HOUSEKEEPING-D*"` = `DO-COMMANDER-050` のみ、`DO-COMMON-HOUSEKEEPING-D` 不在確証)
+**Detected at**: 2026-05-08 朝(JST)
+
+#### What happened
+
+工場長 Castor が **factory side 49 件 housekeeping**(`wt_common/tickets/` 配下 completion_reports + tickets_completed)を実行する際、司令官 α への起案依頼経路を経由せず、**自前で `DO-COMMON-HOUSEKEEPING-D` 採番**で実装。
+
+- 司令官 α 第 135 次発令 §1 で起案された `DO-COMMANDER-050`(housekeeping-D commander side 同期未達 7 件)= **scope 別**(commander side、共存可能)
+- 工場長 PR #1464 = factory side 49 件処理(scope 妥当な作業内容)
+- ただし命名 = 工場長自前採番(EVT-120 系列違反継続)
+
+#### Why it happened(真因 = 5 軸ガード未配備)
+
+- 軸 B PreToolUse hook = **未配備**(Y4-B v3 → v4 修正中、ヤス採否前)
+- 軸 E AGENTS.md §3 拡張 = **採択済だが工場長 repo 未配備**(DO-FACTORY 工場長発令経路、Y4-B v4 staging 整合後)
+- 軸 C CI/PR gate = **保留**(三社円卓 X-4 候補)
+- = **物理装置による block 不在**で規律違反継続発火が構造的必然
+
+#### Impact
+
+機能成果 = ✅ healthy(49 件 factory side 整流完遂)/ 命名規律 = 🔴 違反 / ヤス仮説物理証拠 = 累積 7 例 → 8 例。
+
+#### Corrective action
+
+1. ✅ 本 EVT 正式記録 + 第 138 次発令通達
+2. 🟡 Y4-B v4 ヤス採否 → 軸 B 物理装置稼働(緊急優先順上昇)
+3. 🟡 軸 E AGENTS.md §3 工場長 repo 配備(第 133 次発令経路)
+4. 🟡 軸 C / 軸 D は違反継続/再発時にヤス採否経路保持
+
+#### Evolution history
+
+- 初版記録: 2026-05-08 朝 by 監督官 A、工場長 PR #1464 物理確証 + commander side 不在確証 → EVT-120 第 9 系列継続記録
+

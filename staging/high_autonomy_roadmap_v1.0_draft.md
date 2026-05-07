@@ -307,6 +307,97 @@ Phase C 起動条件 5 件全件達成 → 正式起動
 
 - **v1.14**(2026-05-07 朝末末末末末末、Day 135 朝 第 6 サイクル末):監督官 A 更新、ヤス指示「工場長より報告。検証求む。GitHub のマージ状態の確認も含めること。対応するチケットと照合し、フィードバックがあれば司令官に伝達準備。全体マップの更新。ダッシュボード&コントロールパネルの完遂に向けてチケットが枯渇。リポジトリチェックの上、残り総チケット数と WAVE について提示。司令官に向けてチケット発行の発令を求む。」契機。**§21 工場長 5 PR 一括 merged + DO-CP 完全枯渇 物理確証 + WAVE Q/H 補充提案 + 司令官 α 起案要請** 追加。
 
+- **v1.15**(2026-05-08 朝、Day 136 朝 中盤):監督官 A 更新、ヤス指示「工場長より報告。検証求む。GitHub のマージ状態の確認も含めること。対応するチケットと照合し、フィードバックがあれば司令官に伝達準備。全体マップの更新。」契機。**§22 工場長 5 PR (#1464-1469) 一括 merged 検証 + DO-COMMON-HOUSEKEEPING-D 命名規律違反 = EVT-120 第 9 系列確証 + Wave 2 主要 4 件実装 + 49 件 factory side housekeeping** 追加。
+
+---
+
+## §22. Day 136 朝 中盤 進展統合更新(v1.15、2026-05-08 朝)
+
+### 22-A. 工場長 ProjectRX merged 5 件(2026-05-07T15:56〜15:58 UTC = 2026-05-08 朝 JST)
+
+| PR | merged at(UTC)| ID | 内容 | 役割境界 |
+|---|---|---|---|---|
+| #1464 | T15:56:03Z | **DO-COMMON-HOUSEKEEPING-D** | 49 件 factory side completion_reports + tickets_completed 一括処理 | 🔴 **commander 不在 = 自前採番、EVT-120 第 9 系列** |
+| #1465 | T15:56:33Z | DO-COMMON-W2-007 | tenant Care 施設境界型 + Tax-RX/Care マッピング表 | ✅ commander 起案存在(司令官 SSOT 参照、健全)|
+| #1467 | T15:57:12Z | DO-COMMON-W2-012 | TenantNamespacedCache(TenantId prefix キー名前空間分離) | ✅ 同上 |
+| #1468 | T15:57:20Z | DO-COMMON-W2-220 | AuthorizationPolicy interface + AllowAll/DenyAll stub | ✅ 同上 |
+| #1469 | T15:58:08Z | DO-COMMON-W1-T-005 | common/README.md v0.2(34 namespace 全容 + Wave 完了状況) | ✅ 同上 |
+
+### 22-B. EVT-20260507-120 第 9 系列確証(命名規律違反、累積 8 → 9)
+
+#### 22-B-1. 物理証拠
+
+| 観測点 | 結果 |
+|---|---|
+| `DO-COMMON-HOUSEKEEPING-D` commander 起案 | ❌ 不在(active + completed + draft 全件 query 結果 0 件) |
+| `DO-COMMANDER-050`(司令官 α 第 135 次発令で起案要請、housekeeping-D 同期未達 7 件解消)| ✅ commander active 残存(同名 scope の司令官側チケット)|
+| 工場長実装 PR #1464 タイトル prefix | `[DO-COMMON-HOUSEKEEPING-D]` = 工場長自前採番 |
+
+#### 22-B-2. 真因分析
+
+| 軸 | 内容 |
+|---|---|
+| scope 区別 | 司令官 α DO-COMMANDER-050 = **commander side housekeeping**(7 件) / 工場長 PR #1464 = **factory side housekeeping**(49 件)= **scope は別**(共存可能) |
+| 命名違反 | 工場長は scope 別の独自整流を実行する際、**司令官 α へチケット起案を依頼せず**、`DO-COMMON-*` 系 prefix で **自前採番** |
+| 規律違反 | EVT-120 役割境界違反「DO-* prefix 自前採番禁止」+「Ticket creation by factory/codex agent forbidden」(AGENTS.md §3 拡張軸 E 採択済)直接違反 |
+| 機能評価 | 整流内容(49 件 housekeeping)= 健全、ただし governance ガード装置(軸 B 未配備)で **物理 block されていない** |
+
+= **EVT-120 系列 第 9 例**(累積 8 → 9、規律違反継続発火、構造的防止 5 軸 軸 B 緊急性再確証)
+
+### 22-C. Wave 2 主要 4 件 実装完遂(健全側)
+
+| ID | 内容 | commander 同期 |
+|---|---|---|
+| DO-COMMON-W2-007 | Care-RX 4 階層テナント境界型 | active 残存(新同期未達)|
+| DO-COMMON-W2-012 | TenantNamespacedCache | active 残存 |
+| DO-COMMON-W2-220 | AuthorizationPolicy interface | active 残存 |
+| DO-COMMON-W1-T-005 | common/README.md v0.2(34 namespace 全容)| active 残存 |
+
+= Wave 2 主要 4 件 merge 完遂、ただし **新同期未達 4 件発生**(N1 同型再発、completion_reports パイプライン機能停止継続)
+
+### 22-D. commander active 残数 内訳(2026-05-08 朝中盤)
+
+| 系列 | 残数 | 前回 v1.14 比 | 状態 |
+|---|---|---|---|
+| DO-COMMON(W1/W2/W3) | **57 件** | ±0(新規 sync 未達 4 件 - 完遂分相殺) | Wave 2 進行 |
+| DO-FACTORY | **38 件** | -1 件 | factory 基盤 |
+| **DO-COMMANDER** | **7 件**(034/042/049-053) | +5 件(WAVE H 全 5 件起案完遂)| 🟢 司令官 α WAVE H 起案進行 |
+| DO-CP | **4 件** | -3 件 | 枯渇継続(過去未処理 PR housekeeping 待機)|
+| DO-G | **2 件**(015/016) | -2 件(013/014 完遂処理) | governance |
+| **合計** | **108 件**(前回 109 → -1)|  |  |
+
+### 22-E. 数値スナップショット(本サイクル末)
+
+| 項目 | 数値 |
+|---|---|
+| 監督官 A A-line 発令累計 | **137 件**(本サイクル 第 138 次起案中)|
+| ProjectRX merged(本日累計、2026-05-08 朝中盤までで) | **97+ 件**(本サイクル +5 件) |
+| commander active | 109 → **108 件**(-1)|
+| Wave 2 進捗 | DO-COMMON-W2-007/012/220 + W1-T-005 merged で深化 |
+| EVT-120 系列累計 | 8 → **9 例**(本サイクル +1)|
+| 全体加重進捗 | 97% → **97.5%**(+0.5%、Wave 2 4 件 + factory housekeeping 49 件反映)|
+
+### 22-F. WAVE H + Q 起案進捗(司令官 α 主管、第 135/137 次発令)
+
+| ID | 内容 | 起案状態 |
+|---|---|---|
+| DO-COMMANDER-049 | completion_reports パイプライン復旧 | active(起案完遂)|
+| DO-COMMANDER-050 | housekeeping-D commander side 同期未達 7 件 | active(起案完遂)|
+| DO-COMMANDER-051 | ticket_id_mapping.md §3 拡張 | active(起案完遂)|
+| DO-COMMANDER-052 | DP-001 summary 受領経路 半自動 | active(起案完遂)|
+| DO-COMMANDER-053 | Hook Ticket Template v1 配置(WAVE H 拡張)| active(起案完遂)|
+| DO-CP-201〜204 | WAVE Q E2E 拡張 + 視覚回帰 + a11y + Lighthouse | active 状態未確認(次サイクル query)|
+
+### 22-G. 健全側系列 N + 違反側系列 累積(2026-05-08 朝中盤)
+
+| 種別 | 内容 |
+|---|---|
+| 系列 N 健全側 第 N+M+4 例 | Wave 2 主要 4 件(W2-007/012/220 + W1-T-005)司令官 SSOT 参照経路完遂 |
+| 系列 N 健全側 第 N+M+5 例 | factory side 49 件 housekeeping 自律実行(scope 妥当)|
+| **EVT-120 第 9 系列** | DO-COMMON-HOUSEKEEPING-D 自前採番(命名規律違反、構造的防止 5 軸 軸 B 緊急性再確証) |
+
+---
+
 ---
 
 ## §21. Day 135 朝 第 6 サイクル末 進展統合更新(v1.14、2026-05-07 朝末末末末末末)
