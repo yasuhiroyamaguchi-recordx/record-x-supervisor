@@ -391,6 +391,34 @@ EVT-121 / Observability v2 と混ぜず、別ラインで採否継続:
 - 監督官 A 自己批判 + 物理確証 + 構造提案 = ヤス指摘への正規応答(系列 N 健全側 第 N+M+5 例)
 - ヤス段階採否(Y5 部分 GO + Y6 保留 + Y7 GO + Y8 保留)= **構造方針見直しの段階的進行**(関係性ポリシー §3.3 整合)
 
+### 23-I. 補強(2026-05-08 朝中盤後、push-state 誤認 + 自発装置提案不在 検出)
+
+ヤス指摘 = **本サイクル末末末末末末末末重大指摘**:
+
+| 検出 | 内容 |
+|---|---|
+| push-state 誤認(EVT-121 §6-J 補強 2、第 2 例物理証拠)| 監督官 A 累積 12 commit を「push 待機継続」と誤報告、handoff §1-A 旧認知継続使用、git fetch 物理確証未実行、**全件既 push 済(remote 完全同期)** 確証 |
+| 自発装置提案能力不在(EVT-121 §6-J 補強 2、第 3 例物理証拠 + 軸 C6)| 監督官は「発見 → 自己批判」で完結、**装置提案フェーズが構造的に不在** = ヤス指摘経由でのみ提案が出る |
+
+監督官 A 即時整流(本サイクル 4 staging 起案):
+
+| # | staging 配置 | 内容 |
+|---|---|---|
+| 1 | `staging/supervisor_hook_skill_proposal_policy_v1.md` | **構造課題発生時の必須装置提案規律**(Trigger T1-T6 + 5 区分 A/B/C/D/E + アンチパターン AP1-AP5 + CLAUDE.md §4-D 拡張)|
+| 2 | `staging/push_state_check_design_v1.md` | **3 装置統合**(D Script + B Skill + C Hook)= push-state check + verification-before-completion + SessionStart + Stop hooks = 誤認構造的防止 |
+| 3 | `staging/observability_v2_proposal_v1.md` 修正 | 5 点目追加 = supervisor/commander commit push state |
+| 4 | `archive/error_patterns.md` §6-J 補強 1-3 | EVT-121 第 2/3 例物理証拠 + 軸 C5/C6 + Corrective action 14-18 統合 |
+
+= **本サイクル末末末末末末末末末 = EVT-121 同型再発 + 装置提案能力構造的整流の物理装置化経路成立**
+
+### 23-J. 監督官運用ルール拡張候補(Hook/Skill Proposal Policy v1 採択時)
+
+CLAUDE.md §4 起動時自己点検 拡張:
+- 第 6 項候補:**自発装置提案点検**(構造課題 / 再発 / 認知ズレ / 物理確認漏れ 検出時、§3 5 区分必須分類提案)
+- 第 7 項候補:**完了報告前必須検証**(superpowers:verification-before-completion 標準起動)
+
+= **文書規律「読むこと」ではなく装置「自動実行」へ**(ヤス哲学「ルールで縛れ」物理装置化)
+
 ---
 
 ---

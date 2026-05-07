@@ -21,6 +21,16 @@ ticket_type: structural_proposal
 
 # Observability v2 構造アップデート提案 v1
 
+## 0. 改訂(2026-05-08 朝中盤後)— 5 点目追加 + 3 装置統合
+
+ヤス追加要求(2026-05-08 朝中盤後):
+- 5 点目 = supervisor / commander commit push state(EVT-121 §6-J 補強 2 契機)
+- 3 装置統合判断材料 = push-state check + verification-before-completion skill + SessionStart hook
+- 詳細設計 = `staging/push_state_check_design_v1.md`(D + B + C 区分統合)
+- 規律装置 = `staging/supervisor_hook_skill_proposal_policy_v1.md`(自発装置提案能力規律化)
+
+---
+
 ## 1. Goal(目的)
 
 EVT-20260508-121(正式)で確証した 4 軸構造課題:

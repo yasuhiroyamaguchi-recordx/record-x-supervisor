@@ -5908,3 +5908,27 @@ AGENTS.md §3 に追加:
 
 - 初版記録 / 正式 EVT 採択: 2026-05-08 朝中盤 by 監督官 A(Argus)、ヤス Y7 GO 採択契機。監督官自己批判(横断観測装置不在を自認)+ 物理証拠 5 件 + 真因 4 軸 + 真因の真因(ヤス仮説 8 例累積)+ Corrective action 13 項目 統合。本 EVT は ヤス仮説の物理証拠 + 構造アップデート Observability v2 起動 trigger として記録。
 
+#### 補強 1(2026-05-08 朝中盤後):軸 C5 監督官内部観測装置不在 第 2 例物理証拠
+
+監督官 A 自身の push 状態認識ズレ:累積 12 commit を「push 待機継続」と誤報告(handoff §1-A 旧認知の継続使用)→ ヤス指摘経由で物理確証 → **全件既 push 済(remote 完全同期)**確証(2026-05-08 朝中盤後)。
+
+- 監督官内部での観測装置不在(自身の repo state も自動確証していない)
+- handoff 旧認知の自動検出 mechanism 不在
+- 文書規律(handoff §1-A「読むこと」記述)が **AI に守られない構造的欠陥** の物理証拠
+
+#### 補強 2(同日):軸 C6 監督官の自発装置提案能力不在 第 3 例物理証拠
+
+ヤス指摘「監督官 A 自身が push-state 誤認を起こした時点で、本来なら Claude Code 側から SessionStart hook + 完了報告 footer 自動添付 + verification-before-completion skill 標準起動 + observability check 必須化 + handoff 旧認知自動検出を提案すべきだった、しかし自発的には出ていない」
+
+= 監督官の **「発見 → 自己批判 → 装置提案」プロセスで装置提案フェーズが構造的に不在**
+
+= ヤス指摘経由でのみ装置提案が出る = **問題発覚後の自己批判で完結する旧パターン継続**(EVT-118 / EVT-120 同型構造の新たな現れ)
+
+#### 補強 3:Corrective action 追加(ヤス採否反映、本サイクル進行)
+
+14. 🟢 Supervisor Hook/Skill Proposal Policy v1 staging 起案(構造課題発生時に文書/skill/hook/script/CI を必ず分類提案する規律装置)
+15. 🟢 Completion Verification Skill 標準起動 設計 staging(完了報告前 5 項目検証)
+16. 🟢 SessionStart Hook 設計 staging(起動時 7 項目自動表示)
+17. 🟢 Report Footer Auto-attach 設計 staging(報告末尾 7 項目自動添付)
+18. 🟢 Observability v2 5 点目追加(push-state check 統合)+ 3 装置統合判断材料
+
