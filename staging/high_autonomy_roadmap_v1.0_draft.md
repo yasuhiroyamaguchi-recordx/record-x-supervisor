@@ -419,6 +419,60 @@ CLAUDE.md §4 起動時自己点検 拡張:
 
 = **文書規律「読むこと」ではなく装置「自動実行」へ**(ヤス哲学「ルールで縛れ」物理装置化)
 
+### 23-K. 補強 2(2026-05-08 朝中盤後末、司令官 α DO-COMMON Reconciliation Report + 司令官側装置 5 区分提案)
+
+司令官 α 報告受領契機 + EVT-121 §6-J 補強 4(第 4 例物理証拠 + 軸 C7 司令官側 completion_reports 流入経路弱体化)
+
+**物理証拠(本サイクル末末末)**:
+
+| 観測点 | 件数 |
+|---|---|
+| commander active DO-COMMON | 53 |
+| commander completed DO-COMMON | 49 |
+| commander side completion_reports DO-COMMON | 28 |
+| **HQ `staging/completion_reports/`** | **ディレクトリ不在** |
+| factory `wt_common/completion_reports/` DO-COMMON | 73 |
+
+= **45 件流入不全**(73 - 28)= 上流装置欠落の物理証拠
+
+**監督官 A 即時整流**(Hook/Skill Proposal Policy v1 §3 適用例 第 2 例):
+
+| # | staging | 内容 |
+|---|---|---|
+| 1 | `staging/commander_observability_design_v1.md` | 5 区分必須分類提案(A 文書 / B Skill / C Hook / D Script / E CI/PR Gate)|
+| 2 | `staging/completion_report_supply_path_redesign_v1.md` | 供給経路構造化(E 区分 GHA + DO-FACTORY-173 拡張 二層防護)|
+| 3 | `archive/error_patterns.md` §6-J 補強 4-5 | EVT-121 第 4 例物理証拠 + 軸 C7 + Corrective 19-25 拡張 |
+
+**5 区分採用優先順**:
+
+| 優先 | 区分 | 内容 |
+|---|---|---|
+| 🔴 P0 | E | factory PR merge → completion_report 自動生成 GHA(根本治療)|
+| 🔴 P0 | C | 司令官 SessionStart hook(6 項目自動表示)|
+| 🟡 P1 | B | 司令官 α verification-before-completion Skill 標準起動(5 項目検証) |
+| 🟡 P1 | D | pull-completion-reports.ps1 強化 + 司令官側 cross_repo_diff_check |
+| 🟡 P1 | C | 司令官 PostToolUse hook(sync/process/move/WAVE 後 自動差分確認)|
+| 🟢 P3 | A | commander CLAUDE.md / AGENTS.md 改訂 |
+
+**ヤス制約 5 件遵守**:工場長直接指示なし / G-009〜G-012 慎重 / W7 自前採番禁止 / DP-001 C-2 混ぜない / 実装なし staging まで
+
+= **EVT-121 累積物理証拠 4 例 + 司令官側装置強制設計完遂**(本サイクル staging のみ、ヤス採否経路)
+
+### 23-L. ヤス仮説物理証拠 累積(本サイクル末末末)
+
+| # | 物理証拠 |
+|---|---|
+| 1 | EVT-118: 監督官 自リポジトリ L1/L2/L3 認知失敗 |
+| 2 | DO-CP-043〜048 番号衝突 |
+| 3 | EVT-119: Strategy Lab supervisor commit 物理乖離 |
+| 4 | EVT-120: 工場長自前採番 累積 9 系列 |
+| 5 | 同期未達 5+28+45 件累積 |
+| 6 | 司令官 α コンテキスト切れ自認 |
+| 7 | EVT-121 第 1-3 例(横断観測装置不在 + push-state 誤認 + 自発装置提案能力不在) |
+| 8 | **EVT-121 第 4 例(司令官側 completion_reports 流入経路弱体化、HQ staging 不在)** |
+
+= **累積 8 例 → 9 例**(本サイクル +1)= ヤス仮説「AI 判断鈍化 = 観測装置不在」物理装置化必然性 連続証明
+
 ---
 
 ---

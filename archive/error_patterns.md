@@ -5932,3 +5932,34 @@ AGENTS.md §3 に追加:
 17. 🟢 Report Footer Auto-attach 設計 staging(報告末尾 7 項目自動添付)
 18. 🟢 Observability v2 5 点目追加(push-state check 統合)+ 3 装置統合判断材料
 
+#### 補強 4(2026-05-08 朝中盤後末):軸 C7 司令官側 completion_reports 流入経路弱体化 第 4 例物理証拠
+
+司令官 α DO-COMMON Ticket Inventory Reconciliation Report 受領契機(2026-05-08 朝中盤後末)+ 監督官 A 物理層 query:
+
+| 観測点 | 件数(本サイクル末末)|
+|---|---|
+| commander active DO-COMMON | 53 件 |
+| commander completed DO-COMMON | 49 件 |
+| commander side completion_reports DO-COMMON | 28 件 |
+| **HQ `staging/completion_reports/` ディレクトリ** | **不在**(`ls` で No such file or directory) |
+| factory `wt_common/completion_reports/` DO-COMMON | 73 件 |
+
+**真因確証**: pull-completion-reports.ps1(commander 側)は動作中だが、**pull 元 = HQ `staging/completion_reports/` が物理層不在** = **上流装置欠落** = **45 件の completion_report が HQ staging に到達していない**(73 - 28 = 45 件 流入不全)= 司令官 SSOT 陳腐化の根本原因物理証拠。
+
+= **md 規律「読むこと」では再発、装置層強制が必須**(ヤス指摘整合):
+
+軸 C7 司令官側 completion_reports 流入経路弱体化(本軸追加):
+- factory PR merge 時 completion_report 自動生成不在 = 手動依頼ベース = 構造的脆弱性
+- HQ staging 配置自動化不在 = pull 装置の上流欠落
+- 司令官側 SessionStart / PostToolUse / verification skill 不在 = 流入監視不在
+
+#### 補強 5:Corrective action 拡張(本サイクル進行)
+
+19. 🟢 Hook/Skill Proposal Policy v1 §3 必須 5 区分分類提案 = 司令官側装置設計
+20. 🟢 司令官 SessionStart hook(supervisor 同型、6 項目自動表示)
+21. 🟢 司令官 verification-before-completion Skill 標準起動(完了処理前 5 項目検証)
+22. 🟢 司令官 PostToolUse hook(sync / process / move / WAVE 後 自動差分確認)
+23. 🟢 pull-completion-reports.ps1 強化(HQ staging 不在検出 + alert + factory 経路 fallback)
+24. 🟢 factory PR merge 時 completion_report 自動生成 GHA workflow(C 軸 / E 区分、根本治療)
+25. 🟢 DO-FACTORY-173 再評価(SessionStart hook 拡張で未提出 completion_report 件数表示候補)
+
