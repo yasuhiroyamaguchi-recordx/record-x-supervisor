@@ -142,14 +142,43 @@ ticket_type: independent_reconciliation_analysis
 
 = **真 delivery failure ではなく、retention-policy + scope mismatch 確証**(13 件中 12 件 = B-line 仕様、1 件 = 旧形式初版別経路)
 
-### 10-A-3. 7 件 commander → supervisor outbox 不在(次サイクル継続)
+### 10-A-3. 7 件 commander → supervisor outbox 不在(本補強で v1.2 完成、bct6w4nvd 完了通知契機)
 
-詳細特定 = 背景タスク不安定で本サイクル完遂不可。仮説:
-- (a) 過去 instance(claude.ai 上 前監督官)残骸
-- (b) 別経路投入(工場長 → commander 直接 / 司令官 α self-issue / Strategy Lab 経由)
-- (c) 命名規則 v1.0 採択以前の旧形式残骸
+| # | filename | 分類 |
+|---|---|---|
+| 1 | `20260427_to_commander_001.md` | supervisor 側 `20260427_to_commander.md` の rename 統一(commander 側で `_001` 付与)= 命名統一前 variant 残骸 |
+| 2-4 | `20260428_to_commander_{002/003/008}_ROOT_VARIANT.md`(3 件)| ROOT_VARIANT suffix = 別命名 variant 残骸(命名規則整流前) |
+| 5 | `20260503_to_commander_001_DUPLICATE_OF_047.md` | DUPLICATE 注記付き = 整流時記録残骸(実 047 と重複認識済み)|
+| 6 | `frontend_dashboard_roadmap_v1.0.md` | supervisor staging 経由 commander 直接保存(別経路投入) |
+| 7 | `README.md` | commander inbox 自己 README(経路説明、supervisor outbox 起源ではない) |
 
-= 次サイクル foreground query で詳細特定要(本サイクル時間制約)
+= **真 delivery failure 0 件、全件 retention/variant/別経路/内部文書 mismatch**
+
+### 10-A-4. 結論訂正(v1.1 → v1.2、本補強で完成)
+
+```
+v1   暫定: counting-method mismatch + retention-policy mismatch
+v1.1 確証(13 件): retention + scope mismatch(B-line + 旧形式)+ counting + 監督官同型再発
+v1.2 確証(13 + 7 = 20 件全件): retention + scope + variant + 別経路 + 内部文書 mismatch
+     = **真 delivery failure 0 件**(全 20 件構造的説明可能)
+     = **stage 0 mirror 経路自体は健全**(配送経路は機能、認知 ≠ 実態)
+     = 監督官 reconciliation 能力 三段階浅薄 確証
+        (初動 diff 126 → v1 真 diff 約 6 → v1.1 非対称 20 → v1.2 真 0)
+```
+
+### 10-A-5. EVT-121 §6-J 第 6 例 確証
+
+監督官 reconciliation 能力 三段階浅薄(diff 126 → 6 → 20 → 0)= **横断観測装置不在 + counting 規律不在 + 認知段階性不在** の物理証拠 累積 9 例 → 10 例 = ヤス仮説「AI 判断鈍化 = 観測装置不在」物理装置化必然性継続証明
+
+### 10-A-6. 構造的訂正(v1.2 反映)
+
+| 観点 | v1 | v1.1 | v1.2 |
+|---|---|---|---|
+| diff 件数 | 126(初動) | 20(非対称) | 真 0 + 構造的 20 |
+| 真因分類 | counting + retention | + scope + 監督官同型再発 | + variant + 別経路 + 内部文書 |
+| 1:1 マッピング前提 | 期待 | 不正確(A/B 混合)| **構造的に成立しない**(複数経路 + retention + variant 共存)|
+| stage 0 mirror 健全性 | 不明 | 部分健全 | **健全**(配送経路は機能) |
+| 確定 vs 推定 | 推定 | 部分確定 | **完全確定**(全 20 件分類)|
 
 ### 10-A-4. 結論訂正(v1 → v1.1)
 
