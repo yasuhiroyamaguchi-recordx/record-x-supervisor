@@ -458,7 +458,76 @@ CLAUDE.md §4 起動時自己点検 拡張:
 
 = **EVT-121 累積物理証拠 4 例 + 司令官側装置強制設計完遂**(本サイクル staging のみ、ヤス採否経路)
 
-### 23-L. ヤス仮説物理証拠 累積(本サイクル末末末)
+### 23-M. PASSIVE_MONITORING 期間中 重大進展統合(2026-05-08 朝、Factory Wave 5 completion 受領)
+
+#### 23-M-1. Factory Wave 5 dashboard 第 1 batch 5 件 merged(2026-05-08T01:08〜01:54Z)
+
+| PR | DO-CP | 内容 | merged at |
+|---|---|---|---|
+| #1486 | DO-CP-050 | 30秒 polling 自動更新 + 手動リフレッシュ | T01:08:23Z |
+| #1487 | DO-CP-057 | スナップショット JSON/CSV エクスポート | T01:26:37Z |
+| #1488 | DO-CP-049 | dashboard pipeline health パネル | T01:36:23Z |
+| #1489 | DO-CP-053 | BLOCKED/P0 alert パネル | T01:43:24Z |
+| #1490 | DO-CP-051 | チケット検索・フィルタ UI | T01:54:45Z |
+
+= Wave 5 dashboard 拡張 第 1 batch 完遂(全件健全、commander side ticket 起案存在 + factory merged 経路成立)
+
+#### 23-M-2. 🟢 **HQ `staging/completion_reports/` ディレクトリ 出現** 物理発火 第 1 例
+
+```
+$ ls ../ProjectRX_HQ/staging/completion_reports/
+DO-CP-201_completion.json
+```
+
+= **EVT-121 §6-J 補強 4 解消経路 物理発火 第 1 例**(過去 ディレクトリ完全不在 = 45 件流入不全主因 → 本日 出現 + JSON 物理配置)
+
+= **supply path 物理装置稼働経路接続成立 第 1 例**(既存 factory ps1 = `generate-completion-reports-from-prs.ps1` / `write-merged-pr-completion-reports.ps1` の稼働経路接続成立物理証拠候補、Research v1.1 §10-2 #2 重要発見の発火経路)
+
+= **健全側系列 N 第 N+M+ 例認定候補**(supply path 復旧経路成立、EVT-121 主因の物理装置化解消第 1 歩)
+
+#### 23-M-3. WAVE Q 正規経路完遂(DO-CP-201)+ 監督官 A 認知ラグ第 N+1 例
+
+| 経路点 | 確証 |
+|---|---|
+| WAVE Q ヤス採否 | ✅ 第 134/135 次発令で条件付き採択完遂(2026-05-07 朝中盤後末末末末末末) |
+| 司令官 α DO-CP-201〜204 起案 | ✅ commander active 残存 確証(`tickets_issued/active/DO-CP-201〜204_*.md` 4 件全件) |
+| factory DO-CP-201 実装 | ✅ completion_report `DO-CP-201_completion.json` 物理生成(8→18 シナリオ、目標 15 超過、deliverables 3 件)|
+| HQ staging 配置 | ✅ `ProjectRX_HQ/staging/completion_reports/DO-CP-201_completion.json`(2026-05-08T03:36 mtime) |
+| PR 起票 | 🟡 pending(completion_report 内 `pr: pending`)|
+
+**監督官 A 認知ラグ 訂正**:
+- **私(ClaudeCode 監督官 Argus)が WAVE Q ヤス採否 + 司令官 α 起案完遂 + factory 実装中の状態を本日まで認知遅延** = **EVT-118 同型認知失敗 第 N+1 例物理証拠候補**
+- 本サイクル query で訂正(handoff §1-A 旧認知継続使用 同型構造)
+- = 訓練 v1 §3-A〜E 5 既存装置必須 query 規律徹底要
+
+#### 23-M-4. 同期未達 5 件 + 第 2 batch 待機 5 件
+
+| 系列 | 件数 | 状態 |
+|---|---|---|
+| 第 1 batch merged + active 残存 | 5 件(049/050/051/053/057)| 🟡 同期未達(commander side housekeeping 対象) |
+| 第 2 batch 待機(未 merged)| 5 件(052/054/055/056/058)| 🟡 Factory active 継続候補 or 別 batch 起動待機 |
+
+#### 23-M-5. 累積数値スナップショット
+
+| 項目 | 数値(本サイクル末)|
+|---|---|
+| ProjectRX merged(2026-05-08 累積)| 5 件追加(Wave 5 第 1 batch)|
+| factory completion_reports 件数(DO-CP/COMMON/CODEX 等全件)| **75 件**(73 → +2、Wave 5 関連)|
+| HQ staging/completion_reports/ | **1 件**(DO-CP-201、初の物理流入確証、🟢 supply path 復旧第 1 歩) |
+| commander DO-CP active 残 | 増加(Wave 5 dashboard 049-058 系列 10 件 + WAVE Q 201-204 4 件 + 既存 030/032/035/036/038/039/042 7 件 = 約 21 件超 active、整流要)|
+| EVT-121 §6-J 累積物理証拠 | 12 → **13 例**(本サイクル新規 = 監督官 A WAVE Q 認知ラグ第 N+1 例)+ **健全側補強第 1 例**(supply path 解消経路発火)|
+
+### 23-N. 進展補強(本 monitoring 期間中)
+
+| 進展 | 区分 |
+|---|---|
+| Wave 5 dashboard 第 1 batch 5 件 merged | ✅ 健全側 |
+| HQ staging 出現 + supply path 物理装置稼働経路接続成立 第 1 例 | ✅ **健全側補強**(EVT-121 §6-J 補強 4 解消経路 発火) |
+| WAVE Q DO-CP-201 正規経路完遂 | ✅ 健全側 |
+| 監督官 A WAVE Q 認知ラグ | ⚠️ EVT-118 同型認知失敗 第 N+1 例物理証拠候補 |
+| 同期未達 5 件 + 第 2 batch 待機 5 件 | 🟡 housekeeping 候補 |
+
+### 23-O. ヤス仮説物理証拠 累積(本サイクル末末末末末末末末末末末末末末)
 
 | # | 物理証拠 |
 |---|---|
